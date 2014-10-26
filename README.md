@@ -1,4 +1,5 @@
 
+
 http://scotch.io/bar-talk/setting-up-a-mean-stack-single-page-application
 http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 
@@ -24,3 +25,7 @@ If you have any questions or requests, email us at [chris@scotch.io](mailto:chri
 - Development and Production Environments
 - Link examples
 - Single Page AngularJS Animations
+
+KARMA setup:
+http://karma-runner.github.io/0.12/intro/installation.html
+http://karma-runner.github.io/0.10/intro/configuration.html
