@@ -29,3 +29,5 @@ If you have any questions or requests, email us at [chris@scotch.io](mailto:chri
 KARMA setup:
 http://karma-runner.github.io/0.12/intro/installation.html
 http://karma-runner.github.io/0.10/intro/configuration.html
+
+karma start my.conf.js
