@@ -1,5 +1,22 @@
 
 
+1: mongod -dbpath "C:\mongodb-data\data\db"
+2: nodemon server.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 http://scotch.io/bar-talk/setting-up-a-mean-stack-single-page-application
 http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 

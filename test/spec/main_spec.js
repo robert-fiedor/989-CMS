@@ -27,6 +27,13 @@ describe('Unit: MainController', function() {
             expect(scope.greeting).toEqual("Hello Ari");
         });
 
+    it('should already have Ari as a name',
+        function() {
+            expect(scope.name).toBeDefined();
+            //scope.sayHello();
+            //expect(scope.greeting).toEqual("Hello Ari");
+        });
+
 
 
 })
