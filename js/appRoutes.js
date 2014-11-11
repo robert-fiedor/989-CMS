@@ -1,23 +1,16 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+(function () {
+    'use strict';
 
-	$routeProvider
+    angular.module('doctors').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-		// home page
-		.when('/', {
-			templateUrl: 'views/home.html',
-			controller: 'MainController'
-		})
+        $routeProvider
 
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
+            .when('/', {
+                templateUrl: '/views/home.html',
+                controller: 'HomeController'
+            })
 
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
-		});
+        $locationProvider.html5Mode(true);
 
-	$locationProvider.html5Mode(true);
-
-}]);
+    }])
+})();
