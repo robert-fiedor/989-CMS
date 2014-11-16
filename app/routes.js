@@ -1,15 +1,14 @@
-
 var Nerd = require('./models/nerd');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-	// server routes ===========================================================
-	// handle things like api calls
-	// authentication routes
+    // server routes ===========================================================
+    // handle things like api calls
+    // authentication routes
 
-    app.get('/api/nerds', function(req, res) {
+    app.get('/api/nerds', function (req, res) {
         // use mongoose to get all nerds in the database
-        Nerd.find(function(err, nerds) {
+        Nerd.find(function (err, nerds) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute
@@ -22,23 +21,29 @@ module.exports = function(app) {
 //        res.json({d:1}); // return all nerds in JSON format
 
 
-
     });
 
-    app.post('/api/nerds', function(req, res) {
+    app.post('/api/nerds', function (req, res) {
 
         var nerd = new Nerd();
-        nerd.address={address:'lalala'};
+        nerd.address = {
+            name: 'aasassaas',
+            address: 'sjsjksl',
+            city: 'warsaw',
+            state: 'ny',
+            date: Date.now(),
+            zip: 'ssss'
+        };
         //nerd.address='jkl';
 
         //console.log('req',req);
 
 
-        nerd.save(function(err) {
+        nerd.save(function (err) {
             if (err)
                 res.send(err);
 
-            res.json({ message: 'nerd created!' });
+            res.json({message: 'nerd created!'});
         });
 
     });
@@ -58,13 +63,10 @@ module.exports = function(app) {
 //        });
 
 
-
-
-
-	// frontend routes =========================================================
-	// route to handle all angular requests
-	app.get('/index', function(req, res) {
-		res.sendfile('./public/index.html');
-	});
+    // frontend routes =========================================================
+    // route to handle all angular requests
+    app.get('/index', function (req, res) {
+        res.sendfile('./public/index.html');
+    });
 
 };
