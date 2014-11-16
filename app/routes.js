@@ -28,7 +28,11 @@ module.exports = function(app) {
     app.post('/api/nerds', function(req, res) {
 
         var nerd = new Nerd();
-        nerd.name="jack off";
+        nerd.address={address:'lalala'};
+        //nerd.address='jkl';
+
+        //console.log('req',req);
+
 
         nerd.save(function(err) {
             if (err)

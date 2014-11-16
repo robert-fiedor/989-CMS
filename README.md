@@ -1,7 +1,6 @@
 
-1: mongod -dbpath "C:\mongodb-data\data\db"
-2: nodemon server.js
-
+mongod -dbpath "C:\mongodb-data\data\db"
+nodemon server.js
 
 
 
