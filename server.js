@@ -4,6 +4,11 @@ var app            = express();
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+
+var mongoStore = require('connect-mongo')({session: expressSession});
+
 
 // configuration ===========================================
 	
@@ -23,6 +28,24 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
+
+
+
+app.use(cookieParser());
+
+app.use(expressSession({
+
+    secret: 'SECRET',
+    cookie: {maxAge: 60*60*1000},
+    store: new mongoStore({
+        db: mongoose.connection.db,
+        collection: 'sessions'
+    }),
+    saveUninitialized: true,
+    resave: true
+}));
+
+
 
 // start app ===============================================
 app.listen(port);	
