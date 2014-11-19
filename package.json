@@ -8,7 +8,9 @@
     "method-override": "~2.0.2",
     "cookie-parser":"latest",
     "express-session":"latest",
-    "connect-mongo":"latest"
+    "connect-mongo":"latest",
+    "ejs":"latest",
+    "crypto":"latest"
   },
   "devDependencies": {
     "karma": "^0.12.24",
