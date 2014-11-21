@@ -1,3 +1,7 @@
+
+
+
+
 // modules =================================================
 var express        = require('express');
 var app            = express();
@@ -7,6 +11,7 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
+var path = require('path')
 
 require('./models/users_model.js');
 
@@ -29,8 +34,20 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 
+//app.use("/css", express.static(__dirname + '/css'));
+
 app.engine('.html', require('ejs').__express);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use(express.static(__dirname + '/public'));
+
+//app.use(express.static(__dirname+'./public'))
+
+
 app.set('views', __dirname + '/views');
+
+
 app.set('view engine', 'html');
 
 
@@ -54,7 +71,7 @@ app.use(expressSession({
     resave: true
 }));
 
-require('./routes')(app); // pass our application into our routes
+require('./app/routes')(app); // pass our application into our routes
 
 
 

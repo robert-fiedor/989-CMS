@@ -1,10 +1,12 @@
 <!doctype html>
-<html ng-app="myApp">
+<html ng-app="doctors">
+
 <head>
   <title>User Login and Sessions</title>
-  <link rel="stylesheet" type="text/css" 
-      href="/static/css/styles.css" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
+
 <body>
   <div class="form-container" ng-controller="myController">
     <p class="form-header">User Profile</p>
@@ -25,7 +27,12 @@
     <input type="submit" value="Delete User">
   </form>
   <hr><%= msg %>
-  <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
-  <script src="/static/js/my_app.js"></script>
+
+  <script src="js/lib.js"></script>
+  <script src="js/app.js"></script>
+
+
+
 </body>
+
 </html>

@@ -1,6 +1,68 @@
+var crypto = require('crypto');
+var express = require('express');
+
 var Nerd = require('./models/nerd');
 
+
 module.exports = function (app) {
+
+    var users = require('./../controllers/users_controller');
+    console.log('12222 1 2 2 2 ')
+
+
+
+        //.use('/lib', express.static('../lib'));
+
+
+    app.get('/', function (req, res) {
+        if (req.session.user) {
+            res.render('index', {
+                username: req.session.username,
+                msg: req.session.msg
+            });
+        } else {
+            req.session.msg = 'Access denied!';
+            res.redirect('/login');
+        }
+    });
+    app.get('/user', function (req, res) {
+        if (req.session.user) {
+            res.render('user', {msg: req.session.msg});
+        } else {
+            req.session.msg = 'Access denied!';
+            res.redirect('/login');
+        }
+    });
+    app.get('/signup', function (req, res) {
+        if (req.session.user) {
+            res.redirect('/');
+        }
+        res.render('signup', {msg: req.session.msg});
+    });
+    app.get('/login', function (req, res) {
+        if (req.session.user) {
+            res.redirect('/');
+        }
+        res.render('login', {msg: req.session.msg});
+    });
+    app.get('/logout', function (req, res) {
+        req.session.destroy(function () {
+            res.redirect('/login');
+        });
+    });
+    app.post('/signup', users.signup);
+    app.post('/user/update', users.updateUser);
+    app.post('/user/delete', users.deleteUser);
+    app.post('/login', users.login);
+    app.get('/user/profile', users.getUserProfile);
+
+
+
+
+
+
+
+
 
     // server routes ===========================================================
     // handle things like api calls
@@ -27,7 +89,7 @@ module.exports = function (app) {
 
         var nerd = new Nerd();
         nerd.address = {
-            name: 'aasassaas',
+            name: 'bobitto',
             address: 'sjsjksl',
             city: 'warsaw',
             state: 'ny',
@@ -49,24 +111,17 @@ module.exports = function (app) {
     });
 
 
-//    .post(function(req, res) {
-//
-//        var bear = new Bear(); 		// create a new instance of the Bear model
-//        bear.name = req.body.name;  // set the bears name (comes from the request)
-//
-//        // save the bear and check for errors
-//        bear.save(function(err) {
-//            if (err)
-//                res.send(err);
-//
-//            res.json({ message: 'Bear created!' });
-//        });
 
 
-    // frontend routes =========================================================
-    // route to handle all angular requests
-    app.get('/index', function (req, res) {
-        res.sendfile('./public/index.html');
-    });
 
-};
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,6 +1,22 @@
 var crypto = require('crypto');
 var express = require('express');
 module.exports = function(app) {
+
+
+  //app.get('/index', function (req, res) {
+  //  res.sendfile('./public/index.html');
+  //});
+
+
+
+
+
+
+
+
+
+
+
   var users = require('./controllers/users_controller');
   app.use('/static', express.static( './static')).
       use('/lib', express.static( '../lib')

@@ -1,19 +1,40 @@
 <!doctype html>
-<html ng-app="myApp">
+<html>
 <head>
-  <title>User Login and Sessions</title>
-  <link rel="stylesheet" type="text/css" 
-      href="/static/css/styles.css" />
+    <title>User Login and Sessions</title>
+
+    <base href="/">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/app.css">
+
 </head>
-<body>
-  <div ng-controller="myController">
+<body ng-app="doctors">
+
+<div ng-controller="myController">
     <h2>Welcome. Your are Logged In as <%= username %></h2>
     <a href="/logout">logout</a>
     <a href="/user">Edit User</a>
-    <p>Place Your Code Here<p>
-  </div>
-  <hr><%= msg %>
-  <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
-  <script src="/static/js/my_app.js"></script>
+
+    <p></p>change
+
+    <p>
+</div>
+
+
+
+<hr>
+
+
+<%= msg %>
+
+
+<script src="js/lib.js"></script>
+<script src="js/app.js"></script>
+
+<!--<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>-->
+<!--<script src="/static/js/my_app.js"></script>-->
+
+
 </body>
 </html>

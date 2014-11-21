@@ -11,7 +11,8 @@ nodemon server.js
 
 
 
-
+// static folders and such:
+//http://stackoverflow.com/questions/13395742/can-not-get-css-file
 
 
 http://scotch.io/bar-talk/setting-up-a-mean-stack-single-page-application
