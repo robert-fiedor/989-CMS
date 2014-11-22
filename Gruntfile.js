@@ -13,15 +13,15 @@ module.exports = function (grunt) {
                     paths: ["css"]
                 },
                 files: {
-                    "public/css/app.css": "css/app.less"
+                    "public/css/app.css": "src/app.less"
                 }
             }
         },
 
         watch: {
             scripts: {
-                files: ['js/**/*.js', 'css/**/*.less'],
-                tasks: ['concat','less'],
+                files: ['src/**/*.js'],
+                tasks: ['concat', 'less'],
                 options: {
                     spawn: false
                 }
@@ -32,12 +32,13 @@ module.exports = function (grunt) {
         concat: {
             basic_and_extras: {
                 files: {
-                    'public/js/app.js': ['js/app.js', 'js/**/*.js'],
-                    'public/js/lib.js': ['libs/angular/angular.js', 'libs/angular-mocks/angular-mocks.js','libs/angular-route/angular-route.js']
+                    'public/js/app.js': ['src/app.js', 'src/modules/**/*.js'],
+                    'public/js/lib.js': ['src/libs/angular/angular.js',
+                        'src/libs/angular-mocks/angular-mocks.js',
+                        'src/libs/angular-route/angular-route.js']
                 }
             }
         }
-
 
 
     });

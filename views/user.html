@@ -10,6 +10,10 @@
 <body>
   <div class="form-container" ng-controller="myController">
     <p class="form-header">User Profile</p>
+
+
+
+
     <form method="POST" action="/user/update">
        <label>Username:</label>
          <input type="text" name="username" 
@@ -21,7 +25,10 @@
          <input type="text" name="color" 
                 ng-model="user.color"><br>
        <input type="submit" value="Save">
-    </form>       
+    </form>
+
+
+
   </div>
   <form method="POST" action="/user/delete">
     <input type="submit" value="Delete User">
