@@ -10,6 +10,8 @@ nodemon server.js
 
 
 
+//routing !
+// http://compassinhand.com/2014/01/21/building-an-angularjs-app-using-node-js-and-expressjs/
 
 // static folders and such:
 //http://stackoverflow.com/questions/13395742/can-not-get-css-file

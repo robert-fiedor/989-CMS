@@ -2,6 +2,8 @@
 
 
 
+
+
 // modules =================================================
 var express        = require('express');
 var app            = express();
@@ -11,12 +13,17 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
+var router = express.Router();
+
 var path = require('path')
 
 require('./models/users_model.js');
 
 
 var mongoStore = require('connect-mongo')({session: expressSession});
+
+
+
 
 
 // configuration ===========================================
@@ -36,12 +43,20 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 
 app.engine('.html', require('ejs').__express);
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(router);
+
+
+
+
 // routes ==================================================
+
+
+
 
 
 app.use(cookieParser());

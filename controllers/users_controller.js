@@ -103,3 +103,23 @@ exports.deleteUser = function (req, res) {
             }
         });
 };
+
+//exports.index = function(req, res){
+//    //res.render('layout');
+//
+//
+//
+//        if (req.session.user) {
+//            res.render('index', {
+//                username: req.session.username,
+//                msg: req.session.msg
+//            });
+//        } else {
+//            req.session.msg = 'Access denied!';
+//            res.redirect('/login');
+//        }
+//
+//
+//};
+
+
