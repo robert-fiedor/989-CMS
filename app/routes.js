@@ -11,6 +11,11 @@ module.exports = function (app) {
         res.render('index');
     });
 
+    app.get('/', function (req, res) {
+        res.render('index');
+        //res.redirect('/login');
+    });
+
     app.get('/user', function (req, res) {
         if (req.session.user) {
             res.render('user', {msg: req.session.msg});
@@ -26,9 +31,9 @@ module.exports = function (app) {
         res.render('signup', {msg: req.session.msg});
     });
     app.get('/login', function (req, res) {
-        if (req.session.user) {
-            res.redirect('/');
-        }
+        //if (req.session.user) {
+        //    res.redirect('/');
+        //}
         res.render('login', {msg: req.session.msg});
     });
     app.get('/logout', function (req, res) {
@@ -37,20 +42,11 @@ module.exports = function (app) {
         });
     });
 
-
     app.post('/signup', users.signup);
     app.post('/user/update', users.updateUser);
     app.post('/user/delete', users.deleteUser);
     app.post('/login', users.login);
     app.get('/user/profile', users.getUserProfile);
-
-
-
-
-
-
-
-
 
     // server routes ===========================================================
     // handle things like api calls

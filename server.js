@@ -50,15 +50,6 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(router);
 
-
-
-
-// routes ==================================================
-
-
-
-
-
 app.use(cookieParser());
 
 app.use(expressSession({
