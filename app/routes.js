@@ -31,9 +31,9 @@ module.exports = function (app) {
         res.render('signup', {msg: req.session.msg});
     });
     app.get('/login', function (req, res) {
-        //if (req.session.user) {
-        //    res.redirect('/');
-        //}
+        if (req.session.user) {
+            res.redirect('/');
+        }
         res.render('login', {msg: req.session.msg});
     });
     app.get('/logout', function (req, res) {
