@@ -22,10 +22,6 @@ require('./models/users_model.js');
 
 var mongoStore = require('connect-mongo')({session: expressSession});
 
-
-
-
-
 // configuration ===========================================
 	
 // config files
