@@ -3,22 +3,22 @@
  */
 //
 angular.module('doctors')
-    .controller('HomeController', ['$scope', '$http',
-        function ($scope, $http) {
+    .controller('HomeController', ['$scope', '$http', 'CreditCardService',
+        function ($scope, $http, CreditCardService) {
 
-            console.log('HomeController')
+            console.log('HomeController', CreditCardService.query());
 
 
-            $http.get('/user/profile')
-                .success(function (data, status, headers, config) {
-                    $scope.user = data;
-                    $scope.error = "";
-                    console.log(88);
-                }).
-                error(function (data, status, headers, config) {
-                    $scope.user = {};
-                    $scope.error = data;
-                })
+            //$http.get('/user/profile')
+            //    .success(function (data, status, headers, config) {
+            //        $scope.user = data;
+            //        $scope.error = "";
+            //        console.log(88);
+            //    }).
+            //    error(function (data, status, headers, config) {
+            //        $scope.user = {};
+            //        $scope.error = data;
+            //    })
 
         }
     ]

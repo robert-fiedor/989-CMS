@@ -2,7 +2,8 @@
 mongod -dbpath "C:\mongodb-data\data\db"
 nodemon server.js
 
-
+in case db locked:
+//http://www.mkyong.com/mongodb/old-lock-file-datadbmongod-lock-probably-means-unclean-shutdown/
 
 
 

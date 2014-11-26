@@ -33,9 +33,13 @@ module.exports = function (grunt) {
             basic_and_extras: {
                 files: {
                     'public/js/app.js': ['src/app.js', 'src/modules/**/*.js'],
-                    'public/js/lib.js': ['src/libs/angular/angular.js',
+                    'public/js/lib.js': [
+                        'src/libs/angular/angular.js',
                         'src/libs/angular-mocks/angular-mocks.js',
-                        'src/libs/angular-route/angular-route.js']
+                        'src/libs/bower-angular-resource-master/angular-resource.js',
+                        'src/libs/angular-route/angular-route.js',
+                        'src/libs/angular-ui-router.js'
+                    ]
                 }
             }
         }

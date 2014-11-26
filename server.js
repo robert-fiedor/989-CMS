@@ -15,9 +15,19 @@ var expressSession = require('express-session');
 
 var router = express.Router();
 
-var path = require('path')
+var path = require('path');
 
 require('./models/users_model.js');
+
+var baseAppSettings = require('./config/baseappsettings');
+
+//app.prelo = 'klkl';
+
+//app.locals({
+//    title: 'Extended Express Example'
+//});
+
+
 
 
 var mongoStore = require('connect-mongo')({session: expressSession});
@@ -59,6 +69,13 @@ app.use(expressSession({
     saveUninitialized: true,
     resave: true
 }));
+
+
+app.use(function(req, res, next) {
+    res.locals.myVar = baseAppSettings.thatUrl;
+    next();
+});
+
 
 require('./app/routes')(app); // pass our application into our routes
 

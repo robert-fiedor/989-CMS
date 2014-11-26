@@ -1,20 +1,30 @@
 var crypto = require('crypto');
 var express = require('express');
 
+//var baseAppSettings = require('/config/baseappsettings');
+//require('./config/baseappsettings');
+
+//var baseAppSettings = require('./config/baseappsettings');
+
+
 var Nerd = require('./models/nerd');
+
+var baseAppSettings = require('./../config/baseappsettings');
+
 
 module.exports = function (app) {
 
     var users = require('./../controllers/users_controller');
 
-    app.get('/przekier/:name', function(req, res){
+    
+    app.get(baseAppSettings.routes.home.url, function (req, res) {
         res.render('index');
     });
 
-    app.get('/', function (req, res) {
+    app.get(baseAppSettings.routes.list.url, function (req, res) {
         res.render('index');
-        //res.redirect('/login');
     });
+
 
     app.get('/user', function (req, res) {
         if (req.session.user) {
@@ -46,6 +56,7 @@ module.exports = function (app) {
     app.post('/user/update', users.updateUser);
     app.post('/user/delete', users.deleteUser);
     app.post('/login', users.login);
+
     app.get('/user/profile', users.getUserProfile);
 
     // server routes ===========================================================
@@ -95,17 +106,21 @@ module.exports = function (app) {
     });
 
 
+};
+
+//dont delete
+//app.all('/*', function(req, res, next) {
+//    // Just send the index.html for other files to support HTML5Mode
+//    //res.sendfile('index.html', { root: __dirname });
+//    res.render('index');
+//
+//});
 
 
+//app.get('/przekier/:name', function(req, res){
+//    res.render('index');
+//});
 
-
-
-
-
-
-
-
-
-
-
-}
+//app.get('/', function (req, res) {
+//    res.render('index');
+//});

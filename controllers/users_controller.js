@@ -53,6 +53,7 @@ exports.login = function (req, res) {
         });
 };
 
+
 exports.getUserProfile = function (req, res) {
     User.findOne({_id: req.session.user})
         .exec(function (err, user) {
