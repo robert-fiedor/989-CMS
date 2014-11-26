@@ -52,7 +52,6 @@ app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(router);
 
@@ -72,7 +71,7 @@ app.use(expressSession({
 
 
 app.use(function(req, res, next) {
-    res.locals.myVar = baseAppSettings.thatUrl;
+    res.locals.baseAppSettings = baseAppSettings;
     next();
 });
 

@@ -9,26 +9,24 @@
     <link rel="stylesheet" href="css/app.css">
 
 </head>
-<body ng-app="doctors">
+<body ng-app="doctors" ng-controller="AppController">
 
-<!--<div ng-include="'views/reports.html'"></div>-->
-<!--<ng-view></ng-view>-->
 <span>ui:</span>
-
-<div ui-view ></div>
-
-
-<%= locals.myVar %>
-
-
+<div ui-view></div>
 <span>ui:end</span>
 
 <hr>
 
-
-
-
 <script src="js/lib.js"></script>
+
+
+<script type='text/javascript'>
+    angular.module('$baseAppSettings', [])
+            .constant('$baseAppSettings', <%-JSON.stringify(baseAppSettings)%>)
+</script>
+
+
+
 <script src="js/app.js"></script>
 
 

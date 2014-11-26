@@ -4,18 +4,19 @@
 //
 
 var BaseAppSettings = {
-//	url : 'mongodb://<user>:<pass>@mongo.onmodulus.net:27017/uw45mypu'
-    thatUrl: 'thatUrl thatUrl thatUrl!',
 
     routes: {
-
         home: {
+            name:'home',
             url: '/home'
         },
-
         list: {
+            name:'list',
             url: '/list'
         }
+    },
+
+    permissions:{
 
     }
 }

@@ -1,22 +1,14 @@
 var crypto = require('crypto');
 var express = require('express');
 
-//var baseAppSettings = require('/config/baseappsettings');
-//require('./config/baseappsettings');
-
-//var baseAppSettings = require('./config/baseappsettings');
-
-
 var Nerd = require('./models/nerd');
 
-var baseAppSettings = require('./../config/baseappsettings');
-
+var baseAppSettings = require('./../config/BaseAppSettings');
 
 module.exports = function (app) {
 
     var users = require('./../controllers/users_controller');
 
-    
     app.get(baseAppSettings.routes.home.url, function (req, res) {
         res.render('index');
     });
@@ -24,7 +16,6 @@ module.exports = function (app) {
     app.get(baseAppSettings.routes.list.url, function (req, res) {
         res.render('index');
     });
-
 
     app.get('/user', function (req, res) {
         if (req.session.user) {
@@ -36,13 +27,13 @@ module.exports = function (app) {
     });
     app.get('/signup', function (req, res) {
         if (req.session.user) {
-            res.redirect('/');
+            res.redirect('/home');
         }
         res.render('signup', {msg: req.session.msg});
     });
     app.get('/login', function (req, res) {
         if (req.session.user) {
-            res.redirect('/');
+            res.redirect('/home');
         }
         res.render('login', {msg: req.session.msg});
     });
