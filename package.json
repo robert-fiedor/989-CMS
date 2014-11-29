@@ -6,13 +6,16 @@
     "mongoose": "latest",
     "body-parser": "~1.4.2",
     "method-override": "~2.0.2",
-    "cookie-parser":"latest",
-    "express-session":"latest",
-    "connect-mongo":"latest",
-    "ejs":"latest",
-    "crypto":"latest"
+    "cookie-parser": "latest",
+    "express-session": "latest",
+    "connect-mongo": "latest",
+    "ejs": "latest",
+    "crypto": "latest"
   },
   "devDependencies": {
+    "chai": "*",
+    "mocha": "*",
+    "grunt-simple-mocha": "latest",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.5",
     "karma-jasmine": "^0.1.5",

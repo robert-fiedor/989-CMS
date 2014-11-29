@@ -42,6 +42,27 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+        //merry chlaeton
+
+        //simplemocha: {
+        //    backend: {
+        //        src: 'tests/server-tests.js'
+        //    }
+        //},
+
+        simplemocha: {
+            options: {
+                globals: ['should'],
+                timeout: 3000,
+                ignoreLeaks: false,
+                grep: '*-test',
+                ui: 'bdd',
+                reporter: 'tap'
+            },
+
+            all: { src: ['tests/**/*.js'] }
         }
 
 
@@ -56,9 +77,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-simple-mocha');
 
-
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['watch','simplemocha']);
 
 
 };

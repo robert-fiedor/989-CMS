@@ -6,18 +6,50 @@
 var BaseAppSettings = {
 
     routes: {
-        home: {
-            name:'home',
-            url: '/home'
+
+        client: {
+
+            home: {
+                state: 'home',
+                url: '/home'
+            },
+            list: {
+                state: 'list',
+                url: '/list'
+            }
+
         },
-        list: {
-            name:'list',
-            url: '/list'
+
+        server: {
+            get: {
+
+                home: {
+                    urlRequested: '/home',
+                    pathToFile: 'index.html'
+                },
+
+                user: {
+                    urlRequested: '/user',
+                    pathToFile: 'user.html'
+                },
+                login: {
+                    urlRequested: '/login',
+                    pathToFile: 'login.html'
+                },
+                logOut: {
+                    urlRequested: '/logout'
+                },
+                signUp: {
+                    urlRequested: '/signup',
+                    pathToFile: 'signup.html'
+                }
+
+            }
         }
+
+
     },
 
-    permissions:{
-
-    }
+    permissions: {}
 }
 module.exports = BaseAppSettings;

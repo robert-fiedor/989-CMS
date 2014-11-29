@@ -1,7 +1,5 @@
 (function () {
     'use strict';
-
-
     angular.module('doctors', ['ngRoute', 'ui.router', '$baseAppSettings']);
 
     angular.module('doctors')
@@ -9,12 +7,12 @@
             function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
                 $stateProvider
-                    .state($baseAppSettings.routes.home.name, {
-                        url: $baseAppSettings.routes.home.url,
+                    .state($baseAppSettings.routes.client.home.state, {
+                        url: $baseAppSettings.routes.client.home.url,
                         templateUrl: '/views/home.html'
                     })
-                    .state($baseAppSettings.routes.list.name, {
-                        url: $baseAppSettings.routes.list.url,
+                    .state($baseAppSettings.routes.client.list.state, {
+                        url: $baseAppSettings.routes.client.list.url,
                         templateUrl: '/views/reports.html'
                         //controller: 'ListCtrl'
                     })
