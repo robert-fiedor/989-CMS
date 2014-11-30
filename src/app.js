@@ -6,15 +6,14 @@
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
             function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-
                 angular.forEach($baseAppSettings.routes.client, function(value,key){
 
                     $stateProvider
 
                         .state(value.state, {
                             url: value.urlRequested,
-                            templateUrl: value.templateUrl
-                            //controller: 'ListCtrl'
+                            templateUrl: value.templateUrl,
+                            controller: value.controller || null
                         });
 
                 });

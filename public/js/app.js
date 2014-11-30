@@ -6,15 +6,14 @@
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
             function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-
                 angular.forEach($baseAppSettings.routes.client, function(value,key){
 
                     $stateProvider
 
                         .state(value.state, {
                             url: value.urlRequested,
-                            templateUrl: value.templateUrl
-                            //controller: 'ListCtrl'
+                            templateUrl: value.templateUrl,
+                            controller: value.controller || null
                         });
 
                 });
@@ -99,22 +98,30 @@ angular.module('doctors')
  */
 //
 angular.module('doctors')
-    .controller('HomeController', ['$scope', '$http', 'CreditCardService',
-        function ($scope, $http, CreditCardService) {
+    .controller('ListController', ['$scope', '$http',
+        function ($scope, $http) {
 
-            console.log('HomeController', CreditCardService.query());
+            console.log('ListController')
+
+        }
+    ]
+)
 
 
-            //$http.get('/user/profile')
-            //    .success(function (data, status, headers, config) {
-            //        $scope.user = data;
-            //        $scope.error = "";
-            //        console.log(88);
-            //    }).
-            //    error(function (data, status, headers, config) {
-            //        $scope.user = {};
-            //        $scope.error = data;
-            //    })
+/**
+ * Created by Rob on 11/22/2014.
+ */
+
+
+/**
+ * Created by Rob on 11/22/2014.
+ */
+//
+angular.module('doctors')
+    .controller('HomeController', ['$scope', '$http',
+        function ($scope, $http) {
+
+            console.log('HomeController');
 
         }
     ]

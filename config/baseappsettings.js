@@ -12,13 +12,16 @@ var BaseAppSettings = {
             home: {
                 state: 'home',
                 urlRequested: '/home',
-                templateUrl: '/views/home.html'
+                templateUrl: '/views/home.html',
+                controller: 'HomeController'
 
             },
             list: {
                 state: 'list',
                 urlRequested: '/list',
-                templateUrl: '/views/home.html'
+                templateUrl: '/views/list.html',
+                controller: 'ListController'
+
 
             },
             one: {
@@ -47,10 +50,12 @@ var BaseAppSettings = {
                         urlRequested: '/user/profile'
                     }
                 },
+
                 login: {
                     urlRequested: '/login',
                     pathToFile: 'login.html'
                 },
+
                 logOut: {
                     urlRequested: '/logout'
                 },
