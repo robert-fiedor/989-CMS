@@ -11,20 +11,27 @@ var BaseAppSettings = {
 
             home: {
                 state: 'home',
-                urlRequested: '/home'
+                urlRequested: '/home',
+                templateUrl: '/views/home.html'
+
             },
             list: {
                 state: 'list',
-                urlRequested: '/list'
+                urlRequested: '/list',
+                templateUrl: '/views/home.html'
+
             },
             one: {
                 state: 'list2',
-                urlRequested: '/one'
+                urlRequested: '/one',
+                templateUrl: '/views/home.html'
+
             }
 
         },
 
         server: {
+
             get: {
 
                 home: {

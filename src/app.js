@@ -6,21 +6,18 @@
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
             function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-                $stateProvider
-                    .state($baseAppSettings.routes.client.home.state, {
-                        url: $baseAppSettings.routes.client.home.urlRequested,
-                        templateUrl: '/views/home.html'
-                    })
-                    .state($baseAppSettings.routes.client.list.state, {
-                        url: $baseAppSettings.routes.client.list.urlRequested,
-                        templateUrl: '/views/reports.html'
-                        //controller: 'ListCtrl'
-                    })
-                    .state($baseAppSettings.routes.client.one.state, {
-                        url: $baseAppSettings.routes.client.one.urlRequested,
-                        templateUrl: '/views/reports.html'
-                        //controller: 'ListCtrl'
-                    })
+
+                angular.forEach($baseAppSettings.routes.client, function(value,key){
+
+                    $stateProvider
+
+                        .state(value.state, {
+                            url: value.urlRequested,
+                            templateUrl: value.templateUrl
+                            //controller: 'ListCtrl'
+                        });
+
+                });
 
                 $locationProvider.html5Mode(true);
 
