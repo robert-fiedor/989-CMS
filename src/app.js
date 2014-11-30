@@ -8,11 +8,16 @@
 
                 $stateProvider
                     .state($baseAppSettings.routes.client.home.state, {
-                        url: $baseAppSettings.routes.client.home.url,
+                        url: $baseAppSettings.routes.client.home.urlRequested,
                         templateUrl: '/views/home.html'
                     })
                     .state($baseAppSettings.routes.client.list.state, {
-                        url: $baseAppSettings.routes.client.list.url,
+                        url: $baseAppSettings.routes.client.list.urlRequested,
+                        templateUrl: '/views/reports.html'
+                        //controller: 'ListCtrl'
+                    })
+                    .state($baseAppSettings.routes.client.one.state, {
+                        url: $baseAppSettings.routes.client.one.urlRequested,
                         templateUrl: '/views/reports.html'
                         //controller: 'ListCtrl'
                     })

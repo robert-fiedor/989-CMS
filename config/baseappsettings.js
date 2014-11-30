@@ -11,11 +11,15 @@ var BaseAppSettings = {
 
             home: {
                 state: 'home',
-                url: '/home'
+                urlRequested: '/home'
             },
             list: {
                 state: 'list',
-                url: '/list'
+                urlRequested: '/list'
+            },
+            one: {
+                state: 'list2',
+                urlRequested: '/one'
             }
 
         },
@@ -30,7 +34,11 @@ var BaseAppSettings = {
 
                 user: {
                     urlRequested: '/user',
-                    pathToFile: 'user.html'
+                    pathToFile: 'user.html',
+
+                    profile: {
+                        urlRequested: '/user/profile'
+                    }
                 },
                 login: {
                     urlRequested: '/login',

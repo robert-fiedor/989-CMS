@@ -4,6 +4,9 @@ nodemon server.js
 
 mocha tests
 
+npm install underscore --save
+npm install underscore --save-dev
+
 in case db locked:
 //http://www.mkyong.com/mongodb/old-lock-file-datadbmongod-lock-probably-means-unclean-shutdown/
 
