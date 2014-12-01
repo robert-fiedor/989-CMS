@@ -70,6 +70,23 @@ var BaseAppSettings = {
 
     },
 
-    permissions: {}
+    permissions: [
+        {
+            roles: ['doctor'],
+            allows: [
+                {resources: 'blogs', permissions: 'get'},
+                {resources: ['forums', 'news'], permissions: ['get', 'put', 'delete']}
+            ]
+        },
+        {
+            roles: ['patient'],
+            allows: [
+                {resources: 'blogs', permissions: 'get'},
+                {resources: ['forums', 'news'], permissions: ['get', 'put', 'delete']}
+            ]
+        }
+    ]
+
 }
+
 module.exports = BaseAppSettings;

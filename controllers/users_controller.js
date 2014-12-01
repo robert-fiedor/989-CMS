@@ -1,4 +1,7 @@
 var crypto = require('crypto');
+var accessControlList = require('../app/AccessControlList');
+
+//var acl = require('acl');
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
@@ -14,6 +17,13 @@ exports.signup = function (req, res) {
 
     user.set('hashed_password', hashPW(req.body.password));
     user.set('email', req.body.email);
+    user.set('role', req.body.role);
+
+    accessControlList.acl.addUserRoles(user._id.toString(),
+        req.body.role, function (err) {
+            console.log('** if error', err)
+        });
+
     user.save(function (err) {
         if (err) {
             res.session.error = err;

@@ -1,9 +1,4 @@
 
-
-
-
-
-
 // modules =================================================
 var express        = require('express');
 var app            = express();
@@ -22,39 +17,23 @@ require('./models/users_model.js');
 var baseAppSettings = require('./config/baseappsettings');
 
 
-
-
-//app.prelo = 'klkl';
-
-//app.locals({
-//    title: 'Extended Express Example'
-//});
-
-
-
-
 var mongoStore = require('connect-mongo')({session: expressSession});
 
-// configuration ===========================================
-	
+
 // config files
 var db = require('./config/db');
 
 var port = process.env.PORT || 8080; // set our port
 mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
-var acl = require('acl');
+var accessControlList = require('./app/AccessControlList');
 
 mongoose.connection.on('connected', function() {
-    acl = new acl(new acl.mongodbBackend(mongoose.connection.db,'Collections'));
 
-    acl.addUserRoles('546c1530f66698742348eb55', 'guest', function(err){
-        console.log('** potential', err)
-    });
+    //accessControlList.acl = new acl(new acl.mongodbBackend(mongoose.connection.db,'Collections'));
 
-    acl.userRoles( '546c1530f66698742348eb55', function(err, roles){
-        console.log('roles',roles)
-    } );
+    accessControlList.connect(mongoose.connection.db);
+    //accessControlList.doit();
 
 });
 

@@ -3,6 +3,8 @@ var express = require('express');
 var _ = require('underscore');
 
 var baseAppSettings = require('./../config/BaseAppSettings');
+var accessControlList = require('../app/AccessControlList');
+
 
 module.exports = function (app) {
 
@@ -55,18 +57,36 @@ module.exports = function (app) {
         }
     });
 
+
     app.get(shortS.get.user.profile.urlRequested, users.getUserProfile);
 
+    //client routes
     //map each client route to index since that's where angular will kick in
-    _.each(baseAppSettings.routes.client, function (one,two) {
-        app.get(one.urlRequested, function (req, res) {
+    _.each(baseAppSettings.routes.client, function (val) {
+
+
+        app.get(val.urlRequested, function (req, res) {
             res.render(shortS.get.home.pathToFile);
+
+            accessControlList.acl.userRoles(req.session.user.toString(), function (err, roles) {
+                console.log('here here &&&&', roles);
+            });
+
         });
+
     });
 
     app.all('/*', function (req, res, next) {
+
         res.render(shortS.get.home.pathToFile)
+
     });
+
+
+    var checkPermissions = function () {
+
+
+    };
 
 };
 
