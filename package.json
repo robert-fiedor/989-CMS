@@ -2,6 +2,7 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "dependencies": {
+    "acl": "^0.4.4",
     "body-parser": "~1.4.2",
     "connect-mongo": "latest",
     "cookie-parser": "latest",

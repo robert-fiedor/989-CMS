@@ -6,28 +6,26 @@
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
             function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-                angular.forEach($baseAppSettings.routes.client, function(value,key){
+                angular.forEach($baseAppSettings.routes.client, function (value, key) {
 
                     $stateProvider
-
                         .state(value.state, {
                             url: value.urlRequested,
                             templateUrl: value.templateUrl,
                             controller: value.controller || null
                         });
-
                 });
 
                 $locationProvider.html5Mode(true);
 
             }])
 
-        .run(['$state', function ($state) {
-            $state.transitionTo('home');
+        .run(['$state', '$baseAppSettings', function ($state, $baseAppSettings) {
+            $state.transitionTo($baseAppSettings.routes.client.home.state);
         }])
 
         .controller('AppController', ['$scope', function ($scope) {
-
+            console.log('appcontroller')
         }])
 
 

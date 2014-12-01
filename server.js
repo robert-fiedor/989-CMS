@@ -21,6 +21,9 @@ require('./models/users_model.js');
 
 var baseAppSettings = require('./config/baseappsettings');
 
+
+
+
 //app.prelo = 'klkl';
 
 //app.locals({
@@ -39,6 +42,24 @@ var db = require('./config/db');
 
 var port = process.env.PORT || 8080; // set our port
 mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
+
+var acl = require('acl');
+
+mongoose.connection.on('connected', function() {
+    acl = new acl(new acl.mongodbBackend(mongoose.connection.db,'Collections'));
+
+    acl.addUserRoles('546c1530f66698742348eb55', 'guest', function(err){
+        console.log('** potential', err)
+    });
+
+    acl.userRoles( '546c1530f66698742348eb55', function(err, roles){
+        console.log('roles',roles)
+    } );
+
+});
+
+
+
 
 // get all data/stuff of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json 

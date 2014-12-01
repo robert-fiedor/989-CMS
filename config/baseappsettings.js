@@ -20,7 +20,7 @@ var BaseAppSettings = {
                 state: 'list',
                 urlRequested: '/list',
                 templateUrl: '/views/list.html',
-                controller: 'ListController'
+                controller: 'List   Controller'
 
 
             },
