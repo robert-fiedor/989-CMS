@@ -1,9 +1,8 @@
-
 // modules =================================================
-var express        = require('express');
-var app            = express();
-var mongoose       = require('mongoose');
-var bodyParser     = require('body-parser');
+var express = require('express');
+var app = express();
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
@@ -28,22 +27,14 @@ mongoose.connect(db.url); // connect to our mongoDB database (commented out afte
 
 var accessControlList = require('./app/AccessControlList');
 
-mongoose.connection.on('connected', function() {
-
-    //accessControlList.acl = new acl(new acl.mongodbBackend(mongoose.connection.db,'Collections'));
-
+mongoose.connection.on('connected', function () {
     accessControlList.connect(mongoose.connection.db);
-    //accessControlList.doit();
-
 });
-
-
-
 
 // get all data/stuff of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json 
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json({type: 'application/vnd.api+json'})); // parse application/vnd.api+json as json
+app.use(bodyParser.urlencoded({extended: true})); // parse application/x-www-form-urlencoded
 
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 
@@ -60,7 +51,7 @@ app.use(cookieParser());
 app.use(expressSession({
 
     secret: 'SECRET',
-    cookie: {maxAge: 60*60*1000},
+    cookie: {maxAge: 60 * 60 * 1000},
     store: new mongoStore({
         db: mongoose.connection.db,
         collection: 'sessions'
@@ -70,7 +61,7 @@ app.use(expressSession({
 }));
 
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.baseAppSettings = baseAppSettings;
     next();
 });
@@ -79,8 +70,7 @@ app.use(function(req, res, next) {
 require('./app/routes')(app); // pass our application into our routes
 
 
-
 // start app ===============================================
-app.listen(port);	
+app.listen(port);
 console.log('Magic happens on port ' + port); 			// shoutout to the user
 exports = module.exports = app; 						// expose app

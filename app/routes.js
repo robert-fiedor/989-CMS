@@ -57,13 +57,11 @@ module.exports = function (app) {
         }
     });
 
-
     app.get(shortS.get.user.profile.urlRequested, users.getUserProfile);
 
     //client routes
     //map each client route to index since that's where angular will kick in
     _.each(baseAppSettings.routes.client, function (val) {
-
 
         app.get(val.urlRequested, function (req, res) {
             res.render(shortS.get.home.pathToFile);
@@ -77,11 +75,8 @@ module.exports = function (app) {
     });
 
     app.all('/*', function (req, res, next) {
-
         res.render(shortS.get.home.pathToFile)
-
     });
-
 
     var checkPermissions = function () {
 
