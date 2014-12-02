@@ -1,4 +1,5 @@
-
+**TODO: find acl.js and check find 'session.user', in original file it was 'session.userID',
+most likely will have to add acl.js to the lib folder
 
 mongod -dbpath "C:\mongodb-data\data\db"
 nodemon server.js

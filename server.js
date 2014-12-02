@@ -29,6 +29,9 @@ var accessControlList = require('./app/AccessControlList');
 
 mongoose.connection.on('connected', function () {
     accessControlList.connect(mongoose.connection.db);
+
+    require('./app/routes')(app);
+
 });
 
 // get all data/stuff of the body (POST) parameters
@@ -67,8 +70,7 @@ app.use(function (req, res, next) {
 });
 
 
-require('./app/routes')(app); // pass our application into our routes
-
+ // pass our application into our routes
 
 // start app ===============================================
 app.listen(port);

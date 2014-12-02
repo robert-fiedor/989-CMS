@@ -14,20 +14,19 @@ var BaseAppSettings = {
                 urlRequested: '/home',
                 templateUrl: '/views/home.html',
                 controller: 'HomeController'
-
             },
+
             list: {
                 state: 'list',
                 urlRequested: '/list',
                 templateUrl: '/views/list.html',
                 controller: 'List   Controller'
-
-
             },
+
             one: {
-                state: 'list2',
-                urlRequested: '/one',
-                templateUrl: '/views/home.html'
+                state: 'letter',
+                urlRequested: '/letter',
+                templateUrl: '/views/list.html'
 
             }
 
@@ -66,16 +65,16 @@ var BaseAppSettings = {
 
             }
         }
-
-
     },
 
     permissions: [
         {
             roles: ['doctor'],
             allows: [
-                {resources: 'blogs', permissions: 'get'},
-                {resources: ['forums', 'news'], permissions: ['get', 'put', 'delete']}
+                {
+                    resources: ['/list2','/list'],
+                    permissions: ['get','view']
+                }
             ]
         },
         {
