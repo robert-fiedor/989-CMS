@@ -38,7 +38,8 @@ module.exports = function (grunt) {
                         'src/libs/angular-mocks/angular-mocks.js',
                         'src/libs/bower-angular-resource-master/angular-resource.js',
                         'src/libs/angular-route/angular-route.js',
-                        'src/libs/angular-ui-router.js'
+                        'src/libs/angular-ui-router.js',
+                        'src/libs/ui-bootstrap-tpls-0.12.0.js'
                     ]
                 }
             }

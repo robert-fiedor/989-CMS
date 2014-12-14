@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('doctors', ['ngRoute', 'ui.router', '$baseAppSettings','moduleOne']);
+    angular.module('doctors', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','moduleOne']);
 
     angular.module('doctors')
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
