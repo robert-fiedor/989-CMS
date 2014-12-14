@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         concat: {
             basic_and_extras: {
                 files: {
-                    'public/js/app.js': ['src/app.js', 'src/modules/**/*.js'],
+                    'public/js/app.js': ['src/app.js', 'src/app/**/*.js'],
                     'public/js/lib.js': [
                         'src/libs/angular/angular.js',
                         'src/libs/angular-mocks/angular-mocks.js',

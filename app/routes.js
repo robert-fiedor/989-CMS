@@ -58,7 +58,7 @@ module.exports = function (app) {
     app.get(shortS.get.user.profile.urlRequested, users.getUserProfile);
 
     //map each client route to index since that's where angular will kick in
-    _.each(baseAppSettings.routes.client, function (one,two) {
+    _.each(baseAppSettings.routes.client, function (one, two) {
         app.get(one.urlRequested, function (req, res) {
             res.render(shortS.get.home.pathToFile);
         });

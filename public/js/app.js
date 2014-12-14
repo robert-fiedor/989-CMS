@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('doctors', ['ngRoute', 'ui.router', '$baseAppSettings']);
+    angular.module('doctors', ['ngRoute', 'ui.router', '$baseAppSettings','moduleOne']);
 
     angular.module('doctors')
         .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
@@ -62,6 +62,38 @@
 
 //$urlRouterProvider.otherwise('/');
 /**
+ * Created by Rob on 11/22/2014.
+ */
+//
+angular.module('doctors')
+    .controller('HomeController', ['$scope', '$http',
+        function ($scope, $http) {
+
+            console.log('HomeController');
+
+        }
+    ]
+)
+/**
+ * Created by Rob on 11/22/2014.
+ */
+
+/**
+ * Created by Rob on 11/22/2014.
+ */
+//
+angular.module('doctors')
+    .controller('ListController', ['$scope', '$http',
+        function ($scope, $http) {
+
+            console.log('ListController')
+
+        }
+    ]
+)
+
+
+/**
  * Created by Rob on 11/23/2014.
  */
 
@@ -93,36 +125,46 @@ angular.module('doctors')
  * Created by Rob on 11/22/2014.
  */
 
-/**
- * Created by Rob on 11/22/2014.
- */
+(function () {
+    'use strict';
+    angular.module('moduleOne', [])
+
+        .controller('ModuleOne', ['$scope', function ($scope) {
+
+            console.log('hello Module One!')
+
+        }])
+})();
+
+
+//.state('list.item', {
+//    url: '/:item',
+//    templateUrl: 'templates/list.item.html',
+//    controller: function ($scope, $stateParams) {
+//        $scope.item = $stateParams.item;
+//    }
+//})
+
+
+//$routeProvider
 //
-angular.module('doctors')
-    .controller('ListController', ['$scope', '$http',
-        function ($scope, $http) {
-
-            console.log('ListController')
-
-        }
-    ]
-)
-
-
-/**
- * Created by Rob on 11/22/2014.
- */
-
-
-/**
- * Created by Rob on 11/22/2014.
- */
 //
-angular.module('doctors')
-    .controller('HomeController', ['$scope', '$http',
-        function ($scope, $http) {
+//    .when('/przekier/ba', {
+//        templateUrl: '/views/reports.html',
+//        controller: 'HomeController'
+//    })
+//    .when('/przekier/ce', {
+//        templateUrl: '/views/home.html',
+//        controller: 'HomeController'
+//    })
+//    .when('/', {
+//        templateUrl: '/views/reports.html',
+//        controller: 'HomeController'
+//    })
 
-            console.log('HomeController');
 
-        }
-    ]
-)
+//$urlRouterProvider.otherwise('/');
+/**
+ * Created by Rob on 11/22/2014.
+ */
+

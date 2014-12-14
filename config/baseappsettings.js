@@ -21,14 +21,6 @@ var BaseAppSettings = {
                 urlRequested: '/list',
                 templateUrl: '/views/list.html',
                 controller: 'ListController'
-
-
-            },
-            one: {
-                state: 'list2',
-                urlRequested: '/one',
-                templateUrl: '/views/home.html'
-
             }
 
         },
