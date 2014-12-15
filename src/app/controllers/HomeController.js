@@ -6,14 +6,13 @@
 (function () {
     'use strict';
 
-    angular.module('doctors')
-        .controller('HomeController', ['$scope', '$http',
-            function ($scope, $http) {
+    var homeController = function($scope, $http){
 
-                console.log('HomeController');
+        var vm = this;
+        console.log('HomeController new');
 
-            }
-        ]
-    );
+    };
+    homeController.$inject = ['$scope','$http'];
+    angular.module('venue').controller('HomeController', homeController)
 
 })();

@@ -1,66 +1,12 @@
 (function () {
     'use strict';
-    angular.module('doctors', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','moduleOne']);
-
-    angular.module('doctors')
-        .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
-            function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
-
-                angular.forEach($baseAppSettings.routes.client, function(value,key){
-
-                    $stateProvider
-
-                        .state(value.state, {
-                            url: value.urlRequested,
-                            templateUrl: value.templateUrl,
-                            controller: value.controller || null
-                        });
-
-                });
-
-                $locationProvider.html5Mode(true);
-
-            }])
-
-        .run(['$state', function ($state) {
-            $state.transitionTo('home');
-        }])
-
-        .controller('AppController', ['$scope', function ($scope) {
-
-        }])
-
+    angular.module('venue', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','VenueShows']);
+    angular.module('VenueShows', []);
 
 })();
 
 
-//.state('list.item', {
-//    url: '/:item',
-//    templateUrl: 'templates/list.item.html',
-//    controller: function ($scope, $stateParams) {
-//        $scope.item = $stateParams.item;
-//    }
-//})
 
-
-//$routeProvider
-//
-//
-//    .when('/przekier/ba', {
-//        templateUrl: '/views/reports.html',
-//        controller: 'HomeController'
-//    })
-//    .when('/przekier/ce', {
-//        templateUrl: '/views/home.html',
-//        controller: 'HomeController'
-//    })
-//    .when('/', {
-//        templateUrl: '/views/reports.html',
-//        controller: 'HomeController'
-//    })
-
-
-//$urlRouterProvider.otherwise('/');
 /**
  * Created by Rob on 11/22/2014.
  */
@@ -69,15 +15,14 @@
 (function () {
     'use strict';
 
-    angular.module('doctors')
-        .controller('HomeController', ['$scope', '$http',
-            function ($scope, $http) {
+    var homeController = function($scope, $http){
 
-                console.log('HomeController');
+        var vm = this;
+        console.log('HomeController new');
 
-            }
-        ]
-    );
+    };
+    homeController.$inject = ['$scope','$http'];
+    angular.module('venue').controller('HomeController', homeController)
 
 })();
 
@@ -88,12 +33,10 @@
 (function () {
     'use strict';
 
-    angular.module('doctors')
+    angular.module('venue')
         .controller('ListController', ['$scope', '$http',
             function ($scope, $http) {
-
                 console.log('ListController')
-
             }
         ]
     )
@@ -101,77 +44,56 @@
 })();
 
 /**
- * Created by Rob on 11/23/2014.
+ * Created by Rob on 12/15/2014.
  */
-
-
-//myAppModule.factory('CreditCard', ['$resource', function ($resource) {
-//    return $resource('/user/: userId/ card/:cardId', {userId: 123, cardId: '@id'}, {
-//        charge: {
-//            method: 'POST',
-//            params: {charge: true},
-//            isArray: false
-//        });
-//}]);
-
-angular.module('doctors')
-    .factory('CreditCardService', ['$resource', function ($resource) {
-
-        return $resource('/useros/: userId/ card/:cardId', {userId: 123, cardId: '@id'}, {
-                charge: {
-                    method: 'POST',
-                    params: {charge: true},
-                    isArray: false
-                }
-            }
-        )
-    }]);
-
-
-/**
- * Created by Rob on 11/22/2014.
- */
-
+//
 (function () {
     'use strict';
-    angular.module('moduleOne', [])
+    var venueShowMain = function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {},
+            replace: false,
+            template: '<div>123</div>',
 
-        .controller('ModuleOne', ['$scope', function ($scope) {
-
-            console.log('hello Module One!')
-
-        }])
+            link: function (scope, element, attrs) {
+            }
+        };
+    }
+    venueShowMain.$inject = ['$compile'];
+    angular.module('VenueShows').directive('venueShowMain', venueShowMain);
 })();
-
-
-//.state('list.item', {
-//    url: '/:item',
-//    templateUrl: 'templates/list.item.html',
-//    controller: function ($scope, $stateParams) {
-//        $scope.item = $stateParams.item;
-//    }
-//})
-
-
-//$routeProvider
-//
-//
-//    .when('/przekier/ba', {
-//        templateUrl: '/views/reports.html',
-//        controller: 'HomeController'
-//    })
-//    .when('/przekier/ce', {
-//        templateUrl: '/views/home.html',
-//        controller: 'HomeController'
-//    })
-//    .when('/', {
-//        templateUrl: '/views/reports.html',
-//        controller: 'HomeController'
-//    })
-
-
-//$urlRouterProvider.otherwise('/');
 /**
- * Created by Rob on 11/22/2014.
+ * Created by Rob on 12/15/2014.
  */
 
+/**
+ * Created by Rob on 12/15/2014.
+ */
+
+angular.module('venue')
+    .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
+        function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
+
+            angular.forEach($baseAppSettings.routes.client, function(value,key){
+
+                $stateProvider
+
+                    .state(value.state, {
+                        url: value.urlRequested,
+                        templateUrl: value.templateUrl,
+                        controller: value.controller || null
+                    });
+            });
+
+            $locationProvider.html5Mode(true);
+
+        }])
+
+    .run(['$state', function ($state) {
+        $state.transitionTo('home');
+    }])
+
+    .controller('AppController', ['$scope', function ($scope) {
+
+    }])

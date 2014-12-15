@@ -5,12 +5,10 @@
 (function () {
     'use strict';
 
-    angular.module('doctors')
+    angular.module('venue')
         .controller('ListController', ['$scope', '$http',
             function ($scope, $http) {
-
                 console.log('ListController')
-
             }
         ]
     )

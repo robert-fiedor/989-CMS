@@ -21,3 +21,33 @@ https://www.erianna.com/using-grunt-to-minify-and-compress-assets
 
 <!--</div>-->
 <!--</body>-->
+
+
+
+//.state('list.item', {
+//    url: '/:item',
+//    templateUrl: 'templates/list.item.html',
+//    controller: function ($scope, $stateParams) {
+//        $scope.item = $stateParams.item;
+//    }
+//})
+
+
+//$routeProvider
+//
+//
+//    .when('/przekier/ba', {
+//        templateUrl: '/views/reports.html',
+//        controller: 'HomeController'
+//    })
+//    .when('/przekier/ce', {
+//        templateUrl: '/views/home.html',
+//        controller: 'HomeController'
+//    })
+//    .when('/', {
+//        templateUrl: '/views/reports.html',
+//        controller: 'HomeController'
+//    })
+
+
+//$urlRouterProvider.otherwise('/');

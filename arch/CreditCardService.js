@@ -12,7 +12,7 @@
 //        });
 //}]);
 
-angular.module('doctors')
+angular.module('venue')
     .factory('CreditCardService', ['$resource', function ($resource) {
 
         return $resource('/useros/: userId/ card/:cardId', {userId: 123, cardId: '@id'}, {
