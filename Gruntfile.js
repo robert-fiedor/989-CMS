@@ -21,13 +21,12 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['src/**/*.js'],
-                tasks: ['concat', 'less'],
+                tasks: ['concat', 'less','uglify'],
                 options: {
                     spawn: false
                 }
             }
         },
-
 
         concat: {
             basic_and_extras: {
@@ -41,6 +40,18 @@ module.exports = function (grunt) {
                         'src/libs/angular-ui-router.js',
                         'src/libs/ui-bootstrap-tpls-0.12.0.js'
                     ]
+                }
+            }
+        },
+
+        uglify: {
+            options: {
+                sourceMap: true
+            },
+            js: {
+                files: {
+                    'public/js/lib-min.js': ['public/js/lib.js'],
+                    'public/js/app-min.js': ['public/js/app.js']
                 }
             }
         },
@@ -63,9 +74,8 @@ module.exports = function (grunt) {
                 reporter: 'tap'
             },
 
-            all: { src: ['tests/**/*.js'] }
+            all: {src: ['tests/**/*.js']}
         }
-
 
     });
 
@@ -75,12 +85,13 @@ module.exports = function (grunt) {
     // we can only load these if they are in our package.json
     // make sure you have run npm install so our app can find these
 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-simple-mocha');
 
-    grunt.registerTask('default', ['watch','simplemocha']);
+    grunt.registerTask('default', ['watch', 'simplemocha']);
 
 
 };

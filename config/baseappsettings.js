@@ -12,14 +12,14 @@ var BaseAppSettings = {
             home: {
                 state: 'home',
                 urlRequested: '/home',
-                templateUrl: '/views/home.html',
+                templateUrl: '/partials/home.html',
                 controller: 'HomeController'
 
             },
             list: {
                 state: 'list',
                 urlRequested: '/list',
-                templateUrl: '/views/list.html',
+                templateUrl: '/partials/list.html',
                 controller: 'ListController'
             }
 

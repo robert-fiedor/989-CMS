@@ -65,33 +65,40 @@
  * Created by Rob on 11/22/2014.
  */
 //
-angular.module('doctors')
-    .controller('HomeController', ['$scope', '$http',
-        function ($scope, $http) {
 
-            console.log('HomeController');
+(function () {
+    'use strict';
 
-        }
-    ]
-)
+    angular.module('doctors')
+        .controller('HomeController', ['$scope', '$http',
+            function ($scope, $http) {
+
+                console.log('HomeController');
+
+            }
+        ]
+    );
+
+})();
+
 /**
  * Created by Rob on 11/22/2014.
  */
 
-/**
- * Created by Rob on 11/22/2014.
- */
-//
-angular.module('doctors')
-    .controller('ListController', ['$scope', '$http',
-        function ($scope, $http) {
+(function () {
+    'use strict';
 
-            console.log('ListController')
+    angular.module('doctors')
+        .controller('ListController', ['$scope', '$http',
+            function ($scope, $http) {
 
-        }
-    ]
-)
+                console.log('ListController')
 
+            }
+        ]
+    )
+
+})();
 
 /**
  * Created by Rob on 11/23/2014.

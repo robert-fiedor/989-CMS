@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="css/app.css">
 
 </head>
-<body ng-app="doctors" ng-controller="AppController">
+<body ng-app="doctors" ng-strict-di ng-controller="AppController">
 
 <div ui-view></div>
 
-<script src="js/lib.js"></script>
-
+<script src="js/lib-min.js"></script>
 
 <script type='text/javascript'>
     angular.module('$baseAppSettings', [])
             .constant('$baseAppSettings', <%-JSON.stringify(baseAppSettings)%>)
 </script>
 
-<script src="js/app.js"></script>
+<script src="js/app-min.js"></script>
+
 
 </body>
 </html>
