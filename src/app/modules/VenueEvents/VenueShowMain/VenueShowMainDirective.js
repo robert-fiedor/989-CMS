@@ -16,5 +16,5 @@
         };
     }
     venueShowMain.$inject = ['$compile'];
-    angular.module('VenueShows').directive('venueShowMain', venueShowMain);
+    angular.module('venueShows').directive('venueShowMain', venueShowMain);
 })();

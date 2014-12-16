@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    angular.module('venue', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','VenueShows']);
-    angular.module('VenueShows', []);
+    angular.module('venue', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','venueShows']);
+    angular.module('venueShows', []);
 
 })();
 
@@ -61,7 +61,7 @@
         };
     }
     venueShowMain.$inject = ['$compile'];
-    angular.module('VenueShows').directive('venueShowMain', venueShowMain);
+    angular.module('venueShows').directive('venueShowMain', venueShowMain);
 })();
 /**
  * Created by Rob on 12/15/2014.

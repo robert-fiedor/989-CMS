@@ -11,6 +11,7 @@
     "express-session": "latest",
     "method-override": "~2.0.2",
     "mongoose": "latest",
+    "node-restful": "^0.1.17",
     "underscore": "^1.7.0"
   },
   "devDependencies": {

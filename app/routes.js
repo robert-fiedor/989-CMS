@@ -18,6 +18,7 @@ module.exports = function (app) {
     //shortcut to client route config
     var shortC = baseAppSettings.routes.client;
 
+
     //user
     app.get(shortS.get.user.urlRequested, function (req, res) {
         if (req.session.user) {
@@ -55,6 +56,7 @@ module.exports = function (app) {
         }
     });
 
+
     app.get(shortS.get.user.profile.urlRequested, users.getUserProfile);
 
     //map each client route to index since that's where angular will kick in
@@ -63,6 +65,7 @@ module.exports = function (app) {
             res.render(shortS.get.home.pathToFile);
         });
     });
+    
 
     app.all('/*', function (req, res, next) {
         res.render(shortS.get.home.pathToFile)
