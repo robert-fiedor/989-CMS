@@ -71,16 +71,14 @@ module.exports = function (app) {
         });
     });
 
-
-
-
     // api routes
 
     var venueShows = require('./../app/controllers/venueShows_controller');
 
-    app.get('/api/shows', venueShows.getShow);
-    app.post('/api/shows', venueShows.addShow);
+    app.get('/api/shows', venueShows.getShows);
+    app.get('/api/shows/:venue_show_id', venueShows.getShow);
 
+    app.post('/api/shows', venueShows.addShow);
 
     app.all('/*', function (req, res, next) {
         res.render(shortS.get.home.pathToFile)
