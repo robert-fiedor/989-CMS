@@ -2,16 +2,13 @@ var crypto = require('crypto');
 var express = require('express');
 var _ = require('underscore');
 
-var baseAppSettings = require('./../config/BaseAppSettings');
 
 module.exports = function (app) {
 
-    var users = require('./../controllers/users_controller');
+    //server side routes:
+    var baseAppSettings = require('./../config/BaseAppSettings');
 
-    app.post('/signup', users.signup);
-    app.post('/user/update', users.updateUser);
-    app.post('/user/delete', users.deleteUser);
-    app.post('/login', users.login);
+    var users = require('./../app/controllers/users_controller');
 
     //shortcut to server route config
     var shortS = baseAppSettings.routes.server;
@@ -56,8 +53,16 @@ module.exports = function (app) {
         }
     });
 
-
     app.get(shortS.get.user.profile.urlRequested, users.getUserProfile);
+
+    app.post('/signup', users.signup);
+
+    app.post('/user/update', users.updateUser);
+    app.post('/user/delete', users.deleteUser);
+
+    app.post('/login', users.login);
+
+    //client side routes:
 
     //map each client route to index since that's where angular will kick in
     _.each(baseAppSettings.routes.client, function (one, two) {
@@ -65,7 +70,17 @@ module.exports = function (app) {
             res.render(shortS.get.home.pathToFile);
         });
     });
-    
+
+
+
+
+    // api routes
+
+    var venueShows = require('./../app/controllers/venueShows_controller');
+
+    app.get('/api/shows', venueShows.getShow);
+    app.post('/api/shows', venueShows.addShow);
+
 
     app.all('/*', function (req, res, next) {
         res.render(shortS.get.home.pathToFile)

@@ -17,7 +17,8 @@ var router = express.Router();
 
 var path = require('path');
 
-require('./models/users_model.js');
+require('./app/models/users_model.js');
+require('./app/models/venueShowModel.js');
 
 var baseAppSettings = require('./config/baseappsettings');
 
