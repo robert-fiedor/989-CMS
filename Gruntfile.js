@@ -20,8 +20,8 @@ module.exports = function (grunt) {
 
         watch: {
             scripts: {
-                files: ['src/**/*.js','src/**/*.less'],
-                tasks: ['concat', 'less','uglify'],
+                files: ['src/**/*.js', 'src/**/*.less'],
+                tasks: ['karma:unit','concat', 'less', 'uglify'],
                 options: {
                     spawn: false
                 }
@@ -53,6 +53,17 @@ module.exports = function (grunt) {
                     'public/js/lib-min.js': ['public/js/lib.js'],
                     'public/js/app-min.js': ['public/js/app.js']
                 }
+            }
+        },
+
+        //dont delete
+        //https://www.npmjs.com/package/grunt-karma
+
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                autoWatch: true
+
             }
         },
 
@@ -90,6 +101,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-simple-mocha');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('default', ['watch', 'simplemocha']);
 

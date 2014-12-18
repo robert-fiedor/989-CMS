@@ -48,4 +48,4 @@ KARMA setup:
 http://karma-runner.github.io/0.12/intro/installation.html
 http://karma-runner.github.io/0.10/intro/configuration.html
 
-karma start my.conf.js
+karma start karma.conf.js

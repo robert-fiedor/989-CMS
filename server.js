@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // modules =================================================
 var express        = require('express');
 var app            = express();
@@ -22,20 +16,7 @@ require('./app/models/venueShowModel.js');
 
 var baseAppSettings = require('./config/baseappsettings');
 
-//app.prelo = 'klkl';
-
-//app.locals({
-//    title: 'Extended Express Example'
-//});
-
-
-
-
 var mongoStore = require('connect-mongo')({session: expressSession});
-
-// configuration ===========================================
-	
-// config files
 var db = require('./config/db');
 
 var port = process.env.PORT || 8080; // set our port
@@ -70,18 +51,14 @@ app.use(expressSession({
     resave: true
 }));
 
-
 app.use(function(req, res, next) {
     res.locals.baseAppSettings = baseAppSettings;
     next();
 });
 
-
-require('./app/routes')(app); // pass our application into our routes
-
-
+require('./app/routes')(app);
 
 // start app ===============================================
 app.listen(port);	
-console.log('Magic happens on port ' + port); 			// shoutout to the user
-exports = module.exports = app; 						// expose app
+console.log('Magic happens on port ' + port);
+exports = module.exports = app;
