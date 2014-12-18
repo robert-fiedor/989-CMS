@@ -2,6 +2,7 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "dependencies": {
+    "Faker": "^0.7.2",
     "body-parser": "~1.4.2",
     "connect-mongo": "latest",
     "cookie-parser": "latest",

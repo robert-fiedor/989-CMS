@@ -39,7 +39,38 @@ exports.addShow = function (req, res) {
 
     });
 
-}
+};
+
+var Faker = require('Faker');
+
+console.log(new Date())
+console.log();
+
+exports.addFakeVenueShows = function (req, res) {
+
+    var Faker = require('Faker');
+
+    for (var i = 0; i < 10; i++) {
+
+        var show = new VenueShow({
+            name: Faker.Lorem.sentence(),
+            subtitle: Faker.Lorem.sentence(),
+            descriptionShort: Faker.Lorem.paragraphs(3),
+            descriptionLong: Faker.Lorem.paragraphs(10),
+            date: Faker.Date.between(new Date(), Faker.Date.future(5))
+        });
+
+        show.save(function (err, results) {
+            if (err) {
+                res.json(500, "Failed to save Show.");
+            }
+        });
+
+    }
+
+};
+
+
 
 
 
