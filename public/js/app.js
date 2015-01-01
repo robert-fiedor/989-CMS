@@ -72,15 +72,12 @@
  */
 
 (function () {
-
     'use strict';
 
     var VenueShowsService = function ($rootScope, $window, $http, $log) {
 
         var getRecommendations = function (syllabusPath) {
-
             return true;
-
         };
 
         return {
@@ -111,10 +108,12 @@ angular.module('venue')
 
             $locationProvider.html5Mode(true);
 
+
         }])
 
     .run(['$state', function ($state) {
         $state.transitionTo('home');
+
     }])
 
     .controller('AppController', ['$scope', function ($scope) {

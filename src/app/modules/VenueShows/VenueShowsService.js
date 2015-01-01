@@ -3,15 +3,12 @@
  */
 
 (function () {
-
     'use strict';
 
     var VenueShowsService = function ($rootScope, $window, $http, $log) {
 
         var getRecommendations = function (syllabusPath) {
-
             return true;
-
         };
 
         return {

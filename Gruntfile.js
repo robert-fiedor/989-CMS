@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['src/**/*.js', 'src/**/*.less'],
-                tasks: ['karma:unit','concat', 'less', 'uglify'],
+                tasks: ['karma:unit', 'concat', 'less', 'uglify'],
                 options: {
                     spawn: false
                 }
@@ -67,13 +67,6 @@ module.exports = function (grunt) {
             }
         },
 
-        //merry chlaeton
-
-        //simplemocha: {
-        //    backend: {
-        //        src: 'tests/server-tests.js'
-        //    }
-        //},
 
         simplemocha: {
             options: {

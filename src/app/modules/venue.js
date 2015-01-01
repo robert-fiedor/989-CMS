@@ -15,10 +15,12 @@ angular.module('venue')
 
             $locationProvider.html5Mode(true);
 
+
         }])
 
     .run(['$state', function ($state) {
         $state.transitionTo('home');
+
     }])
 
     .controller('AppController', ['$scope', function ($scope) {

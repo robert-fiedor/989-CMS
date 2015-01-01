@@ -10,11 +10,7 @@ describe('RecommendationService', function () {
     it('it should find recommended flag', inject([
             'VenueShowsService',
             function (VenueShowsService) {
-
                 expect(true).toBeTruthy();
-                expect(true).toBeTruthy();
-                expect(false).toBeTruthy();
-
 
             }
         ])
