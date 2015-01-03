@@ -1,7 +1,19 @@
 (function () {
     'use strict';
-    angular.module('venue', ['ui.bootstrap','ngRoute', 'ui.router', '$baseAppSettings','venueShows']);
+
+    angular.module('venue', ['ngRoute', 'ui.router', 'baseAppSettings','venueShows']);
     angular.module('venueShows', []);
+
+})();
+
+//'ui.bootstrap'
+
+
+
+(function () {
+    'use strict';
+    angular.module('baseAppSettings', []).constant('baseAppSettings', {routes:{}})
+    
 
 })();
 
@@ -18,11 +30,17 @@
     var homeController = function($scope, $http){
 
         var vm = this;
+        vm.awesome = function (){
+
+        }
+
+
         console.log('HomeController new');
 
     };
     homeController.$inject = ['$scope','$http'];
     angular.module('venue').controller('HomeController', homeController)
+
 
 })();
 
@@ -42,6 +60,42 @@
     )
 
 })();
+
+/**
+ * Created by Rob on 12/18/2014.
+ */
+'use strict';
+
+describe('HomeController', function () {
+
+    //good example of testing a controller:
+    //https://docs.angularjs.org/api/ngMock/service/$httpBackend
+
+    var $rootScope;
+    var scope;
+    var controller;
+
+    beforeEach(angular.mock.module('venue'));
+
+    beforeEach(inject(function ($injector) {
+    //
+        $rootScope = $injector.get('$rootScope');
+        scope = $rootScope.$new();
+
+        controller = $injector.get('$controller')('HomeController', {
+            $scope: scope
+
+        });
+    }));
+
+    it('should	', function () {
+        expect(controller.awesome).toBeDefined();
+    });
+
+
+});
+
+
 
 /**
  * Created by Rob on 12/15/2014.
@@ -66,6 +120,7 @@
 /**
  * Created by Rob on 12/15/2014.
  */
+
 
 /**
  * Created by Rob on 12/15/2014.
@@ -92,27 +147,26 @@
 })();
 
 angular.module('venue')
-    .config(['$baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function ($baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(['baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
+        function (baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-            angular.forEach($baseAppSettings.routes.client, function(value,key){
-
-                $stateProvider
-
-                    .state(value.state, {
-                        url: value.urlRequested,
-                        templateUrl: value.templateUrl,
-                        controller: value.controller || null
-                    });
-            });
+            //angular.forEach(baseAppSettings.routes.client, function(value,key){
+            //    $stateProvider
+            //        .state(value.state, {
+            //            url: value.urlRequested,
+            //            templateUrl: value.templateUrl,
+            //            controller: value.controller || null
+            //        });
+            //});
 
             $locationProvider.html5Mode(true);
+
 
 
         }])
 
     .run(['$state', function ($state) {
-        $state.transitionTo('home');
+        //$state.transitionTo('home');
 
     }])
 

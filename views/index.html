@@ -18,8 +18,7 @@
 <script src="js/lib-min.js"></script>
 
 <script type='text/javascript'>
-    angular.module('$baseAppSettings', [])
-            .constant('$baseAppSettings', <%-JSON.stringify(baseAppSettings)%>)
+    angular.module('baseAppSettings').constant('baseAppSettings', <%-JSON.stringify(baseAppSettings)%>)
 </script>
 
 <script src="js/app-min.js"></script>

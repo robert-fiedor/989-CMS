@@ -9,10 +9,16 @@
     var homeController = function($scope, $http){
 
         var vm = this;
+        vm.awesome = function (){
+
+        }
+
+
         console.log('HomeController new');
 
     };
     homeController.$inject = ['$scope','$http'];
     angular.module('venue').controller('HomeController', homeController)
+
 
 })();

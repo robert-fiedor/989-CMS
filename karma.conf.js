@@ -16,10 +16,21 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
             "src/libs/angular/angular.js",
+            "src/libs/angular-ui-router.js",
+            "src/libs/angular-route/angular-route.js",
+
+
             "src/libs/angular-mocks/angular-mocks.js",
+
+            "src/baseAppSettings.js",
+
             "src/app.js",
-            "src/app/**/*.js",
-            'src/test/unit/app/**/*.spec.js'
+
+            //"src/app/modules/baseAppSettings.js",
+            "src/app/modules/venue.js",
+
+            "src/app/**/*.js"
+            //'src/app/**/*.spec.js'
         ],
 
         // list of files to exclude
@@ -59,6 +70,6 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: true
+        singleRun: false
     });
 };
