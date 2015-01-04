@@ -1,4 +1,6 @@
 
+http://bahmutov.calepin.co/inject-valid-constants-into-angular.html
+
 mongod -dbpath "C:\mongodb-data\data\db"
 nodemon server.js
 

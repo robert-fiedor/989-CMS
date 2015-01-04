@@ -20,8 +20,8 @@ module.exports = function (grunt) {
 
         watch: {
             scripts: {
-                files: ['src/**/*.js', 'src/**/*.less'],
-                tasks: ['karma:unit', 'concat', 'less', 'uglify'],
+                files: ['src/app/**/!(*.spec).js','src/**/*.less'],
+                tasks: ['concat', 'less', 'uglify'],
                 options: {
                     spawn: false
                 }
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         concat: {
             basic_and_extras: {
                 files: {
-                    'public/js/app.js': ['src/app.js','src/baseAppSettings.js', 'src/app/**/*.js'],
+                    'public/js/app.js': ['src/app.js','src/app/**/!(*.spec).js'],
                     'public/js/lib.js': [
                         'src/libs/angular/angular.js',
                         'src/libs/angular-mocks/angular-mocks.js',
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['watch', 'simplemocha']);
+    grunt.registerTask('default', ['simplemocha', 'concat', 'less', 'uglify','watch', ]);
 
 
 };

@@ -11,18 +11,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body ng-app="venue" ng-strict-di ng-controller="AppController">
+<!--<body>-->
+
+<body ng-app="venue">
 
 <div ui-view></div>
 
 <script src="js/lib-min.js"></script>
+<script src="js/app-min.js"></script>
 
 <script type='text/javascript'>
-    angular.module('baseAppSettings').constant('baseAppSettings', <%-JSON.stringify(baseAppSettings)%>)
-</script>
 
-<script src="js/app-min.js"></script>
+
+        angular.module('venue')
+                .config([ '$locationProvider', '$stateProvider', '$urlRouterProvider',
+                    function ($locationProvider, $stateProvider, $urlRouterProvider) {
+
+                        angular.forEach(<%-JSON.stringify(baseAppSettings)%>.routes.client, function (value, key) {
+                            $stateProvider
+                                    .state(value.state, {
+                                        url: value.urlRequested,
+                                        templateUrl: value.templateUrl,
+                                        controller: value.controller || null
+
+                                    });
+                        })
+
+                        $locationProvider.html5Mode(true);
+
+                    }])
+
+                .run(['$state', function ($state) {
+                    $state.transitionTo('home');
+                }])
+                .controller('BootStrapController', function(){
+                });
+
+
+</script>
 
 
 </body>
 </html>
+

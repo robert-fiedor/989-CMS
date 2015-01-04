@@ -1,22 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('venue', ['ngRoute', 'ui.router', 'baseAppSettings','venueShows']);
+    angular.module('venue', ['ngRoute', 'ui.router', 'venueShows']);
+
     angular.module('venueShows', []);
 
-})();
+})
+();
 
 //'ui.bootstrap'
-
-
-
-(function () {
-    'use strict';
-    angular.module('baseAppSettings', []).constant('baseAppSettings', {routes:{}})
-    
-
-})();
-
 
 
 /**
@@ -60,42 +52,6 @@
     )
 
 })();
-
-/**
- * Created by Rob on 12/18/2014.
- */
-'use strict';
-
-describe('HomeController', function () {
-
-    //good example of testing a controller:
-    //https://docs.angularjs.org/api/ngMock/service/$httpBackend
-
-    var $rootScope;
-    var scope;
-    var controller;
-
-    beforeEach(angular.mock.module('venue'));
-
-    beforeEach(inject(function ($injector) {
-    //
-        $rootScope = $injector.get('$rootScope');
-        scope = $rootScope.$new();
-
-        controller = $injector.get('$controller')('HomeController', {
-            $scope: scope
-
-        });
-    }));
-
-    it('should	', function () {
-        expect(controller.awesome).toBeDefined();
-    });
-
-
-});
-
-
 
 /**
  * Created by Rob on 12/15/2014.
@@ -145,31 +101,3 @@ describe('HomeController', function () {
     angular.module('venueShows').factory('VenueShowsService', VenueShowsService);
 
 })();
-
-angular.module('venue')
-    .config(['baseAppSettings', '$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function (baseAppSettings, $locationProvider, $stateProvider, $urlRouterProvider) {
-
-            //angular.forEach(baseAppSettings.routes.client, function(value,key){
-            //    $stateProvider
-            //        .state(value.state, {
-            //            url: value.urlRequested,
-            //            templateUrl: value.templateUrl,
-            //            controller: value.controller || null
-            //        });
-            //});
-
-            $locationProvider.html5Mode(true);
-
-
-
-        }])
-
-    .run(['$state', function ($state) {
-        //$state.transitionTo('home');
-
-    }])
-
-    .controller('AppController', ['$scope', function ($scope) {
-
-    }])
