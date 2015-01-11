@@ -4,17 +4,24 @@
 //
 (function () {
     'use strict';
-    var venueShowMain = function ($compile) {
+    var venueShowBig = function ($compile) {
         return {
             restrict: 'E',
-            scope: {},
+            scope: {
+                data:'='
+            },
             replace: false,
             template: '<div>123</div>',
 
             link: function (scope, element, attrs) {
+
+
+
+
+
             }
         };
     }
-    venueShowMain.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowMain', venueShowMain);
+    venueShowBig.$inject = ['$compile'];
+    angular.module('venueShows').directive('venueShowMain', venueShowBig);
 })();

@@ -62,6 +62,7 @@
     var venueShowMain = function ($compile) {
         return {
             restrict: 'E',
+            
             scope: {},
             replace: false,
             template: '<div>123</div>',

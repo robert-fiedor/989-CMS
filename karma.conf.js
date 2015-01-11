@@ -18,14 +18,18 @@ module.exports = function (config) {
             "src/libs/angular-ui-router.js",
             "src/libs/angular-route/angular-route.js",
             "src/libs/angular-mocks/angular-mocks.js",
+            "src/libs/jquery.js",
+            "src/libs/jasmine-jquery.js",
 
             "src/app.js",
 
-            //"src/app/modules/baseAppSettings.js",
-            //"src/app/modules/venue.js",
-
             "src/app/**/*.js",
-            'src/app/**/*.spec.js'
+            'src/app/**/*.spec.js',
+            {
+                pattern: 'src/app/modules/VenueShows/**/specs/mockResponses/*.json',
+                served: true,
+                included: false
+            }
         ],
 
         // list of files to exclude
