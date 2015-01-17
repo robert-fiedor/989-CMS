@@ -4,7 +4,7 @@
   "dependencies": {
     "Faker": "^0.7.2",
     "body-parser": "~1.4.2",
-    "connect-mongo": "latest",
+    "connect-mongo": "~0.6.0",
     "cookie-parser": "latest",
     "crypto": "latest",
     "ejs": "latest",
