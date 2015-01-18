@@ -61,8 +61,11 @@ exports.addFakeVenueShows = function (req, res) {
         });
 
         show.save(function (err, results) {
+
             if (err) {
                 res.json(500, "Failed to save Show.");
+            } else {
+                //res.json({msg: "Order Saved."})
             }
         });
 

@@ -3,7 +3,8 @@
 
 describe('VenueShowMain', function () {
     var $compile,
-        $rootScope;
+        $rootScope,
+        PATH = "src/app/modules/VenueShows/VenueShowMain/specs/mockResponses/"
 
     // Load the myApp module, which contains the directive
     beforeEach(module('venue'));
@@ -15,14 +16,14 @@ describe('VenueShowMain', function () {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         scope = $rootScope.$new();
-        jasmine.getJSONFixtures().fixturesPath = 'base/src/app/modules/VenueShows/VenueShowMain/specs/mockResponses';
+        jasmine.getJSONFixtures().fixturesPath = 'base';
 
     }));
 
 
     it('Renders stimulus', function () {
-        var data = JSON.stringify(getJSONFixture('data.json'));
-        console.log(data)
+        var data = JSON.stringify(getJSONFixture(PATH+'data.json'));
+        //console.log(data)
     //    var element = $compile("<multiple-choice-question data='" + data + "  '>" +
     //    "</multiple-choice-question>")(scope);
     //    scope.$digest();
