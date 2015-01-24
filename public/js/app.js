@@ -59,20 +59,27 @@
 //
 (function () {
     'use strict';
-    var venueShowMain = function ($compile) {
+    var venueShowBig = function ($compile) {
         return {
             restrict: 'E',
-            
-            scope: {},
+            scope: {
+                title1: '@'
+            },
             replace: false,
-            template: '<div>123</div>',
+            controllerAs: "venueShowBigCtrl",
+            bindToController:true,
 
-            link: function (scope, element, attrs) {
+            template: '<div>{{venueShowBigCtrl.lala}}</div>'+
+                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala=10;
             }
+
         };
     }
-    venueShowMain.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowMain', venueShowMain);
+    venueShowBig.$inject = ['$compile'];
+    angular.module('venueShows').directive('venueShowBig', venueShowBig);
 })();
 /**
  * Created by Rob on 12/15/2014.

@@ -8,20 +8,21 @@
         return {
             restrict: 'E',
             scope: {
-                data:'='
+                title1: '@'
             },
             replace: false,
-            template: '<div>123</div>',
+            controllerAs: "venueShowBigCtrl",
+            bindToController:true,
 
-            link: function (scope, element, attrs) {
-
-
-
-
-
+            template: '<div>{{venueShowBigCtrl.lala}}</div>'+
+                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala=10;
             }
+
         };
     }
     venueShowBig.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowMain', venueShowBig);
+    angular.module('venueShows').directive('venueShowBig', venueShowBig);
 })();
