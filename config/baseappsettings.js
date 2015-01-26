@@ -21,6 +21,13 @@ var BaseAppSettings = {
                 urlRequested: '/list',
                 templateUrl: '/partials/list.html',
                 controller: 'ListController'
+            },
+
+            list: {
+                state: 'playground',
+                urlRequested: '/playground',
+                templateUrl: '/partials/playground.html',
+                controller: 'PlaygroundController'
             }
 
         },

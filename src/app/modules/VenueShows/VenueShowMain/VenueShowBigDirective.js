@@ -12,13 +12,13 @@
             },
             replace: false,
             controllerAs: "venueShowBigCtrl",
-            bindToController:true,
+            bindToController: true,
 
-            template: '<div>{{venueShowBigCtrl.lala}}</div>'+
+            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
                         '<div>{{venueShowBigCtrl.title1}}<div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala=10;
+                vm.lala = 10;
             }
 
         };

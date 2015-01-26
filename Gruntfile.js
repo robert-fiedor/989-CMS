@@ -13,14 +13,14 @@ module.exports = function (grunt) {
                     paths: ["css"]
                 },
                 files: {
-                    "public/css/app.css": "src/app.less"
+                    "public/css/app.css": "src/less/app.less"
                 }
             }
         },
 
         watch: {
             scripts: {
-                files: ['src/app/**/!(*.spec).js','src/**/*.less'],
+                files: ['src/app/**/!(*.spec).js','src/less/*.less'],
                 tasks: ['concat', 'less', 'uglify'],
                 options: {
                     spawn: false

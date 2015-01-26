@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('venue', ['ngRoute', 'ui.router', 'venueShows']);
+    angular.module('venue', ['ngRoute', 'ui.router', 'venueShows', 'playground']);
 
     angular.module('venueShows', []);
+    angular.module('playground', []);
 
 })
 ();
@@ -54,6 +55,77 @@
 })();
 
 /**
+ * Created by Rob on 11/22/2014.
+ */
+//
+
+(function () {
+    'use strict';
+
+    var playgroundController = function ($scope, $http) {
+        console.log('playgroundController new');
+
+        $scope.yo=1;
+    };
+
+    playgroundController.$inject = ['$scope', '$http'];
+    angular.module('playground').controller('PlaygroundController', playgroundController)
+
+})();
+
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+
+(function () {
+    'use strict';
+
+    
+    var directiveA = function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "directiveACtrl",
+            bindToController: true,
+            template: '<div>hello from directive As vm: {{directiveACtrl.uno}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.uno = 30;
+            }
+
+        };
+    }
+    directiveA.$inject = ['$compile'];
+    angular.module('playground').directive('directiveA', directiveA);
+
+
+
+    var directiveB = function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "directiveBCtrl",
+            bindToController: true,
+            template: '<div>hello from directive B As vm: {{directiveBCtrl.uno}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.uno = 80;
+            }
+
+        };
+    }
+    directiveB.$inject = ['$compile'];
+    angular.module('playground').directive('directiveB', directiveB);
+
+})();
+/**
  * Created by Rob on 12/15/2014.
  */
 //
@@ -67,13 +139,13 @@
             },
             replace: false,
             controllerAs: "venueShowBigCtrl",
-            bindToController:true,
+            bindToController: true,
 
-            template: '<div>{{venueShowBigCtrl.lala}}</div>'+
+            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
                         '<div>{{venueShowBigCtrl.title1}}<div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala=10;
+                vm.lala = 10;
             }
 
         };
