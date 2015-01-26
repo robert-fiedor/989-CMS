@@ -82,19 +82,19 @@
     'use strict';
 
 
-    var directiveA = function ($compile) {
+    var boxy = function ($compile) {
         return {
             restrict: 'E',
             scope: {
                 title1: '@'
             },
             replace: false,
-            controllerAs: "directiveACtrl",
+            controllerAs: "boxyCtrl",
             bindToController: true,
             transclude:true,
-            template: '<div>hello from directive As vm: {{directiveACtrl.uno}}<div>'
+            template: '<div>hello from directive As vm: {{boxyCtrl.uno}}<div>'
                         +'<ng-transclude></ng-transclude>'
-                        +'<div>end of A</div>',
+                        +'<div>end of A , zapytanie: {{boxyCtrl.title1}}</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.uno = 30;
@@ -102,21 +102,19 @@
 
         };
     }
-    directiveA.$inject = ['$compile'];
-    angular.module('playground').directive('directiveA', directiveA);
+    boxy.$inject = ['$compile'];
+    angular.module('playground').directive('boxy', boxy);
 
-
-
-    var directiveB = function ($compile) {
+    var owieczka = function ($compile) {
         return {
             restrict: 'E',
             scope: {
                 title1: '@'
             },
             replace: false,
-            controllerAs: "directiveBCtrl",
+            controllerAs: "owieczkaCtrl",
             bindToController: true,
-            template: '<div>hello from directive B As vm: {{directiveBCtrl.uno}}<div>',
+            template: '<div>hello from directive B As vm: {{owieczkaCtrl.uno}}<div>{{owieczkaCtrl.title1}}',
             controller: function ($scope) {
                 var vm = this;
                 vm.uno = 80;
@@ -124,8 +122,8 @@
 
         };
     }
-    directiveB.$inject = ['$compile'];
-    angular.module('playground').directive('directiveB', directiveB);
+    owieczka.$inject = ['$compile'];
+    angular.module('playground').directive('owieczka', owieczka);
 
 })();
 /**
