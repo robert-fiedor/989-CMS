@@ -81,7 +81,7 @@
 (function () {
     'use strict';
 
-    
+
     var directiveA = function ($compile) {
         return {
             restrict: 'E',
@@ -91,7 +91,10 @@
             replace: false,
             controllerAs: "directiveACtrl",
             bindToController: true,
-            template: '<div>hello from directive As vm: {{directiveACtrl.uno}}<div>',
+            transclude:true,
+            template: '<div>hello from directive As vm: {{directiveACtrl.uno}}<div>'
+                        +'<ng-transclude></ng-transclude>'
+                        +'<div>end of A</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.uno = 30;
