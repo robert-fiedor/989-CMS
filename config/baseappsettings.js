@@ -23,7 +23,7 @@ var BaseAppSettings = {
                 controller: 'ListController'
             },
 
-            list: {
+            playground: {
                 state: 'playground',
                 urlRequested: '/playground',
                 templateUrl: '/partials/playground.html',

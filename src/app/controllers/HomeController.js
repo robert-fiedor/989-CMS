@@ -10,10 +10,9 @@
 
         var vm = this;
         $scope.shows = shows;
+        $scope.tentyp='sl';
 
-        $scope.tentyp=1000000000000000;
-
-        VenueShowsService.getAssessment().then(function (data) {
+        VenueShowsService.getShows().then(function (data) {
             console.log(1, shows);
 
         }, function (data) {

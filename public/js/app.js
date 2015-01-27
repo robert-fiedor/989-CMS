@@ -24,10 +24,9 @@
 
         var vm = this;
         $scope.shows = shows;
+        $scope.tentyp='sl';
 
-        $scope.tentyp=1000000000000000;
-
-        VenueShowsService.getAssessment().then(function (data) {
+        VenueShowsService.getShows().then(function (data) {
             console.log(1, shows);
 
         }, function (data) {
@@ -138,27 +137,27 @@
 //
 (function () {
     'use strict';
-    var venueShowBig = function ($compile) {
+    var showPanes = function ($compile,shows) {
         return {
             restrict: 'E',
             scope: {
                 title1: '@'
             },
             replace: false,
-            controllerAs: "venueShowBigCtrl",
+            controllerAs: "showPanesCtrl",
             bindToController: true,
-
-            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
-                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            template: '<div>{{showPanesCtrl.lala3.items[0]}} {{showPanesCtrl.lala2}}</div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala = 10;
+                vm.lala2 = 'showPanes hello';
+                vm.lala3 = shows;
+                console.log('fin',shows)
             }
 
         };
     }
-    venueShowBig.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowBig', venueShowBig);
+    showPanes.$inject = ['$compile','shows'];
+    angular.module('venueShows').directive('showPanes', showPanes);
 })();
 /**
  * Created by Rob on 12/15/2014.
@@ -197,16 +196,7 @@
 
     var VenueShowsService = function ($http, $log, shows) {
 
-        var getRecommendations = function (syllabusPath) {
-            return shows;
-        };
-
-        var getContentItem = function () {
-            var contentItem = $http.get('/api/shows');
-            return contentItem;
-        }
-
-        var getAssessment = function () {
+        var getShows = function () {
             var promise = $http.get('/api/shows')
                 .success(function (response) {
                     shows.items = response;
@@ -218,9 +208,7 @@
         };
 
         return {
-            getAssessment: getAssessment,
-            getContentItem: getContentItem,
-            getRecommendations: getRecommendations
+            getShows: getShows
         };
 
     };

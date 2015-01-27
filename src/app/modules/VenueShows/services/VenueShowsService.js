@@ -7,16 +7,7 @@
 
     var VenueShowsService = function ($http, $log, shows) {
 
-        var getRecommendations = function (syllabusPath) {
-            return shows;
-        };
-
-        var getContentItem = function () {
-            var contentItem = $http.get('/api/shows');
-            return contentItem;
-        }
-
-        var getAssessment = function () {
+        var getShows = function () {
             var promise = $http.get('/api/shows')
                 .success(function (response) {
                     shows.items = response;
@@ -28,9 +19,7 @@
         };
 
         return {
-            getAssessment: getAssessment,
-            getContentItem: getContentItem,
-            getRecommendations: getRecommendations
+            getShows: getShows
         };
 
     };
