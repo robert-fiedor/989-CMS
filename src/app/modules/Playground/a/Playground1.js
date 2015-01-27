@@ -16,10 +16,10 @@
             replace: false,
             controllerAs: "boxyCtrl",
             bindToController: true,
-            transclude:true,
+            transclude: true,
             template: '<div>hello from directive As vm: {{boxyCtrl.uno}}<div>'
-                        +'<ng-transclude></ng-transclude>'
-                        +'<div>end of A , zapytanie: {{boxyCtrl.title1}}</div>',
+            + '<ng-transclude></ng-transclude>'
+            + '<div>end of A , zapytanie: {{boxyCtrl.title1}}</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.uno = 30;

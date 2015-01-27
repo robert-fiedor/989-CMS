@@ -91,10 +91,10 @@
             replace: false,
             controllerAs: "boxyCtrl",
             bindToController: true,
-            transclude:true,
+            transclude: true,
             template: '<div>hello from directive As vm: {{boxyCtrl.uno}}<div>'
-                        +'<ng-transclude></ng-transclude>'
-                        +'<div>end of A , zapytanie: {{boxyCtrl.title1}}</div>',
+            + '<ng-transclude></ng-transclude>'
+            + '<div>end of A , zapytanie: {{boxyCtrl.title1}}</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.uno = 30;
@@ -129,6 +129,35 @@
 /**
  * Created by Rob on 12/15/2014.
  */
+
+
+/**
+ * Created by Rob on 12/15/2014.
+ */
+
+(function () {
+    'use strict';
+
+    var VenueShowsService = function ($rootScope, $window, $http, $log) {
+
+        var getRecommendations = function (syllabusPath) {
+            return true;
+        };
+
+        return {
+            getRecommendations: getRecommendations
+        };
+
+    };
+
+    VenueShowsService.$inject = ['$rootScope', '$window', '$http', '$log'];
+    angular.module('venueShows').factory('VenueShowsService', VenueShowsService);
+
+})();
+
+/**
+ * Created by Rob on 12/15/2014.
+ */
 //
 (function () {
     'use strict';
@@ -157,28 +186,28 @@
 /**
  * Created by Rob on 12/15/2014.
  */
-
-
-/**
- * Created by Rob on 12/15/2014.
- */
-
+//
 (function () {
     'use strict';
-
-    var VenueShowsService = function ($rootScope, $window, $http, $log) {
-
-        var getRecommendations = function (syllabusPath) {
-            return true;
-        };
-
+    var venueShowBig = function ($compile) {
         return {
-            getRecommendations: getRecommendations
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "venueShowBigCtrl",
+            bindToController: true,
+
+            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
+                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala = 10;
+            }
+
         };
-
-    };
-
-    VenueShowsService.$inject = ['$rootScope', '$window', '$http', '$log'];
-    angular.module('venueShows').factory('VenueShowsService', VenueShowsService);
-
+    }
+    venueShowBig.$inject = ['$compile'];
+    angular.module('venueShows').directive('venueShowBig', venueShowBig);
 })();
