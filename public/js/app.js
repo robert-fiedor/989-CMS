@@ -20,18 +20,24 @@
 (function () {
     'use strict';
 
-    var homeController = function($scope, $http){
+    var homeController = function ($scope, $http, VenueShowsService, shows) {
 
         var vm = this;
-        vm.awesome = function (){
+        $scope.shows = shows;
 
-        }
+        $scope.tentyp=1000000000000000;
 
+        VenueShowsService.getAssessment().then(function (data) {
+            console.log(1, shows);
 
-        console.log('HomeController new');
+        }, function (data) {
+            console.log(2, shows);
+        });
+
+        //console.log('HomeController new',VenueShowsService.getContentItem());
 
     };
-    homeController.$inject = ['$scope','$http'];
+    homeController.$inject = ['$scope', '$http', 'VenueShowsService', 'shows'];
     angular.module('venue').controller('HomeController', homeController)
 
 
@@ -129,8 +135,59 @@
 /**
  * Created by Rob on 12/15/2014.
  */
+//
+(function () {
+    'use strict';
+    var venueShowBig = function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "venueShowBigCtrl",
+            bindToController: true,
 
+            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
+                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala = 10;
+            }
 
+        };
+    }
+    venueShowBig.$inject = ['$compile'];
+    angular.module('venueShows').directive('venueShowBig', venueShowBig);
+})();
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+(function () {
+    'use strict';
+    var venueShowBig = function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "venueShowBigCtrl",
+            bindToController: true,
+
+            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
+                        '<div>{{venueShowBigCtrl.title1}}<div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala = 10;
+            }
+
+        };
+    }
+    venueShowBig.$inject = ['$compile'];
+    angular.module('venueShows').directive('venueShowBig', venueShowBig);
+})();
 /**
  * Created by Rob on 12/15/2014.
  */
@@ -138,76 +195,46 @@
 (function () {
     'use strict';
 
-    var VenueShowsService = function ($rootScope, $window, $http, $log) {
+    var VenueShowsService = function ($http, $log, shows) {
 
         var getRecommendations = function (syllabusPath) {
-            return true;
+            return shows;
+        };
+
+        var getContentItem = function () {
+            var contentItem = $http.get('/api/shows');
+            return contentItem;
+        }
+
+        var getAssessment = function () {
+            var promise = $http.get('/api/shows')
+                .success(function (response) {
+                    shows.items = response;
+                })
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error getting sequence');
+                });
+            return promise;
         };
 
         return {
+            getAssessment: getAssessment,
+            getContentItem: getContentItem,
             getRecommendations: getRecommendations
         };
 
     };
 
-    VenueShowsService.$inject = ['$rootScope', '$window', '$http', '$log'];
+    VenueShowsService.$inject = ['$http', '$log', 'shows'];
     angular.module('venueShows').factory('VenueShowsService', VenueShowsService);
 
 })();
 
 /**
- * Created by Rob on 12/15/2014.
+ * Created by Rob on 1/26/2015.
  */
-//
-(function () {
-    'use strict';
-    var venueShowBig = function ($compile) {
-        return {
-            restrict: 'E',
-            scope: {
-                title1: '@'
-            },
-            replace: false,
-            controllerAs: "venueShowBigCtrl",
-            bindToController: true,
 
-            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
-                        '<div>{{venueShowBigCtrl.title1}}<div>',
-            controller: function ($scope) {
-                var vm = this;
-                vm.lala = 10;
-            }
-
-        };
-    }
-    venueShowBig.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowBig', venueShowBig);
-})();
-/**
- * Created by Rob on 12/15/2014.
- */
-//
-(function () {
-    'use strict';
-    var venueShowBig = function ($compile) {
-        return {
-            restrict: 'E',
-            scope: {
-                title1: '@'
-            },
-            replace: false,
-            controllerAs: "venueShowBigCtrl",
-            bindToController: true,
-
-            template: '<div>{{venueShowBigCtrl.lala}}</div>' +
-                        '<div>{{venueShowBigCtrl.title1}}<div>',
-            controller: function ($scope) {
-                var vm = this;
-                vm.lala = 10;
-            }
-
-        };
-    }
-    venueShowBig.$inject = ['$compile'];
-    angular.module('venueShows').directive('venueShowBig', venueShowBig);
-})();
+angular.module('venueShows').factory('shows', ["$rootScope", function ($rootScope) {
+    var shows = {};
+    return shows;
+}]);

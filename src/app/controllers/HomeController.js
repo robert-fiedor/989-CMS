@@ -6,18 +6,24 @@
 (function () {
     'use strict';
 
-    var homeController = function($scope, $http){
+    var homeController = function ($scope, $http, VenueShowsService, shows) {
 
         var vm = this;
-        vm.awesome = function (){
+        $scope.shows = shows;
 
-        }
+        $scope.tentyp=1000000000000000;
 
+        VenueShowsService.getAssessment().then(function (data) {
+            console.log(1, shows);
 
-        console.log('HomeController new');
+        }, function (data) {
+            console.log(2, shows);
+        });
+
+        //console.log('HomeController new',VenueShowsService.getContentItem());
 
     };
-    homeController.$inject = ['$scope','$http'];
+    homeController.$inject = ['$scope', '$http', 'VenueShowsService', 'shows'];
     angular.module('venue').controller('HomeController', homeController)
 
 

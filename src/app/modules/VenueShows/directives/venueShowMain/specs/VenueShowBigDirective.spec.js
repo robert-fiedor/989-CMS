@@ -4,7 +4,7 @@
 describe('VenueShowMain', function () {
     var $compile,
         $rootScope,
-        PATH = "src/app/modules/VenueShows/venueShowMain/specs/mockResponses/"
+        PATH = "src/app/modules/VenueShows/directives/venueShowMain/specs/mockResponses/"
 
         beforeEach(function () {
             angular.mock.module('venue');
