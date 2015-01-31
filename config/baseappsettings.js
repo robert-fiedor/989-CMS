@@ -28,6 +28,12 @@ var BaseAppSettings = {
                 urlRequested: '/playground',
                 templateUrl: '/partials/playground.html',
                 controller: 'PlaygroundController'
+            },
+            photoshop: {
+                state: 'photoshop',
+                urlRequested: '/photoshop',
+                templateUrl: '/partials/photoshop.html',
+                controller: 'PhotoshopController'
             }
 
         },

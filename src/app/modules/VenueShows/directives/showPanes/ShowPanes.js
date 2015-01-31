@@ -13,7 +13,7 @@
             replace: false,
             controllerAs: "showPanesCtrl",
             bindToController: true,
-            template: '<div>{{showPanesCtrl.lala3.items[0]}} {{showPanesCtrl.lala2}}</div>',
+            template: '<div>{{showPanesCtrl.lala3.items[0].name}} {{showPanesCtrl.lala2}}</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.lala2 = 'showPanes hello';

@@ -1,10 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('venue', ['ngRoute', 'ui.router', 'venueShows', 'playground']);
+    angular.module('venue', ['ngRoute', 'ui.router', 'venueShows', 'playground', 'photoshop']);
 
     angular.module('venueShows', []);
     angular.module('playground', []);
+    angular.module('photoshop', []);
 
 })
 ();
@@ -67,6 +68,25 @@
 (function () {
     'use strict';
 
+    var PhotoshopController = function ($scope, $http) {
+        console.log('PhotoshopController new');
+
+        $scope.yo=1;
+    };
+
+    PhotoshopController.$inject = ['$scope', '$http'];
+    angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
+
+})();
+
+/**
+ * Created by Rob on 11/22/2014.
+ */
+//
+
+(function () {
+    'use strict';
+
     var playgroundController = function ($scope, $http) {
         console.log('playgroundController new');
 
@@ -78,6 +98,36 @@
 
 })();
 
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+
+(function () {
+    'use strict';
+    var dirA = function () {
+        return {
+            restrict: 'E',
+            scope: {
+                title1: '@'
+            },
+            replace: false,
+            controllerAs: "dirACtrl",
+            bindToController: true,
+            template: '<div>ej ej ej{{dirACtrl.lala2}}{{dirACtrl.title1}}</div>',
+            controller: function ($scope) {
+                var vm = this;
+                vm.lala2 = 'dirACtrl hello ,live value';
+
+                console.log('hello dira')
+                
+            }
+
+        };
+    }
+    dirA.$inject = [];
+    angular.module('photoshop').directive('dirA', dirA);
+})();
 /**
  * Created by Rob on 12/15/2014.
  */
@@ -146,7 +196,7 @@
             replace: false,
             controllerAs: "showPanesCtrl",
             bindToController: true,
-            template: '<div>{{showPanesCtrl.lala3.items[0]}} {{showPanesCtrl.lala2}}</div>',
+            template: '<div>{{showPanesCtrl.lala3.items[0].name}} {{showPanesCtrl.lala2}}</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.lala2 = 'showPanes hello';
