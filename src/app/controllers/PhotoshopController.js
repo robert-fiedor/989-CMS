@@ -19,7 +19,6 @@ console.log(newVal)
     };
 
 
-
     PhotoshopController.$inject = ['$scope', '$http'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
