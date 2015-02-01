@@ -5,25 +5,32 @@
 
 (function () {
     'use strict';
-    var tab = function () {
+    var phoTab = function () {
         return {
             restrict: 'E',
             scope: {
-                title1: '@'
+                tabTitle: '@'
             },
             replace: false,
-            controllerAs: "tabCtrl",
-            transclude:true,
+            controllerAs: "phoTabCtrl",
+            transclude: true,
             bindToController: true,
-            template: '<div> this is tab {{tabCtrl.lala2}}{{tabCtrl.title1}}</div><div ng-transclude></div>',
+            template: '<div class="pho-tab">' +
+            '<div class="pho-tab-header">' +
+            '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
+
+            '</h10>' +
+            '</div>' +
+            '<div ng-transclude></div>' +
+            '</div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala2 = 'tabCtrl hello ,live value';
-                console.log('hello tabs')
+                vm.lala2 = 'phoTabCtrl hello ,live value';
+                console.log('hello phoTabs')
             }
 
         };
     }
-    tab.$inject = [];
-    angular.module('photoshop').directive('tab', tab);
+    phoTab.$inject = [];
+    angular.module('photoshop').directive('phoTab', phoTab);
 })();
