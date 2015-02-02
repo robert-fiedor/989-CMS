@@ -13,7 +13,9 @@ var path = require('path');
 
 require('./app/models/users_model.js');
 require('./app/models/venueShowModel.js');
+require('./app/models/photoshopModel.js');
 
+//.js
 var baseAppSettings = require('./config/baseappsettings');
 
 var mongoStore = require('connect-mongo')({session: expressSession});

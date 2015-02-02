@@ -16,13 +16,12 @@
             transclude: true,
             bindToController: true,
             template: '<div class="pho-tab">' +
-            '<div class="pho-tab-header">' +
-            '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
-
-            '</h10>' +
-            '</div>' +
-            '<div ng-transclude></div>' +
-            '</div>',
+                        '<div class="pho-tab-header">' +
+                            '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
+                            '</h10>' +
+                        '</div>' +
+                        '<div ng-transclude></div>' +
+                       '</div>',
             controller: function ($scope) {
                 var vm = this;
                 vm.lala2 = 'phoTabCtrl hello ,live value';

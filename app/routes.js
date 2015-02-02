@@ -80,6 +80,21 @@ module.exports = function (app) {
     app.post('/api/shows', venueShows.addShow);
     app.post('/api/fake/shows', venueShows.addFakeVenueShows);
 
+
+
+    var photoshop = require('./../app/controllers/photoshop_controller');
+
+    //app.get('/api/shows', venueShows.getShows);
+    //app.get('/api/shows/:venue_show_id', venueShows.getShow);
+    app.post('/api/photoshop/shows', photoshop.addShow);
+    app.get('/api/photoshop/shows', photoshop.getShows);
+    //app.post('/api/fake/shows', venueShows.addFakeVenueShows);
+
+
+
+
+
+
     app.all('/*', function (req, res, next) {
         res.render(shortS.get.home.pathToFile)
     });

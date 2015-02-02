@@ -11,34 +11,32 @@
             restrict: 'EA',
             scope: {
                 data: '=',
-
                 answerObjectToBindTo: '=',
                 keyOfAnswerObjectToBindTo: '@',
-
-                keyNameText: '@',
                 uniqueRadioButtonName: '@',
                 valueIsIndex: '@',
                 triggerOnChange: '&'
             },
+            transclude:true,
             controllerAs: 'ctrl',
             bindToController: true,
             template:
-            '<div ng-repeat="a in ctrl.data">' +
-            '<label ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,a) }">' +
-            '<input type="radio" name="{{::ctrl.uniqueRadioButtonName}}" ng-model="ctrl.answerObjectToBindTo[ctrl.keyOfAnswerObjectToBindTo]" ng-value="ctrl.indexOrObject($index,a)" ng-change="ctrl.triggerOnChange()"></input>' +
-            '<span class="photoshop-answer-choice-text" ng-bind="::a[ctrl.keyNameText]"></span>' +
+            '<div ng-repeat="item in ctrl.data">' +
+            '<label ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
+            '<input type="radio" name="{{::ctrl.uniqueRadioButtonName}}" ng-model="ctrl.answerObjectToBindTo[ctrl.keyOfAnswerObjectToBindTo]" ng-value="ctrl.indexOrObject($index,item)" ng-change="ctrl.triggerOnChange()"></input>' +
+            '<div ng-transclude></div>' +
             '</label>' +
             '</div>',
             link: function (scope, element, attrs, ngModelController) { },
             controller: function ($scope) {
                 var vm = this;
-                vm.indexOrObject = function (index, a) {
-                    var result = vm.valueIsIndex === 'true' ? index : a;
+                vm.indexOrObject = function (index, item) {
+                    var result = vm.valueIsIndex === 'true' ? index : item;
                     return result;
                 }
 
-                vm.isActive = function (index, a) {
-                    return vm.answerObjectToBindTo[vm.keyOfAnswerObjectToBindTo] === vm.indexOrObject(index, a);
+                vm.isActive = function (index, item) {
+                    return vm.answerObjectToBindTo[vm.keyOfAnswerObjectToBindTo] === vm.indexOrObject(index, item);
                 }
 
             }
