@@ -16,26 +16,30 @@ exports.getShows = function (req, res) {
 
 };
 //};
-//exports.getShow = function (req, res) {
-//
-//    Photoshop.findById(req.params.venue_show_id, function (err, photoshop) {
-//        if (err)
-//            res.send(err);
-//        res.json(photoshop);
-//    });
-//
-//};
-exports.addShow = function (req, res) {
 
-    var show = new Photoshop({
-        name: 'this is it'
+
+exports.getFile = function (req, res) {
+
+    Photoshop.findById(req.params.id, function (err, photoshop) {
+        if (err)
+            res.send(err);
+        res.json(photoshop);
     });
+
+};
+
+
+exports.createFile = function (req, res) {
+
+    var show = new Photoshop(
+        req.body
+    );
 
     show.save(function (err, results) {
         if (err) {
-            res.json(500, "Failed to save Order.");
+            res.json(500, "Failed create File.");
         } else {
-            res.json({msg: "Order Saved."})
+            res.json({msg: "File created", file: results})
         }
 
     });

@@ -68,20 +68,58 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
         console.log('PhotoshopController new');
 
-        $scope.yo=1;
-        $scope.stuff=[{ej:1, text:1 },{ej:1, text:2 },{ej:1, text:3 }];
-        $scope.obj={ten:{}};
+        $scope.yo = 1;
+        $scope.photoshopFile = photoshopFile;
+        $scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
+        $scope.obj = {ten: {}};
 
-        $scope.$watch('obj.ten',function(newVal,oldVal){
-console.log(newVal)
+        //PhotoshopDataService.submitResponse();
+
+        $scope.createFile = function(){
+            console.log('createFile');
+
+            PhotoshopDataService.createFile('cycki').then(function(d){
+                console.log('dddd', d.data.file);
+
+                //after create file
+            });
+
+        };
+
+        $scope.getShows = function(){
+            console.log('ha ha')
+            PhotoshopDataService.getShows();
+        }
+
+        $scope.logobject = function(){
+            console.log('logobject', photoshopFile)
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+        $scope.$watch('photoshopFile', function (newVal, oldVal) {
+            console.log('here ----:',newVal)
+        })
+
+        $scope.$watch('obj.ten', function (newVal, oldVal) {
+            console.log(newVal)
         })
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -220,6 +258,59 @@ console.log(newVal)
     phoTab.$inject = [];
     angular.module('photoshop').directive('phoTab', phoTab);
 })();
+/**
+ * Created by Rob on 2/1/2015.
+ */
+
+(function () {
+    'use strict';
+
+    var PhotoshopDataService = function ($http, $log, photoshopfile) {
+
+        var getShows = function () {
+
+            var promise = $http.get('/api/photoshop/shows')
+                .success(function (response) {
+                    photoshopfile.items = response;
+                })
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error getting sequence');
+                });
+            return promise;
+
+        };
+
+        var createFile = function (name) {
+            var promise = $http.post('/api/photoshop/file',
+                {name:name, layers:['a','b']})
+                .success(function (response) {
+                    $log.debug('Pass createFile()', response.file);
+
+
+                })
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error createFile()', status);
+                });
+
+            return promise;
+        };
+
+        return {
+            getShows:getShows,
+            createFile:createFile
+        };
+    }
+    PhotoshopDataService.$inject = ['$http', '$log', 'photoshopFile'];
+    angular.module('photoshop').factory('PhotoshopDataService', PhotoshopDataService);
+})();
+/**
+ * Created by Rob on 1/26/2015.
+ */
+
+angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($rootScope) {
+    var photoshopFile = {};
+    return photoshopFile;
+}]);
 /**
  * Created by Rob on 12/15/2014.
  */

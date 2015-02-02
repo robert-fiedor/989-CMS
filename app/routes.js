@@ -84,10 +84,26 @@ module.exports = function (app) {
 
     var photoshop = require('./../app/controllers/photoshop_controller');
 
+    //C
+    app.post('/api/photoshop/file', photoshop.createFile);
+
+    //R
+    app.get('/api/photoshop/file/:id', photoshop.getFile);
+
+    //ObjectId("54cfc2ef52d88774280b20a8")
+
+    //app.get('/api/photoshop/file', photoshop.getFiles);
+
+    //U
+
+
+
+
+
+
     //app.get('/api/shows', venueShows.getShows);
     //app.get('/api/shows/:venue_show_id', venueShows.getShow);
-    app.post('/api/photoshop/shows', photoshop.addShow);
-    app.get('/api/photoshop/shows', photoshop.getShows);
+
     //app.post('/api/fake/shows', venueShows.addFakeVenueShows);
 
 
