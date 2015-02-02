@@ -18,7 +18,48 @@ exports.getShows = function (req, res) {
 //};
 
 
-exports.getFile = function (req, res) {
+//exports.updateShipping = function(req, res){
+//    var newShipping = new Address(req.body.updatedShipping);
+//    Customer.update({ userid: 'customerA' },
+//        {$set:{shipping:[newShipping.toObject()]}})
+//        .exec(function(err, results){
+//            if (err || results < 1){
+//                res.json(404, {msg: 'Failed to update Shipping.'});
+//            } else {
+//                res.json({msg: "Customer Shipping Updated"});
+//            }
+//        });
+//};
+//exports.updateBilling = function(req, res){
+//    // This is where you could verify the credit card information
+//    // and halt the checkout if it is invalid.
+//    var newBilling = new Billing(req.body.updatedBilling);
+//    Customer.update({ userid: 'customerA' },
+//        {$set:{billing:[newBilling.toObject()]}})
+//        .exec(function(err, results){
+//            if (err || results < 1){
+//                res.json(404, {msg: 'Failed to update Billing.'});
+//            } else {
+//                res.json({msg: "Customer Billing Updated"});
+//            }
+//        });
+//};
+exports.updateCart = function(req, res){
+    Photoshop.update({ _id: req.params.id },
+        {$set:{name:'nowe cycki'}})
+        .exec(function(err, results){
+            if (err ){
+                console.log('errrrrr')
+                //res.json(404, {msg: 'Failed to update Cart.'});
+            } else {
+                console.log('NO errrrrr')
+                res.json({msg: "Customer Cart Updated"},results);
+            }
+        });
+};
+
+
+exports.updateFile = function (req, res) {
 
     Photoshop.findById(req.params.id, function (err, photoshop) {
         if (err)
@@ -28,6 +69,15 @@ exports.getFile = function (req, res) {
 
 };
 
+exports.getFile = function (req, res) {
+
+    Photoshop.findById(req.params.id, function (err, photoshop) {
+        if (err)
+            res.send(err);
+        res.json(photoshop);
+    });
+
+};
 
 exports.createFile = function (req, res) {
 
@@ -43,7 +93,6 @@ exports.createFile = function (req, res) {
         }
 
     });
-
 };
 //
 //var Faker = require('Faker');

@@ -95,6 +95,7 @@ module.exports = function (app) {
     //app.get('/api/photoshop/file', photoshop.getFiles);
 
     //U
+    app.post('/api/photoshop/file/:id', photoshop.updateCart);
 
 
 
