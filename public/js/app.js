@@ -69,29 +69,27 @@
     'use strict';
 
     var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
-        console.log('PhotoshopController new');
 
-        $scope.yo = 1;
-        $scope.photoshopFile = photoshopFile;
-        $scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
-        $scope.obj = {ten: {}};
+
+        //console.log('PhotoshopController new');
+        //
+        //$scope.yo = 1;
+        //$scope.photoshopFile = photoshopFile;
+        //$scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
+        //$scope.obj = {ten: {}};
 
         //PhotoshopDataService.submitResponse();
 
         $scope.createFile = function(){
-            console.log('createFile');
-
-            PhotoshopDataService.createFile('cycki').then(function(d){
+            PhotoshopDataService.createFile().then(function(d){
                 console.log('dddd', d.data.file);
-
-                //after create file
             });
-
         };
 
-        $scope.getShows = function(){
-            console.log('ha ha')
-            PhotoshopDataService.getShows();
+        $scope.getFiles = function(){
+            PhotoshopDataService.getFiles().then(function(d){
+                console.log('dddd', d.data);
+            });
         }
 
         $scope.logobject = function(){
@@ -267,25 +265,11 @@
 
     var PhotoshopDataService = function ($http, $log, photoshopfile) {
 
-        var getShows = function () {
-
-            var promise = $http.get('/api/photoshop/shows')
-                .success(function (response) {
-                    photoshopfile.items = response;
-                })
-                .error(function (data, status, headers, config) {
-                    $log.debug('Error getting sequence');
-                });
-            return promise;
-
-        };
 
         var createFile = function (name) {
             var promise = $http.post('/api/photoshop/file',
                 {name:name, layers:['a','b']})
                 .success(function (response) {
-                    $log.debug('Pass createFile()', response.file);
-
 
                 })
                 .error(function (data, status, headers, config) {
@@ -295,9 +279,22 @@
             return promise;
         };
 
+
+        var getFiles = function () {
+
+            var promise = $http.get('/api/photoshop/file')
+                .success(function (response) {})
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error getting sequence');
+                });
+            return promise;
+
+        };
+
         return {
-            getShows:getShows,
-            createFile:createFile
+            createFile:createFile,
+            getFiles:getFiles
+
         };
     }
     PhotoshopDataService.$inject = ['$http', '$log', 'photoshopFile'];

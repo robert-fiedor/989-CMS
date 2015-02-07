@@ -7,29 +7,27 @@
     'use strict';
 
     var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
-        console.log('PhotoshopController new');
 
-        $scope.yo = 1;
-        $scope.photoshopFile = photoshopFile;
-        $scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
-        $scope.obj = {ten: {}};
+
+        //console.log('PhotoshopController new');
+        //
+        //$scope.yo = 1;
+        //$scope.photoshopFile = photoshopFile;
+        //$scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
+        //$scope.obj = {ten: {}};
 
         //PhotoshopDataService.submitResponse();
 
         $scope.createFile = function(){
-            console.log('createFile');
-
-            PhotoshopDataService.createFile('cycki').then(function(d){
+            PhotoshopDataService.createFile().then(function(d){
                 console.log('dddd', d.data.file);
-
-                //after create file
             });
-
         };
 
-        $scope.getShows = function(){
-            console.log('ha ha')
-            PhotoshopDataService.getShows();
+        $scope.getFiles = function(){
+            PhotoshopDataService.getFiles().then(function(d){
+                console.log('dddd', d.data);
+            });
         }
 
         $scope.logobject = function(){

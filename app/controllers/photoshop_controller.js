@@ -8,53 +8,40 @@ var mongoose = require('mongoose'),
 
 
 exports.createFile = function (req, res) {
-
     var show = new Photoshop({name:req.body.name});
-
     show.save(function (err, results) {
         if (err) {
             res.json(500, "Failed create File.");
         } else {
             res.json({msg: "File created", file: results})
         }
-
     });
 };
 
 
 exports.getFiles = function (req, res) {
-
     Photoshop.find(function (err, photoshop) {
         if (err)
             res.send(err);
-
         res.json(photoshop);
     });
-
 };
 
 exports.getFile = function (req, res) {
-
     Photoshop.findById(req.params.id, function (err, photoshop) {
         if (err)
             res.send(err);
         res.json(photoshop);
     });
-
 };
 
 exports.updateFile = function(req, res){
-
-    console.log('rrr',req.body)
-
     Photoshop.update({ _id: req.params.id },
         {$set:req.body})
         .exec(function(err, results){
             if (err ){
-                console.log('errrrrr')
                 res.json(404, {msg: 'Failed to update Cart.'});
             } else {
-                console.log('NO errrrrr')
                 res.json({msg: "Customer Cart Updated"},results);
             }
         });
