@@ -87,17 +87,14 @@ module.exports = function (app) {
     //C
     app.post('/api/photoshop/file', photoshop.createFile);
 
-    //R
+    //R all
+    app.get('/api/photoshop/file', photoshop.getFiles);
+
+    //R 1 by id
     app.get('/api/photoshop/file/:id', photoshop.getFile);
 
-    //ObjectId("54cfc2ef52d88774280b20a8")
-
-    //app.get('/api/photoshop/file', photoshop.getFiles);
-
-    //U
-    app.post('/api/photoshop/file/:id', photoshop.updateCart);
-
-
+    //U by id
+    app.post('/api/photoshop/file/:id', photoshop.updateFile);
 
 
 

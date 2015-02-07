@@ -6,8 +6,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var PhotoshopSchema = new Schema({
-    name: {type: String, required: true},
-    layers:{type:[], required:true}
+    name: {type: String, required: false},
+    additional:{type: String, required: false},
+    layers:{type:[], required:false}
 });
 
 mongoose.model('Photoshop', PhotoshopSchema);
