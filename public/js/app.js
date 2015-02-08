@@ -82,7 +82,9 @@
         PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
 
         vm.updateFileTemp = function(){
-            $scope.photoshopFile.content.name = 'XXX';
+            $scope.photoshopFile.content.name = 'XXX3'
+
+
             console.log('a', $scope.photoshopFile.content)
             PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
                 //console.log('dddd', d.data);
