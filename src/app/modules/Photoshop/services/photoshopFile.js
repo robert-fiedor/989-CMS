@@ -3,6 +3,11 @@
  */
 
 angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($rootScope) {
-    var photoshopFile = {};
+    var photoshopFile = {
+        _id: "",
+        content: {
+            layers: {}, name: ""
+        }
+    };
     return photoshopFile;
 }]);

@@ -70,6 +70,27 @@
 
     var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
 
+        var vm = this;
+        vm.currentId = '54d6625aaed0dcc40ff2c001';
+
+        $scope.photoshopFile = photoshopFile;
+
+        $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
+            console.log('* photoshopFile.content',newVal)
+        })
+
+        PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
+
+        vm.updateFileTemp = function(){
+            $scope.photoshopFile.content.name = 'XXX';
+            console.log('a', $scope.photoshopFile.content)
+            PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
+                //console.log('dddd', d.data);
+            });
+        }
+
+
+
 
         //console.log('PhotoshopController new');
         //
@@ -80,40 +101,31 @@
 
         //PhotoshopDataService.submitResponse();
 
-        $scope.createFile = function(){
-            PhotoshopDataService.createFile().then(function(d){
+        $scope.createFile = function () {
+            PhotoshopDataService.createFile().then(function (d) {
                 console.log('dddd', d.data.file);
             });
         };
 
-        $scope.getFiles = function(){
-            PhotoshopDataService.getFiles().then(function(d){
+        $scope.getFiles = function () {
+            PhotoshopDataService.getFiles().then(function (d) {
                 console.log('dddd', d.data);
             });
         }
 
-        $scope.logobject = function(){
+        $scope.logobject = function () {
             console.log('logobject', photoshopFile)
 
         };
 
 
-
-
-
-
-
-
-
-
-
-        $scope.$watch('photoshopFile', function (newVal, oldVal) {
-            console.log('here ----:',newVal)
-        })
-
-        $scope.$watch('obj.ten', function (newVal, oldVal) {
-            console.log(newVal)
-        })
+        //$scope.$watch('photoshopFile', function (newVal, oldVal) {
+        //    console.log('here ----:',newVal)
+        //})
+        //
+        //$scope.$watch('obj.ten', function (newVal, oldVal) {
+        //    console.log(newVal)
+        //})
     };
 
 
@@ -263,27 +275,27 @@
 (function () {
     'use strict';
 
-    var PhotoshopDataService = function ($http, $log, photoshopfile) {
-
+    var PhotoshopDataService = function ($http, $log, photoshopFile) {
 
         var createFile = function (name) {
-            var promise = $http.post('/api/photoshop/file',
-                {name:name, layers:['a','b']})
-                .success(function (response) {
-
-                })
-                .error(function (data, status, headers, config) {
-                    $log.debug('Error createFile()', status);
-                });
-
-            return promise;
+            //var promise = $http.post('/api/photoshop/file',
+            //    {name: name, layers: ['a', 'b']})
+            //    .success(function (response) {
+            //
+            //    })
+            //    .error(function (data, status, headers, config) {
+            //        $log.debug('Error createFile()', status);
+            //    });
+            //
+            //return promise;
         };
 
 
         var getFiles = function () {
 
             var promise = $http.get('/api/photoshop/file')
-                .success(function (response) {})
+                .success(function (response) {
+                })
                 .error(function (data, status, headers, config) {
                     $log.debug('Error getting sequence');
                 });
@@ -291,9 +303,38 @@
 
         };
 
+        var getFile = function (id) {
+
+            var promise = $http.get('/api/photoshop/file/' + id)
+                .success(function (response, err, err2) {
+
+                    console.log('response', response)
+                    photoshopFile.content.layers = response.layers;
+                    photoshopFile.content.name = response.name;
+
+                })
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error getting sequence');
+                });
+            return promise;
+
+        };
+
+        var updateFile = function (id) {
+
+            console.log('b', photoshopFile.content)
+
+            var promise = $http.post('/api/photoshop/file/' + id, photoshopFile.content);
+
+            return promise;
+            //
+        };
+
         return {
-            createFile:createFile,
-            getFiles:getFiles
+            createFile: createFile,
+            getFiles: getFiles,
+            getFile: getFile,
+            updateFile: updateFile
 
         };
     }
@@ -305,7 +346,12 @@
  */
 
 angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($rootScope) {
-    var photoshopFile = {};
+    var photoshopFile = {
+        _id: "",
+        content: {
+            layers: {}, name: ""
+        }
+    };
     return photoshopFile;
 }]);
 /**

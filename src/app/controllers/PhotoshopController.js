@@ -8,6 +8,27 @@
 
     var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
 
+        var vm = this;
+        vm.currentId = '54d6625aaed0dcc40ff2c001';
+
+        $scope.photoshopFile = photoshopFile;
+
+        $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
+            console.log('* photoshopFile.content',newVal)
+        })
+
+        PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
+
+        vm.updateFileTemp = function(){
+            $scope.photoshopFile.content.name = 'XXX';
+            console.log('a', $scope.photoshopFile.content)
+            PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
+                //console.log('dddd', d.data);
+            });
+        }
+
+
+
 
         //console.log('PhotoshopController new');
         //
@@ -18,40 +39,31 @@
 
         //PhotoshopDataService.submitResponse();
 
-        $scope.createFile = function(){
-            PhotoshopDataService.createFile().then(function(d){
+        $scope.createFile = function () {
+            PhotoshopDataService.createFile().then(function (d) {
                 console.log('dddd', d.data.file);
             });
         };
 
-        $scope.getFiles = function(){
-            PhotoshopDataService.getFiles().then(function(d){
+        $scope.getFiles = function () {
+            PhotoshopDataService.getFiles().then(function (d) {
                 console.log('dddd', d.data);
             });
         }
 
-        $scope.logobject = function(){
+        $scope.logobject = function () {
             console.log('logobject', photoshopFile)
 
         };
 
 
-
-
-
-
-
-
-
-
-
-        $scope.$watch('photoshopFile', function (newVal, oldVal) {
-            console.log('here ----:',newVal)
-        })
-
-        $scope.$watch('obj.ten', function (newVal, oldVal) {
-            console.log(newVal)
-        })
+        //$scope.$watch('photoshopFile', function (newVal, oldVal) {
+        //    console.log('here ----:',newVal)
+        //})
+        //
+        //$scope.$watch('obj.ten', function (newVal, oldVal) {
+        //    console.log(newVal)
+        //})
     };
 
 

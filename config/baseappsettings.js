@@ -33,7 +33,7 @@ var BaseAppSettings = {
                 state: 'photoshop',
                 urlRequested: '/photoshop',
                 templateUrl: '/partials/photoshop.html',
-                controller: 'PhotoshopController'
+                controller: 'PhotoshopController as photoshopCtrl'
             }
 
         },

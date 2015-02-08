@@ -5,27 +5,27 @@
 (function () {
     'use strict';
 
-    var PhotoshopDataService = function ($http, $log, photoshopfile) {
-
+    var PhotoshopDataService = function ($http, $log, photoshopFile) {
 
         var createFile = function (name) {
-            var promise = $http.post('/api/photoshop/file',
-                {name:name, layers:['a','b']})
-                .success(function (response) {
-
-                })
-                .error(function (data, status, headers, config) {
-                    $log.debug('Error createFile()', status);
-                });
-
-            return promise;
+            //var promise = $http.post('/api/photoshop/file',
+            //    {name: name, layers: ['a', 'b']})
+            //    .success(function (response) {
+            //
+            //    })
+            //    .error(function (data, status, headers, config) {
+            //        $log.debug('Error createFile()', status);
+            //    });
+            //
+            //return promise;
         };
 
 
         var getFiles = function () {
 
             var promise = $http.get('/api/photoshop/file')
-                .success(function (response) {})
+                .success(function (response) {
+                })
                 .error(function (data, status, headers, config) {
                     $log.debug('Error getting sequence');
                 });
@@ -33,9 +33,38 @@
 
         };
 
+        var getFile = function (id) {
+
+            var promise = $http.get('/api/photoshop/file/' + id)
+                .success(function (response, err, err2) {
+
+                    console.log('response', response)
+                    photoshopFile.content.layers = response.layers;
+                    photoshopFile.content.name = response.name;
+
+                })
+                .error(function (data, status, headers, config) {
+                    $log.debug('Error getting sequence');
+                });
+            return promise;
+
+        };
+
+        var updateFile = function (id) {
+
+            console.log('b', photoshopFile.content)
+
+            var promise = $http.post('/api/photoshop/file/' + id, photoshopFile.content);
+
+            return promise;
+            //
+        };
+
         return {
-            createFile:createFile,
-            getFiles:getFiles
+            createFile: createFile,
+            getFiles: getFiles,
+            getFile: getFile,
+            updateFile: updateFile
 
         };
     }

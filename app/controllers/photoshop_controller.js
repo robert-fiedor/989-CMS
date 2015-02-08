@@ -5,8 +5,6 @@
 var mongoose = require('mongoose'),
     Photoshop = mongoose.model('Photoshop');
 
-
-
 exports.createFile = function (req, res) {
     var show = new Photoshop({name:req.body.name});
     show.save(function (err, results) {
@@ -17,7 +15,6 @@ exports.createFile = function (req, res) {
         }
     });
 };
-
 
 exports.getFiles = function (req, res) {
     Photoshop.find(function (err, photoshop) {
