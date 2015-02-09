@@ -8,7 +8,6 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
         content: {
             layers: {},
             name: ""
-
         }
     };
     return photoshopFile;

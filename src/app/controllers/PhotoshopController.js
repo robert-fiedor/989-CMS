@@ -6,49 +6,31 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting, currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d6625aaed0dcc40ff2c001';
         vm.tools = photoshopSetting.tools;
-
-        $scope.currentTool = {tool:null};
-
-        $scope.$watch('currentTool.tool', function(newVal,oldVal){
-            console.log(newVal)
-        })
-
-
         $scope.photoshopFile = photoshopFile;
+        $scope.currentlySelected = currentlySelected;
+
 
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
             console.log('* photoshopFile.content', newVal)
         });
 
-        PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
+        PhotoshopDataService.getFile(vm.currentId).then(function (d) {
+        });
 
         vm.updateFileTemp = function () {
-            $scope.photoshopFile.content.name = 'XXX3'
+            $scope.photoshopFile.content.name = 'XXX3';
 
-            console.log('a', $scope.photoshopFile.content)
+            console.log('a', $scope.photoshopFile.content);
             PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
                 //console.log('dddd', d.data);
             });
-        }
+        };
 
-        console.log('photoshopSetting',photoshopSetting)
-
-
-
-
-        //console.log('PhotoshopController new');
-        //
-        //$scope.yo = 1;
-        //$scope.photoshopFile = photoshopFile;
-        //$scope.stuff = [{ej: 1, text: 1}, {ej: 1, text: 2}, {ej: 1, text: 3}];
-        //$scope.obj = {ten: {}};
-
-        //PhotoshopDataService.submitResponse();
 
         $scope.createFile = function () {
             PhotoshopDataService.createFile().then(function (d) {
@@ -78,7 +60,7 @@
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
