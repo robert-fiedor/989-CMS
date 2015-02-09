@@ -71,29 +71,22 @@
     var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSettings, currentlySelected) {
 
         var vm = this;
-        vm.currentId = '54d6625aaed0dcc40ff2c001';
+        vm.currentId = '54d692ce6d60d5041fca0238';
         vm.tools = photoshopSettings.tools;
         $scope.photoshopFile = photoshopFile;
         $scope.currentlySelected = currentlySelected;
 
-
+        //get file
+        PhotoshopDataService.getFile(vm.currentId);
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
             console.log('* photoshopFile.content', newVal)
         });
 
-        PhotoshopDataService.getFile(vm.currentId).then(function (d) {
-        });
-
         vm.updateFileTemp = function () {
-            $scope.photoshopFile.content.name = 'XXX3';
-
-            console.log('a', $scope.photoshopFile.content);
-            PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
-                //console.log('dddd', d.data);
-            });
+            PhotoshopDataService.updateFile(vm.currentId);
         };
 
-
+        //temp:
         $scope.createFile = function () {
             PhotoshopDataService.createFile().then(function (d) {
                 console.log('dddd', d.data.file);
@@ -106,21 +99,7 @@
             });
         }
 
-        $scope.logobject = function () {
-            console.log('logobject', photoshopFile)
-
-        };
-
-
-        //$scope.$watch('photoshopFile', function (newVal, oldVal) {
-        //    console.log('here ----:',newVal)
-        //})
-        //
-        //$scope.$watch('obj.ten', function (newVal, oldVal) {
-        //    console.log(newVal)
-        //})
     };
-
 
     PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
@@ -146,6 +125,36 @@
 
 })();
 
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+
+(function () {
+    'use strict';
+
+    angular.module('photoshop')
+        .directive('layers', ['currentlySelected', function (currentlySelected) {
+            return {
+                restrict: 'E',
+                replace: false,
+                bindToController: true,
+                template: 'layers!',
+                controller: 'LayersController as layersCtrl',
+                link: function (scope) {
+                    //scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
+                    //    console.log(newVal)
+                    //});
+                }
+            };
+        }]
+    )
+        .controller("LayersController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
+            var vm = this;
+
+        }])
+
+})();
 /**
  * Created by Rob on 12/15/2014.
  */

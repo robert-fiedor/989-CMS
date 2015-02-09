@@ -10,7 +10,7 @@
 @color10: #ee1111;
 @color11: #b91d47;
 
-@border-width:2px;
+@border-width: 2px;
 
 body {
   background-color: @color2;
@@ -54,10 +54,12 @@ body {
 
   width: 70px;
 
-  input[type="radio"] {
-    display: none;
-  }
   label {
+
+    input[type="radio"] {
+      display: none;
+    }
+
     text-align: center;
     display: block;
     font-weight: normal;
@@ -77,5 +79,17 @@ body {
 }
 
 .layers-tab {
+
   width: @pho-tab-width;
+
+  label {
+    display:block;
+    input[type="radio"] {
+      display: none;
+    }
+    &.photoshop-active {
+      background-color: @color6;
+    }
+
+  }
 }

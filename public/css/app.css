@@ -31,13 +31,13 @@ body {
 .photoshop-tools {
   width: 70px;
 }
-.photoshop-tools input[type="radio"] {
-  display: none;
-}
 .photoshop-tools label {
   text-align: center;
   display: block;
   font-weight: normal;
+}
+.photoshop-tools label input[type="radio"] {
+  display: none;
 }
 .photoshop-tools label p {
   margin: 0px;
@@ -50,4 +50,13 @@ body {
 }
 .layers-tab {
   width: 300px;
+}
+.layers-tab label {
+  display: block;
+}
+.layers-tab label input[type="radio"] {
+  display: none;
+}
+.layers-tab label.photoshop-active {
+  background-color: #2d89ef;
 }

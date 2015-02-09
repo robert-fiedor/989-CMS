@@ -22,7 +22,17 @@
 
 <pho-tab class="layers-tab" tab-title="Layers">
 
-    {{photoshopFile.content.layers}}
+    <select-one data="photoshopFile.content.layers"
+                answer-object-to-bind-to="currentlySelected"
+                key-of-answer-object-to-bind-to="layer"
+                unique-radio-button-name="layers"
+                value-is-index="false">
+        <p>{{$parent.item.layerType}}</p>
+    </select-one>
+
+    <button ng-click="photoshopCtrl.deleteLayer()">delete</button>
+
+
 </pho-tab>
 
 
