@@ -333,7 +333,7 @@
 (function () {
     'use strict';
 
-    var LayersAccessService = function (photoshopFile, currentlySelected) {
+    var LayersAccessService = function (photoshopSettings,photoshopFile, currentlySelected) {
 
 
         var getLayers = function () {
@@ -342,10 +342,11 @@
 
         var addLayer = function () {
 
-            //console.log('currentlySelected',currentlySelected.tool)
+            console.log(currentlySelected.tool.createsLayer, '<--')
 
-
-            //return photoshopFile.content.layers.push({newlayer:true});
+            photoshopFile.content.layers.push(
+                {layerType:photoshopSettings.TEXT_LAYER}
+            );
         };
 
 
@@ -354,7 +355,7 @@
             addLayer: addLayer
         };
     }
-    LayersAccessService.$inject = ['photoshopFile', 'currentlySelected'];
+    LayersAccessService.$inject = ['photoshopSettings','photoshopFile', 'currentlySelected'];
     angular.module('photoshop').factory('LayersAccessService', LayersAccessService);
 })();
 /**
@@ -437,7 +438,7 @@
 angular.module('photoshop').service('currentlySelected', ['photoshopSettings',function (photoshopSettings) {
     var currentlySelected = {
         //by default select first tool:
-        tool:photoshopSettings.tools[0],
+        tool:photoshopSettings.tools[1],
         layer:null
     };
     return currentlySelected;
