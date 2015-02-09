@@ -5,26 +5,22 @@
 
 (function () {
     'use strict';
-    var dirA = function () {
+    var properties = function () {
         return {
             restrict: 'E',
             scope: {
                 title1: '@'
             },
             replace: false,
-            controllerAs: "dirACtrl",
+            controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div>ej ej ej{{dirACtrl.lala2}}{{dirACtrl.title1}}</div>',
+            template: '<div>propertiesCtrl here >></div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala2 = 'dirACtrl hello ,live value';
-
-                console.log('hello dira')
-                
             }
 
         };
     }
-    dirA.$inject = [];
-    angular.module('photoshop').directive('dirA', dirA);
+    properties.$inject = [];
+    angular.module('photoshop').directive('properties', properties);
 })();

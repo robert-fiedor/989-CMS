@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    angular.module('photoshop').directive('radioButtons', function () {
+    angular.module('photoshop').directive('selectOne', function () {
         return {
             restrict: 'EA',
             scope: {

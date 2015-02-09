@@ -1,33 +1,25 @@
 
---1
-<hi>{{photoshopFile.content.name}}</hi>
---
+
+<select-one data="photoshopCtrl.tools"
+            answer-object-to-bind-to="currentTool"
+            key-of-answer-object-to-bind-to="tool"
+            unique-radio-button-name="tools"
+            value-is-index="false">
+    <p>{{$parent.item.name}}</p>
+</select-one>
+
+
 <button ng-click="photoshopCtrl.updateFileTemp()">updateFile</button>
 
 
 
+<pho-tab tab-title="Properties">
+    <properties></properties>
+</pho-tab>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<pho-tab class="canvas-tab" tab-title="{{photoshopFile.content.name}}">
+    <photo-canvas></photo-canvas>
+</pho-tab>
 
 
 <!--<button ng-click="createFile()">createfile</button>-->
@@ -36,28 +28,21 @@
 <!--<dir-a></dir-a>-->
 
 
-<!--<radio-buttons data="stuff"-->
-               <!--answer-object-to-bind-to="obj"-->
-               <!--key-of-answer-object-to-bind-to="ten"-->
-               <!--unique-radio-button-name="nav"-->
-               <!--value-is-index="false">-->
-                <!--<p>transcluded in {{$parent.item}}</p>-->
-                <!--<button>jkl</button>-->
-<!--</radio-buttons>-->
 
 
-<!--<pho-tab tab-title="Layers">-->
-    <!--<div ></div>-->
-    <!--content of tab to be transcluded here-->
-<!--</pho-tab>-->
+
+<pho-tab tab-title="Layers">
+    <div></div>
+    content of tab to be transcluded here
+</pho-tab>
 
 <!--<pho-tab tab-title="History">-->
-    <!--<div>history controls</div>-->
-    <!--content of tab to be transcluded here-->
+<!--<div>history controls</div>-->
+<!--content of tab to be transcluded here-->
 <!--</pho-tab>-->
 
 <!--<pho-tab tab-title="Properties">-->
-    <!--<div>Properties controls</div>-->
-    <!--content of tab to be transcluded here-->
+<!--<div>Properties controls</div>-->
+<!--content of tab to be transcluded here-->
 <!--</pho-tab>-->
 

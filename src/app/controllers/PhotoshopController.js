@@ -6,28 +6,32 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting) {
 
         var vm = this;
         vm.currentId = '54d6625aaed0dcc40ff2c001';
+        vm.tools = photoshopSetting.tools;
+
+        $scope.currentTool = {tool:null};
 
         $scope.photoshopFile = photoshopFile;
 
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
-            console.log('* photoshopFile.content',newVal)
-        })
+            console.log('* photoshopFile.content', newVal)
+        });
 
         PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
 
-        vm.updateFileTemp = function(){
+        vm.updateFileTemp = function () {
             $scope.photoshopFile.content.name = 'XXX3'
-
 
             console.log('a', $scope.photoshopFile.content)
             PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
                 //console.log('dddd', d.data);
             });
         }
+
+        console.log('photoshopSetting',photoshopSetting)
 
 
 
@@ -69,7 +73,7 @@
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();

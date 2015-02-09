@@ -6,7 +6,9 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
     var photoshopFile = {
         _id: "",
         content: {
-            layers: {}, name: ""
+            layers: {},
+            name: "",
+
         }
     };
     return photoshopFile;

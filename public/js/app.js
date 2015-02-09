@@ -68,28 +68,32 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting) {
 
         var vm = this;
         vm.currentId = '54d6625aaed0dcc40ff2c001';
+        vm.tools = photoshopSetting.tools;
+
+        $scope.currentTool = {tool:null};
 
         $scope.photoshopFile = photoshopFile;
 
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
-            console.log('* photoshopFile.content',newVal)
-        })
+            console.log('* photoshopFile.content', newVal)
+        });
 
         PhotoshopDataService.getFile(vm.currentId).then(function (d) {});
 
-        vm.updateFileTemp = function(){
+        vm.updateFileTemp = function () {
             $scope.photoshopFile.content.name = 'XXX3'
-
 
             console.log('a', $scope.photoshopFile.content)
             PhotoshopDataService.updateFile(vm.currentId).then(function (d) {
                 //console.log('dddd', d.data);
             });
         }
+
+        console.log('photoshopSetting',photoshopSetting)
 
 
 
@@ -131,7 +135,7 @@
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -156,34 +160,81 @@
 })();
 
 /**
+ * Created by Rob on 2/8/2015.
+ */
+
+/**
  * Created by Rob on 12/15/2014.
  */
 //
 
 (function () {
     'use strict';
-    var dirA = function () {
+    angular.module('photoshop').constant('photoshopSetting',
+        {
+            tools: [
+                {
+                    name: 'Move Tool',
+                    icon: ''
+                },
+                {
+                    name: 'Text Tool',
+                    icon: ''
+                }
+            ]
+        });
+})();
+
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+
+(function () {
+    'use strict';
+    var photoCanvas = function () {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            replace: false,
+            controllerAs: "photoCanvasCtrl",
+            bindToController: true,
+            template: '<div class="photo-canvas">PhotoCanvas</div>',
+            controller: function ($scope) {
+                var vm = this;
+            }
+
+        };
+    }
+    photoCanvas.$inject = [];
+    angular.module('photoshop').directive('photoCanvas', photoCanvas);
+})();
+/**
+ * Created by Rob on 12/15/2014.
+ */
+//
+
+(function () {
+    'use strict';
+    var properties = function () {
         return {
             restrict: 'E',
             scope: {
                 title1: '@'
             },
             replace: false,
-            controllerAs: "dirACtrl",
+            controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div>ej ej ej{{dirACtrl.lala2}}{{dirACtrl.title1}}</div>',
+            template: '<div>propertiesCtrl here >></div>',
             controller: function ($scope) {
                 var vm = this;
-                vm.lala2 = 'dirACtrl hello ,live value';
-
-                console.log('hello dira')
-                
             }
 
         };
     }
-    dirA.$inject = [];
-    angular.module('photoshop').directive('dirA', dirA);
+    properties.$inject = [];
+    angular.module('photoshop').directive('properties', properties);
 })();
 /**
  * Created by Rob on 1/31/2015.
@@ -193,7 +244,7 @@
 (function () {
     'use strict';
 
-    angular.module('photoshop').directive('radioButtons', function () {
+    angular.module('photoshop').directive('selectOne', function () {
         return {
             restrict: 'EA',
             scope: {
@@ -351,7 +402,9 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
     var photoshopFile = {
         _id: "",
         content: {
-            layers: {}, name: ""
+            layers: {},
+            name: "",
+
         }
     };
     return photoshopFile;
