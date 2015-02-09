@@ -13,7 +13,7 @@
             replace: false,
             controllerAs: "photoCanvasCtrl",
             bindToController: true,
-            template: '<div class="photo-canvas">PhotoCanvas</div>',
+            template: '<div class="photo-canvas"></div>',
             controller: function ($scope) {
                 var vm = this;
             }

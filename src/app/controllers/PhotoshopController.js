@@ -14,6 +14,11 @@
 
         $scope.currentTool = {tool:null};
 
+        $scope.$watch('currentTool.tool', function(newVal,oldVal){
+            console.log(newVal)
+        })
+
+
         $scope.photoshopFile = photoshopFile;
 
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {

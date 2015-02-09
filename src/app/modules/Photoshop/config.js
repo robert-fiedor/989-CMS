@@ -13,11 +13,11 @@
         {
             tools: [
                 {
-                    name: 'Move Tool',
+                    name: 'Move',
                     icon: ''
                 },
                 {
-                    name: 'Text Tool',
+                    name: 'Text',
                     icon: ''
                 }
             ]

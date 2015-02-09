@@ -7,7 +7,7 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
         _id: "",
         content: {
             layers: {},
-            name: "",
+            name: ""
 
         }
     };

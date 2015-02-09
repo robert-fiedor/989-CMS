@@ -21,12 +21,11 @@
             controllerAs: 'ctrl',
             bindToController: true,
             template:
-            '<div ng-repeat="item in ctrl.data">' +
-            '<label ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
+            '<label ng-repeat="item in ctrl.data" ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
             '<input type="radio" name="{{::ctrl.uniqueRadioButtonName}}" ng-model="ctrl.answerObjectToBindTo[ctrl.keyOfAnswerObjectToBindTo]" ng-value="ctrl.indexOrObject($index,item)" ng-change="ctrl.triggerOnChange()"></input>' +
-            '<div ng-transclude></div>' +
-            '</label>' +
-            '</div>',
+            '<div class="transcluded" ng-transclude></div>' +
+            '</label>',
+
             link: function (scope, element, attrs, ngModelController) { },
             controller: function ($scope) {
                 var vm = this;

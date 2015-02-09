@@ -1,25 +1,54 @@
 body {
-  background-color: lightgray;
+  background-color: #00aba9;
 }
-.pho-tab {
-  background-color: pink;
+.pho-tab-inner {
+  margin: 5px;
+  width: inherit;
+  background-color: #2b5797;
   padding: 10px 0px 10px;
-  width: 300px;
-  border: 1px solid black;
   padding: 5px;
 }
-.pho-tab .pho-tab-header {
-  background-color: green;
+.pho-tab-inner .pho-tab-header {
+  background-color: #ffc40d;
 }
-.pho-tab .pho-tab-title {
-  background-color: white;
+.pho-tab-inner .pho-tab-title {
+  color: black;
+  font-weight: bold;
+  font-size: small;
+  padding: 3px;
+}
+.pho-tab-inner .transcluded {
+  color: white;
 }
 .photo-canvas {
   width: 200px;
-  background-color: pink;
+  background-color: #eff4ff;
   height: 300px;
 }
 .canvas-tab {
   position: absolute;
   left: 310px;
+}
+.photoshop-tools {
+  width: 70px;
+}
+.photoshop-tools input[type="radio"] {
+  display: none;
+}
+.photoshop-tools label {
+  text-align: center;
+  display: block;
+  font-weight: normal;
+}
+.photoshop-tools label p {
+  margin: 0px;
+}
+.photoshop-tools label.photoshop-active {
+  background-color: #2d89ef;
+}
+.properties-tab {
+  width: 300px;
+}
+.layers-tab {
+  width: 300px;
 }

@@ -1,48 +1,26 @@
-
-
-<select-one data="photoshopCtrl.tools"
-            answer-object-to-bind-to="currentTool"
-            key-of-answer-object-to-bind-to="tool"
-            unique-radio-button-name="tools"
-            value-is-index="false">
-    <p>{{$parent.item.name}}</p>
-</select-one>
-
+<pho-tab class="photoshop-tools" tab-title="Tools">
+    <select-one class="pho-tools" data="photoshopCtrl.tools"
+                answer-object-to-bind-to="currentTool"
+                key-of-answer-object-to-bind-to="tool"
+                unique-radio-button-name="tools"
+                value-is-index="false">
+        <p>{{$parent.item.name}}</p>
+    </select-one>
+</pho-tab>
 
 <button ng-click="photoshopCtrl.updateFileTemp()">updateFile</button>
 
 
-
-<pho-tab tab-title="Properties">
+<pho-tab class="properties-tab" tab-title="Properties">
     <properties></properties>
 </pho-tab>
+
 
 <pho-tab class="canvas-tab" tab-title="{{photoshopFile.content.name}}">
     <photo-canvas></photo-canvas>
 </pho-tab>
 
-
-<!--<button ng-click="createFile()">createfile</button>-->
-
-
-<!--<dir-a></dir-a>-->
-
-
-
-
-
-<pho-tab tab-title="Layers">
-    <div></div>
-    content of tab to be transcluded here
+<pho-tab class="layers-tab" tab-title="Layers">
 </pho-tab>
 
-<!--<pho-tab tab-title="History">-->
-<!--<div>history controls</div>-->
-<!--content of tab to be transcluded here-->
-<!--</pho-tab>-->
-
-<!--<pho-tab tab-title="Properties">-->
-<!--<div>Properties controls</div>-->
-<!--content of tab to be transcluded here-->
-<!--</pho-tab>-->
 

@@ -14,7 +14,7 @@
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div>propertiesCtrl here >></div>',
+            template: '<div></div>',
             controller: function ($scope) {
                 var vm = this;
             }

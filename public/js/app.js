@@ -76,6 +76,11 @@
 
         $scope.currentTool = {tool:null};
 
+        $scope.$watch('currentTool.tool', function(newVal,oldVal){
+            console.log(newVal)
+        })
+
+
         $scope.photoshopFile = photoshopFile;
 
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
@@ -174,11 +179,11 @@
         {
             tools: [
                 {
-                    name: 'Move Tool',
+                    name: 'Move',
                     icon: ''
                 },
                 {
-                    name: 'Text Tool',
+                    name: 'Text',
                     icon: ''
                 }
             ]
@@ -200,7 +205,7 @@
             replace: false,
             controllerAs: "photoCanvasCtrl",
             bindToController: true,
-            template: '<div class="photo-canvas">PhotoCanvas</div>',
+            template: '<div class="photo-canvas"></div>',
             controller: function ($scope) {
                 var vm = this;
             }
@@ -226,7 +231,7 @@
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div>propertiesCtrl here >></div>',
+            template: '<div></div>',
             controller: function ($scope) {
                 var vm = this;
             }
@@ -259,12 +264,11 @@
             controllerAs: 'ctrl',
             bindToController: true,
             template:
-            '<div ng-repeat="item in ctrl.data">' +
-            '<label ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
+            '<label ng-repeat="item in ctrl.data" ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
             '<input type="radio" name="{{::ctrl.uniqueRadioButtonName}}" ng-model="ctrl.answerObjectToBindTo[ctrl.keyOfAnswerObjectToBindTo]" ng-value="ctrl.indexOrObject($index,item)" ng-change="ctrl.triggerOnChange()"></input>' +
-            '<div ng-transclude></div>' +
-            '</label>' +
-            '</div>',
+            '<div class="transcluded" ng-transclude></div>' +
+            '</label>',
+
             link: function (scope, element, attrs, ngModelController) { },
             controller: function ($scope) {
                 var vm = this;
@@ -303,7 +307,7 @@
             controllerAs: "phoTabCtrl",
             transclude: true,
             bindToController: true,
-            template: '<div class="pho-tab">' +
+            template: '<div class="pho-tab-inner">' +
                         '<div class="pho-tab-header">' +
                             '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
                             '</h10>' +
@@ -403,7 +407,7 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
         _id: "",
         content: {
             layers: {},
-            name: "",
+            name: ""
 
         }
     };

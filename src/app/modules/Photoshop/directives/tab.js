@@ -15,7 +15,7 @@
             controllerAs: "phoTabCtrl",
             transclude: true,
             bindToController: true,
-            template: '<div class="pho-tab">' +
+            template: '<div class="pho-tab-inner">' +
                         '<div class="pho-tab-header">' +
                             '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
                             '</h10>' +
