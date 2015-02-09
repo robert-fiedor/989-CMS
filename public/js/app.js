@@ -68,11 +68,11 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting, currentlySelected) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSettings, currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d6625aaed0dcc40ff2c001';
-        vm.tools = photoshopSetting.tools;
+        vm.tools = photoshopSettings.tools;
         $scope.photoshopFile = photoshopFile;
         $scope.currentlySelected = currentlySelected;
 
@@ -122,7 +122,7 @@
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting', 'currentlySelected'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -147,32 +147,6 @@
 })();
 
 /**
- * Created by Rob on 2/8/2015.
- */
-
-/**
- * Created by Rob on 12/15/2014.
- */
-//
-
-(function () {
-    'use strict';
-    angular.module('photoshop').constant('photoshopSetting',
-        {
-            tools: [
-                {
-                    name: 'Move',
-                    icon: ''
-                },
-                {
-                    name: 'Text',
-                    icon: ''
-                }
-            ]
-        });
-})();
-
-/**
  * Created by Rob on 12/15/2014.
  */
 //
@@ -180,7 +154,8 @@
 (function () {
     'use strict';
 
-    angular.module('photoshop').directive('photoCanvas', ['currentlySelected', function (currentlySelected) {
+    angular.module('photoshop')
+        .directive('photoCanvas', ['currentlySelected', function (currentlySelected) {
             return {
                 restrict: 'E',
                 replace: false,
@@ -191,16 +166,24 @@
                     scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
                         console.log(newVal)
                     });
-
                 }
-
             };
         }]
-    ).controller("PhotoCanvasController", ['currentlySelected', function (currentlySelected) {
+    )
+        .controller("PhotoCanvasController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
             var vm = this;
             console.log(currentlySelected)
             vm.canvasClicked = function ($event) {
-                console.log('canvas clicked', $event.layerX, $event.layerY, currentlySelected.tool.name)
+                //$event.layerX, $event.layerY
+
+                console.log('LayersAccessService', LayersAccessService.getLayers())
+
+
+                if (currentlySelected.tool.createsLayer) {
+                    LayersAccessService.addLayer();
+                }
+
+
             }
 
         }])
@@ -318,6 +301,63 @@
     angular.module('photoshop').directive('phoTab', phoTab);
 })();
 /**
+ * Created by Rob on 2/8/2015.
+ */
+
+
+(function () {
+    'use strict';
+    angular.module('photoshop').constant('photoshopSettings',
+        {
+            TEXT_LAYER:'TEXT_LAYER',
+            CANVAS_LAYER:'CANVAS_LAYER',
+
+            tools: [
+                {
+                    name: 'Move',
+                    icon: ''
+                },
+                {
+                    name: 'Text',
+                    icon: '',
+                    createsLayer:'TEXT_LAYER'
+                }
+            ]
+        });
+})();
+
+/**
+ * Created by Rob on 2/1/2015.
+ */
+
+(function () {
+    'use strict';
+
+    var LayersAccessService = function (photoshopFile, currentlySelected) {
+
+
+        var getLayers = function () {
+            return photoshopFile.content.layers;
+        };
+
+        var addLayer = function () {
+
+            //console.log('currentlySelected',currentlySelected.tool)
+
+
+            //return photoshopFile.content.layers.push({newlayer:true});
+        };
+
+
+        return {
+            getLayers: getLayers,
+            addLayer: addLayer
+        };
+    }
+    LayersAccessService.$inject = ['photoshopFile', 'currentlySelected'];
+    angular.module('photoshop').factory('LayersAccessService', LayersAccessService);
+})();
+/**
  * Created by Rob on 2/1/2015.
  */
 
@@ -394,9 +434,10 @@
  * Created by Rob on 1/26/2015.
  */
 
-angular.module('photoshop').service('currentlySelected', ["$rootScope", function ($rootScope) {
+angular.module('photoshop').service('currentlySelected', ['photoshopSettings',function (photoshopSettings) {
     var currentlySelected = {
-        tool:null,
+        //by default select first tool:
+        tool:photoshopSettings.tools[0],
         layer:null
     };
     return currentlySelected;

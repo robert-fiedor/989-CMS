@@ -6,7 +6,8 @@
 (function () {
     'use strict';
 
-    angular.module('photoshop').directive('photoCanvas', ['currentlySelected', function (currentlySelected) {
+    angular.module('photoshop')
+        .directive('photoCanvas', ['currentlySelected', function (currentlySelected) {
             return {
                 restrict: 'E',
                 replace: false,
@@ -17,16 +18,24 @@
                     scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
                         console.log(newVal)
                     });
-
                 }
-
             };
         }]
-    ).controller("PhotoCanvasController", ['currentlySelected', function (currentlySelected) {
+    )
+        .controller("PhotoCanvasController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
             var vm = this;
             console.log(currentlySelected)
             vm.canvasClicked = function ($event) {
-                console.log('canvas clicked', $event.layerX, $event.layerY, currentlySelected.tool.name)
+                //$event.layerX, $event.layerY
+
+                console.log('LayersAccessService', LayersAccessService.getLayers())
+
+
+                if (currentlySelected.tool.createsLayer) {
+                    LayersAccessService.addLayer();
+                }
+
+
             }
 
         }])

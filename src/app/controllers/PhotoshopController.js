@@ -6,11 +6,11 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSetting, currentlySelected) {
+    var PhotoshopController = function ($scope, $http, PhotoshopDataService, photoshopFile, photoshopSettings, currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d6625aaed0dcc40ff2c001';
-        vm.tools = photoshopSetting.tools;
+        vm.tools = photoshopSettings.tools;
         $scope.photoshopFile = photoshopFile;
         $scope.currentlySelected = currentlySelected;
 
@@ -60,7 +60,7 @@
     };
 
 
-    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSetting', 'currentlySelected'];
+    PhotoshopController.$inject = ['$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
