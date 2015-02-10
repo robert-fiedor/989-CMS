@@ -26,6 +26,10 @@ body {
 
   .pho-tab-header {
     background-color: @color8;
+    input[type="text"]{
+      //      background-color: pink;
+      .clear-input;
+    }
   }
 
   .pho-tab-title {
@@ -74,6 +78,13 @@ body {
   }
 }
 
+.clear-input{
+  color:black;
+  background-color: transparent;
+  border: 0px;
+  width:auto;
+}
+
 .properties-tab {
   width: @pho-tab-width;
 }
@@ -90,9 +101,7 @@ body {
 
     input[type="text"]{
 //      background-color: pink;
-      color:black;
-      background-color: transparent;
-      border: 0px;
+      .clear-input;
     }
 
     &.photoshop-active {

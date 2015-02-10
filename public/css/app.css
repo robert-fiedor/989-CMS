@@ -10,6 +10,12 @@ body {
 .pho-tab-inner .pho-tab-header {
   background-color: #ffc40d;
 }
+.pho-tab-inner .pho-tab-header input[type="text"] {
+  color: black;
+  background-color: transparent;
+  border: 0px;
+  width: auto;
+}
 .pho-tab-inner .pho-tab-title {
   color: black;
   font-weight: bold;
@@ -45,6 +51,12 @@ body {
 .photoshop-tools label.photoshop-active {
   background-color: #2d89ef;
 }
+.clear-input {
+  color: black;
+  background-color: transparent;
+  border: 0px;
+  width: auto;
+}
 .properties-tab {
   width: 300px;
 }
@@ -61,6 +73,7 @@ body {
   color: black;
   background-color: transparent;
   border: 0px;
+  width: auto;
 }
 .layers-tab label.photoshop-active {
   background-color: #2d89ef;

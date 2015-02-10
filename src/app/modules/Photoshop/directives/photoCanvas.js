@@ -24,15 +24,16 @@
     )
         .controller("PhotoCanvasController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
             var vm = this;
-            console.log(currentlySelected)
             vm.canvasClicked = function ($event) {
                 //$event.layerX, $event.layerY
 
                 console.log('LayersAccessService', LayersAccessService.getLayers())
 
-
                 if (currentlySelected.tool.createsLayer) {
                     LayersAccessService.addLayer();
+                    currentlySelected.layer.layerX = $event.layerX;
+                    currentlySelected.layer.layerY = $event.layerY;
+
                 }
 
 

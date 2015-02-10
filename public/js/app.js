@@ -184,15 +184,16 @@
     )
         .controller("PhotoCanvasController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
             var vm = this;
-            console.log(currentlySelected)
             vm.canvasClicked = function ($event) {
                 //$event.layerX, $event.layerY
 
                 console.log('LayersAccessService', LayersAccessService.getLayers())
 
-
                 if (currentlySelected.tool.createsLayer) {
                     LayersAccessService.addLayer();
+                    currentlySelected.layer.layerX = $event.layerX;
+                    currentlySelected.layer.layerY = $event.layerY;
+
                 }
 
 
@@ -287,8 +288,10 @@
     var phoTab = function () {
         return {
             restrict: 'E',
+
             scope: {
-                tabTitle: '@'
+                tabTitle: '@',
+                inputTitle:'='
             },
             replace: false,
             controllerAs: "phoTabCtrl",
@@ -298,6 +301,7 @@
                         '<div class="pho-tab-header">' +
                             '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
                             '</h10>' +
+                            '<input type="text" ng-model="phoTabCtrl.inputTitle" value="phoTabCtrl.inputTitle"/>'+
                         '</div>' +
                         '<div ng-transclude></div>' +
                        '</div>',
@@ -327,8 +331,8 @@
             layerTemplate:{
                 layerType : null,
                 layerName:'Text Layer',
-                x:null,
-                y:null,
+                layerX:null,
+                layerY:null,
                 opacity:100
                 
             },
@@ -370,6 +374,7 @@
             layer.layerType = photoshopSettings.TEXT_LAYER;
 
             photoshopFile.content.layers.push(layer);
+            currentlySelected.layer = layer;
 
 
         };

@@ -21,6 +21,7 @@
             layer.layerType = photoshopSettings.TEXT_LAYER;
 
             photoshopFile.content.layers.push(layer);
+            currentlySelected.layer = layer;
 
 
         };

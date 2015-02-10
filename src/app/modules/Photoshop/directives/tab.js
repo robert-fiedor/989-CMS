@@ -8,8 +8,10 @@
     var phoTab = function () {
         return {
             restrict: 'E',
+
             scope: {
-                tabTitle: '@'
+                tabTitle: '@',
+                inputTitle:'='
             },
             replace: false,
             controllerAs: "phoTabCtrl",
@@ -19,6 +21,7 @@
                         '<div class="pho-tab-header">' +
                             '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
                             '</h10>' +
+                            '<input type="text" ng-model="phoTabCtrl.inputTitle" value="phoTabCtrl.inputTitle"/>'+
                         '</div>' +
                         '<div ng-transclude></div>' +
                        '</div>',

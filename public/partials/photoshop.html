@@ -13,10 +13,14 @@
 
 <pho-tab class="properties-tab" tab-title="Properties">
     <properties></properties>
+    {{currentlySelected.layer}}
+
 </pho-tab>
 
 
-<pho-tab class="canvas-tab" tab-title="{{photoshopFile.content.name}}">
+
+
+<pho-tab class="canvas-tab" input-title="photoshopFile.content.name">
     <photo-canvas></photo-canvas>
 </pho-tab>
 
@@ -27,7 +31,10 @@
                 key-of-answer-object-to-bind-to="layer"
                 unique-radio-button-name="layers"
                 value-is-index="false">
-        <input type="text" ng-model="$parent.item.layerName" value="$parent.item.layerName"/>
+        <input type="text"
+               ng-model="$parent.item.layerName"
+               value="$parent.item.layerName"/>
+
         <!--{{$parent.item.layerName}}-->
     </select-one>
 

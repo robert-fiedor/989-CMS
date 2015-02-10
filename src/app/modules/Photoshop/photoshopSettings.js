@@ -13,8 +13,8 @@
             layerTemplate:{
                 layerType : null,
                 layerName:'Text Layer',
-                x:null,
-                y:null,
+                layerX:null,
+                layerY:null,
                 opacity:100
                 
             },
