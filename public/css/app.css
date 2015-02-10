@@ -57,6 +57,11 @@ body {
 .layers-tab label input[type="radio"] {
   display: none;
 }
+.layers-tab label input[type="text"] {
+  color: black;
+  background-color: transparent;
+  border: 0px;
+}
 .layers-tab label.photoshop-active {
   background-color: #2d89ef;
 }

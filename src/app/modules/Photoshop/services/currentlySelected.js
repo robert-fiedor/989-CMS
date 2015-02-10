@@ -4,9 +4,11 @@
 
 angular.module('photoshop').service('currentlySelected', ['photoshopSettings',function (photoshopSettings) {
     var currentlySelected = {
+
         //by default select first tool:
         tool:photoshopSettings.tools[1],
         layer:null
+
     };
     return currentlySelected;
 }]);

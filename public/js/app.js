@@ -79,7 +79,6 @@
         //get file
         PhotoshopDataService.getFile(vm.currentId);
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
-            console.log('* photoshopFile.content', newVal)
         });
 
         vm.updateFileTemp = function () {
@@ -325,6 +324,15 @@
             TEXT_LAYER:'TEXT_LAYER',
             CANVAS_LAYER:'CANVAS_LAYER',
 
+            layerTemplate:{
+                layerType : null,
+                layerName:'Text Layer',
+                x:null,
+                y:null,
+                opacity:100
+                
+            },
+
             tools: [
                 {
                     name: 'Move',
@@ -354,9 +362,16 @@
         };
 
         var addLayer = function () {
-            photoshopFile.content.layers.push(
-                {layerType: photoshopSettings.TEXT_LAYER}
-            );
+
+            //here look what kind of layer will be added
+            //layers should inherit from some shared object
+
+            var layer = angular.copy(photoshopSettings.layerTemplate);
+            layer.layerType = photoshopSettings.TEXT_LAYER;
+
+            photoshopFile.content.layers.push(layer);
+
+
         };
 
         var deleteLayer = function () {
@@ -456,9 +471,11 @@
 
 angular.module('photoshop').service('currentlySelected', ['photoshopSettings',function (photoshopSettings) {
     var currentlySelected = {
+
         //by default select first tool:
         tool:photoshopSettings.tools[1],
         layer:null
+
     };
     return currentlySelected;
 }]);

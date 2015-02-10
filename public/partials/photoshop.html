@@ -27,7 +27,8 @@
                 key-of-answer-object-to-bind-to="layer"
                 unique-radio-button-name="layers"
                 value-is-index="false">
-        <p>{{$parent.item.layerType}}</p>
+        <input type="text" ng-model="$parent.item.layerName" value="$parent.item.layerName"/>
+        <!--{{$parent.item.layerName}}-->
     </select-one>
 
     <button ng-click="photoshopCtrl.deleteLayer()">delete</button>

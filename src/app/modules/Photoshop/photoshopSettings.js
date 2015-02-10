@@ -10,6 +10,15 @@
             TEXT_LAYER:'TEXT_LAYER',
             CANVAS_LAYER:'CANVAS_LAYER',
 
+            layerTemplate:{
+                layerType : null,
+                layerName:'Text Layer',
+                x:null,
+                y:null,
+                opacity:100
+                
+            },
+
             tools: [
                 {
                     name: 'Move',

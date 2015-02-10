@@ -17,7 +17,6 @@
         //get file
         PhotoshopDataService.getFile(vm.currentId);
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
-            console.log('* photoshopFile.content', newVal)
         });
 
         vm.updateFileTemp = function () {

@@ -13,9 +13,16 @@
         };
 
         var addLayer = function () {
-            photoshopFile.content.layers.push(
-                {layerType: photoshopSettings.TEXT_LAYER}
-            );
+
+            //here look what kind of layer will be added
+            //layers should inherit from some shared object
+
+            var layer = angular.copy(photoshopSettings.layerTemplate);
+            layer.layerType = photoshopSettings.TEXT_LAYER;
+
+            photoshopFile.content.layers.push(layer);
+
+
         };
 
         var deleteLayer = function () {
