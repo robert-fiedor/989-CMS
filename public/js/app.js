@@ -77,7 +77,9 @@
         $scope.currentlySelected = currentlySelected;
 
         //get file
-        PhotoshopDataService.getFile(vm.currentId);
+        PhotoshopDataService.getFile(vm.currentId).then(function () {
+            $scope.currentlySelected.layer = $scope.photoshopFile.content.layers[0];
+        });
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
         });
 
@@ -85,7 +87,7 @@
             PhotoshopDataService.updateFile(vm.currentId);
         };
 
-        vm.deleteLayer = function(){
+        vm.deleteLayer = function () {
             LayersAccessService.deleteLayer();
         }
 
@@ -104,7 +106,7 @@
 
     };
 
-    PhotoshopController.$inject = ['LayersAccessService','$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
+    PhotoshopController.$inject = ['LayersAccessService', '$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -214,12 +216,12 @@
         return {
             restrict: 'E',
             scope: {
-                title1: '@'
+                printObject: '='
             },
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div></div>',
+            template: '<div ng-repeat="item in propertiesCtrl.printObject | excludeProperties">{{item}}</div>',
             controller: function ($scope) {
                 var vm = this;
             }
@@ -227,8 +229,36 @@
         };
     }
     properties.$inject = [];
-    angular.module('photoshop').directive('properties', properties);
+    angular
+        .module('photoshop')
+        .directive('properties', properties);
 })();
+
+
+(function () {
+    'use strict';
+
+    angular.module('photoshop')
+        .filter('excludeProperties', function () {
+            return function (item) {
+
+                var result = {};
+
+                for (var key in item) {
+                    var isPresentInRenderableKeys = angular.isDefined(item.renderable_keys[key]);
+                    var isRenderKeysMapObject = key === 'renderable_keys' ? true : false;
+                    if (isPresentInRenderableKeys) result[key] = item[key]
+                }
+
+
+                return result;
+            }
+        });
+
+})();
+
+
+
 /**
  * Created by Rob on 1/31/2015.
  */
@@ -325,16 +355,30 @@
     'use strict';
     angular.module('photoshop').constant('photoshopSettings',
         {
-            TEXT_LAYER:'TEXT_LAYER',
-            CANVAS_LAYER:'CANVAS_LAYER',
+            TEXT_LAYER: 'TEXT_LAYER',
+            CANVAS_LAYER: 'CANVAS_LAYER',
 
-            layerTemplate:{
-                layerType : null,
-                layerName:'Text Layer',
-                layerX:null,
-                layerY:null,
-                opacity:100
-                
+            layerTemplate: {
+                layerType: null,
+                layerName: 'Text Layer',
+                layerX: null,
+                layerY: null,
+                opacity: 100,
+                visible: true,
+                locked: false,
+
+                //these keys of this objects will be rendered in properties
+                //and labeled as in the value
+                renderable_keys: {
+                    layerType : 'Layer Type',
+                    layerName : 'Name',
+                    layerX : 'X position',
+                    layerY : 'Y position',
+                    opacity: 'Opacity',
+                    visible : 'Visible',
+                    locked : 'Locked'
+                }
+
             },
 
             tools: [
@@ -345,7 +389,7 @@
                 {
                     name: 'Text',
                     icon: '',
-                    createsLayer:'TEXT_LAYER'
+                    createsLayer: 'TEXT_LAYER'
                 }
             ]
         });
@@ -383,6 +427,8 @@
             _.each(photoshopFile.content.layers, function (val, index) {
                 if (val === currentlySelected.layer) {
                     photoshopFile.content.layers.splice(index, 1)
+                    currentlySelected.layer = photoshopFile.content.layers[index];
+
                 }
             })
         };
@@ -474,7 +520,8 @@
  * Created by Rob on 1/26/2015.
  */
 
-angular.module('photoshop').service('currentlySelected', ['photoshopSettings',function (photoshopSettings) {
+angular.module('photoshop').service('currentlySelected',
+    ['photoshopSettings',function (photoshopSettings) {
     var currentlySelected = {
 
         //by default select first tool:

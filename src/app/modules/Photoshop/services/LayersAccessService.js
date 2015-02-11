@@ -30,6 +30,8 @@
             _.each(photoshopFile.content.layers, function (val, index) {
                 if (val === currentlySelected.layer) {
                     photoshopFile.content.layers.splice(index, 1)
+                    currentlySelected.layer = photoshopFile.content.layers[index];
+
                 }
             })
         };

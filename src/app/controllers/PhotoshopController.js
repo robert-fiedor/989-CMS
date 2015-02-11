@@ -15,7 +15,9 @@
         $scope.currentlySelected = currentlySelected;
 
         //get file
-        PhotoshopDataService.getFile(vm.currentId);
+        PhotoshopDataService.getFile(vm.currentId).then(function () {
+            $scope.currentlySelected.layer = $scope.photoshopFile.content.layers[0];
+        });
         $scope.$watch('photoshopFile.content', function (newVal, oldVal) {
         });
 
@@ -23,7 +25,7 @@
             PhotoshopDataService.updateFile(vm.currentId);
         };
 
-        vm.deleteLayer = function(){
+        vm.deleteLayer = function () {
             LayersAccessService.deleteLayer();
         }
 
@@ -42,7 +44,7 @@
 
     };
 
-    PhotoshopController.$inject = ['LayersAccessService','$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
+    PhotoshopController.$inject = ['LayersAccessService', '$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
