@@ -89,7 +89,7 @@
 
         vm.deleteLayer = function () {
             LayersAccessService.deleteLayer();
-        }
+        };
 
         //temp:
         $scope.createFile = function () {
@@ -139,25 +139,33 @@
     'use strict';
 
     angular.module('photoshop')
-        .directive('layers', ['currentlySelected', function (currentlySelected) {
+        .directive('layer', ['currentlySelected', function (currentlySelected) {
             return {
+                scope: {
+                    model: '='
+                },
                 restrict: 'E',
                 replace: false,
                 bindToController: true,
-                template: 'layers!',
-                controller: 'LayersController as layersCtrl',
+                //template: 'layer!',
+                templateUrl:'/partials/directives/photoshop/layers.html',
+                controller: 'LayerController as layerCtrl',
                 link: function (scope) {
-                    //scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
-                    //    console.log(newVal)
-                    //});
                 }
             };
         }]
     )
-        .controller("LayersController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
-            var vm = this;
+        .controller("LayerController", [
+            'currentlySelected',
+            'LayersAccessService',
+            'photoshopFile',
+            function (currentlySelected,
+                      LayersAccessService,
+                      photoshopFile) {
 
-        }])
+                var vm = this;
+
+            }])
 
 })();
 /**
@@ -174,7 +182,13 @@
                 restrict: 'E',
                 replace: false,
                 bindToController: true,
-                template: '<div ng-click="photoCanvasCtrl.canvasClicked($event)" class="photo-canvas"></div>',
+                template: '<div class="photo-canvas">' +
+
+                '<div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">' +
+                '<layer model="layer"></layer>' +
+                '</div>' +
+
+                '</div>',
                 controller: 'PhotoCanvasController as photoCanvasCtrl',
                 link: function (scope) {
                     scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
@@ -184,24 +198,29 @@
             };
         }]
     )
-        .controller("PhotoCanvasController", ['currentlySelected', 'LayersAccessService', function (currentlySelected, LayersAccessService) {
-            var vm = this;
-            vm.canvasClicked = function ($event) {
-                //$event.layerX, $event.layerY
+        .controller("PhotoCanvasController", [
+            'currentlySelected',
+            'LayersAccessService',
+            'photoshopFile',
+            function (currentlySelected,
+                      LayersAccessService,
+                      photoshopFile) {
 
-                console.log('LayersAccessService', LayersAccessService.getLayers())
+                var vm = this;
 
-                if (currentlySelected.tool.createsLayer) {
-                    LayersAccessService.addLayer();
-                    currentlySelected.layer.layerX = $event.layerX;
-                    currentlySelected.layer.layerY = $event.layerY;
+                vm.photoshopFile = photoshopFile;
 
+
+                vm.canvasClicked = function ($event) {
+
+                    if (currentlySelected.tool.createsLayer) {
+                        LayersAccessService.addLayer();
+                        currentlySelected.layer.layerX = $event.layerX;
+                        currentlySelected.layer.layerY = $event.layerY;
+                    }
                 }
 
-
-            }
-
-        }])
+            }])
 
     //var photoCanvas =     photoCanvas.$inject = ['$scope','currentlySelected'];
 })();

@@ -85,3 +85,6 @@ body {
 .layers-tab label.photoshop-active {
   background-color: #2d89ef;
 }
+.layer-canvas-text {
+  position: absolute;
+}

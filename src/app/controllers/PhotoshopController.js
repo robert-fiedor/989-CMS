@@ -27,7 +27,7 @@
 
         vm.deleteLayer = function () {
             LayersAccessService.deleteLayer();
-        }
+        };
 
         //temp:
         $scope.createFile = function () {
