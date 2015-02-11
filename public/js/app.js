@@ -151,6 +151,7 @@
                 templateUrl:'/partials/directives/photoshop/layers.html',
                 controller: 'LayerController as layerCtrl',
                 link: function (scope) {
+
                 }
             };
         }]
@@ -163,7 +164,16 @@
                       LayersAccessService,
                       photoshopFile) {
 
+
+
                 var vm = this;
+
+                //console.log(, '******')
+
+                vm.chh = function(){
+                    return vm.model.layerX+'px';
+                }
+
 
             }])
 
