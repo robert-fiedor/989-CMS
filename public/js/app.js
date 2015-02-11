@@ -221,7 +221,11 @@
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template: '<div ng-repeat="item in propertiesCtrl.printObject | excludeProperties">{{item}}</div>',
+            template:
+                '<div ' +
+                'ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">' +
+                '{{propertiesCtrl.printObject.renderable_keys[key]}} : {{val}}' +
+                '</div>',
             controller: function ($scope) {
                 var vm = this;
             }
@@ -239,7 +243,7 @@
     'use strict';
 
     angular.module('photoshop')
-        .filter('excludeProperties', function () {
+        .filter('filterProperties', function () {
             return function (item) {
 
                 var result = {};
@@ -249,7 +253,6 @@
                     var isRenderKeysMapObject = key === 'renderable_keys' ? true : false;
                     if (isPresentInRenderableKeys) result[key] = item[key]
                 }
-
 
                 return result;
             }
