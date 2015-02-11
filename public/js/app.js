@@ -224,7 +224,8 @@
             template:
                 '<div ' +
                 'ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">' +
-                '{{propertiesCtrl.printObject.renderable_keys[key]}} : {{val}}' +
+                '<p ng-bind="propertiesCtrl.printObject.renderable_keys[key]"></p>: '+
+                    '<input type="text" ng-model="propertiesCtrl.printObject[key]" value="propertiesCtrl.printObject[key]"/>'+
                 '</div>',
             controller: function ($scope) {
                 var vm = this;
@@ -249,8 +250,8 @@
                 var result = {};
 
                 for (var key in item) {
+
                     var isPresentInRenderableKeys = angular.isDefined(item.renderable_keys[key]);
-                    var isRenderKeysMapObject = key === 'renderable_keys' ? true : false;
                     if (isPresentInRenderableKeys) result[key] = item[key]
                 }
 
@@ -373,13 +374,10 @@
                 //these keys of this objects will be rendered in properties
                 //and labeled as in the value
                 renderable_keys: {
-                    layerType : 'Layer Type',
                     layerName : 'Name',
                     layerX : 'X position',
                     layerY : 'Y position',
-                    opacity: 'Opacity',
-                    visible : 'Visible',
-                    locked : 'Locked'
+                    opacity: 'Opacity'
                 }
 
             },

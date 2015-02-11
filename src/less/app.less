@@ -27,7 +27,7 @@ body {
   .pho-tab-header {
 
     background-color: @color8;
-    input[type="text"]{
+    input[type="text"] {
 
       .clear-input;
     }
@@ -41,7 +41,7 @@ body {
   }
 
   .transcluded {
-//    color: white;
+    //    color: white;
   }
 }
 
@@ -82,16 +82,25 @@ body {
   }
 }
 
-.clear-input{
-  color:black;
+.clear-input {
+  color: black;
   background-color: transparent;
   border: 0px;
-  width:auto;
+  width: auto;
 }
 
 .properties-tab {
   width: @pho-tab-width;
-  color:white;
+  color: white;
+
+  p {
+    display: inline-block;
+  }
+
+  input[type="text"] {
+    .clear-input;
+
+  }
 }
 
 .layers-tab {
@@ -99,13 +108,13 @@ body {
   width: @pho-tab-width;
 
   label {
-    display:block;
+    display: block;
     input[type="radio"] {
       display: none;
     }
 
-    input[type="text"]{
-//      background-color: pink;
+    input[type="text"] {
+      //      background-color: pink;
       .clear-input;
     }
 

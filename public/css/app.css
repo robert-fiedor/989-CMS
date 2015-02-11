@@ -58,6 +58,15 @@ body {
   width: 300px;
   color: white;
 }
+.properties-tab p {
+  display: inline-block;
+}
+.properties-tab input[type="text"] {
+  color: black;
+  background-color: transparent;
+  border: 0px;
+  width: auto;
+}
 .layers-tab {
   width: 300px;
 }

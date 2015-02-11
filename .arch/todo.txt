@@ -9,4 +9,5 @@
 [x] deleting selects next one
 [ ] represent visually layers on canvas
 [x] render keys in properties
-
+[x] doublebind properties
+[ ] fix limiting of render

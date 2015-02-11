@@ -22,13 +22,10 @@
                 //these keys of this objects will be rendered in properties
                 //and labeled as in the value
                 renderable_keys: {
-                    layerType : 'Layer Type',
                     layerName : 'Name',
                     layerX : 'X position',
                     layerY : 'Y position',
-                    opacity: 'Opacity',
-                    visible : 'Visible',
-                    locked : 'Locked'
+                    opacity: 'Opacity'
                 }
 
             },

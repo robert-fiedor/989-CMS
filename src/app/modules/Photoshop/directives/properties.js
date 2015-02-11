@@ -17,7 +17,8 @@
             template:
                 '<div ' +
                 'ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">' +
-                '{{propertiesCtrl.printObject.renderable_keys[key]}} : {{val}}' +
+                '<p ng-bind="propertiesCtrl.printObject.renderable_keys[key]"></p>: '+
+                    '<input type="text" ng-model="propertiesCtrl.printObject[key]" value="propertiesCtrl.printObject[key]"/>'+
                 '</div>',
             controller: function ($scope) {
                 var vm = this;
@@ -42,8 +43,8 @@
                 var result = {};
 
                 for (var key in item) {
+
                     var isPresentInRenderableKeys = angular.isDefined(item.renderable_keys[key]);
-                    var isRenderKeysMapObject = key === 'renderable_keys' ? true : false;
                     if (isPresentInRenderableKeys) result[key] = item[key]
                 }
 
