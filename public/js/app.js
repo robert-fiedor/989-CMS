@@ -1,11 +1,16 @@
 (function () {
     'use strict';
 
+    angular.module('reusable', []);
+
+
     angular.module('venue', ['ngRoute', 'ui.router', 'venueShows', 'playground', 'photoshop']);
+
 
     angular.module('venueShows', []);
     angular.module('playground', []);
-    angular.module('photoshop', []);
+    angular.module('photoshop', ['reusable']);
+
 
 })
 ();
@@ -68,13 +73,33 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function (LayersAccessService, $scope, $http, PhotoshopDataService, photoshopFile, photoshopSettings, currentlySelected) {
+    var PhotoshopController = function (
+        timerTick,
+        LayersAccessService,
+        $scope,
+        $http,
+        PhotoshopDataService,
+        photoshopFile,
+        photoshopSettings,
+        currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d692ce6d60d5041fca0238';
         vm.tools = photoshopSettings.tools;
         $scope.photoshopFile = photoshopFile;
         $scope.currentlySelected = currentlySelected;
+
+        $scope.timerTick = timerTick;
+
+        //console.log('klklkl',timerTickk.ticker)
+        //
+        //$scope.ticker
+
+        $scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
+            console.log(1225, newVal)
+        });
+
+        $scope.timerTick.start();
 
         //get file
         PhotoshopDataService.getFile(vm.currentId).then(function () {
@@ -85,6 +110,8 @@
 
         vm.updateFileTemp = function () {
             PhotoshopDataService.updateFile(vm.currentId);
+
+            $scope.timerTickk.newticker = 1000;
         };
 
         vm.deleteLayer = function () {
@@ -106,7 +133,15 @@
 
     };
 
-    PhotoshopController.$inject = ['LayersAccessService', '$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
+    PhotoshopController.$inject = [
+        'timerTick',
+        'LayersAccessService',
+        '$scope',
+        '$http',
+        'PhotoshopDataService',
+        'photoshopFile',
+        'photoshopSettings',
+        'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -628,6 +663,39 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
     angular.module('playground').directive('owieczka', owieczka);
 
 })();
+/**
+ * Created by Rob on 1/26/2015.
+ */
+
+angular.module('reusable').service('timerTick', ['$interval', function ($interval) {
+
+    var ticker = 100;
+
+    var getTicker = function(){
+        return ticker;
+    };
+
+    var interval = $interval;
+
+    var callAtInterval = function () {
+        ticker++;
+    };
+
+    var stop = function () {
+        return '';
+    };
+
+    var start = function () {
+        $interval(callAtInterval, 1000);
+    };
+
+    return {
+        start: start,
+        stop: stop,
+        ticker:getTicker
+    };
+
+}]);
 /**
  * Created by Rob on 12/15/2014.
  */

@@ -6,13 +6,33 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function (LayersAccessService, $scope, $http, PhotoshopDataService, photoshopFile, photoshopSettings, currentlySelected) {
+    var PhotoshopController = function (
+        timerTick,
+        LayersAccessService,
+        $scope,
+        $http,
+        PhotoshopDataService,
+        photoshopFile,
+        photoshopSettings,
+        currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d692ce6d60d5041fca0238';
         vm.tools = photoshopSettings.tools;
         $scope.photoshopFile = photoshopFile;
         $scope.currentlySelected = currentlySelected;
+
+        $scope.timerTick = timerTick;
+
+        //console.log('klklkl',timerTickk.ticker)
+        //
+        //$scope.ticker
+
+        $scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
+            console.log(1225, newVal)
+        });
+
+        $scope.timerTick.start();
 
         //get file
         PhotoshopDataService.getFile(vm.currentId).then(function () {
@@ -23,6 +43,8 @@
 
         vm.updateFileTemp = function () {
             PhotoshopDataService.updateFile(vm.currentId);
+
+            $scope.timerTickk.newticker = 1000;
         };
 
         vm.deleteLayer = function () {
@@ -44,7 +66,15 @@
 
     };
 
-    PhotoshopController.$inject = ['LayersAccessService', '$scope', '$http', 'PhotoshopDataService', 'photoshopFile', 'photoshopSettings', 'currentlySelected'];
+    PhotoshopController.$inject = [
+        'timerTick',
+        'LayersAccessService',
+        '$scope',
+        '$http',
+        'PhotoshopDataService',
+        'photoshopFile',
+        'photoshopSettings',
+        'currentlySelected'];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
