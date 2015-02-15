@@ -6,15 +6,14 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function (
-        timerTick,
-        LayersAccessService,
-        $scope,
-        $http,
-        PhotoshopDataService,
-        photoshopFile,
-        photoshopSettings,
-        currentlySelected) {
+    var PhotoshopController = function (timerTick,
+                                        LayersAccessService,
+                                        $scope,
+                                        $http,
+                                        PhotoshopDataService,
+                                        photoshopFile,
+                                        photoshopSettings,
+                                        currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d692ce6d60d5041fca0238';
@@ -24,15 +23,11 @@
 
         $scope.timerTick = timerTick;
 
-        //console.log('klklkl',timerTickk.ticker)
-        //
-        //$scope.ticker
-
         $scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
-            console.log(1225, newVal)
+            console.log(1225, newVal);
         });
 
-        $scope.timerTick.start();
+        //$scope.timerTick.start();
 
         //get file
         PhotoshopDataService.getFile(vm.currentId).then(function () {
@@ -74,7 +69,8 @@
         'PhotoshopDataService',
         'photoshopFile',
         'photoshopSettings',
-        'currentlySelected'];
+        'currentlySelected'
+    ];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();

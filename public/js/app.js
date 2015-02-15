@@ -73,15 +73,14 @@
 (function () {
     'use strict';
 
-    var PhotoshopController = function (
-        timerTick,
-        LayersAccessService,
-        $scope,
-        $http,
-        PhotoshopDataService,
-        photoshopFile,
-        photoshopSettings,
-        currentlySelected) {
+    var PhotoshopController = function (timerTick,
+                                        LayersAccessService,
+                                        $scope,
+                                        $http,
+                                        PhotoshopDataService,
+                                        photoshopFile,
+                                        photoshopSettings,
+                                        currentlySelected) {
 
         var vm = this;
         vm.currentId = '54d692ce6d60d5041fca0238';
@@ -91,15 +90,11 @@
 
         $scope.timerTick = timerTick;
 
-        //console.log('klklkl',timerTickk.ticker)
-        //
-        //$scope.ticker
-
         $scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
-            console.log(1225, newVal)
+            console.log(1225, newVal);
         });
 
-        $scope.timerTick.start();
+        //$scope.timerTick.start();
 
         //get file
         PhotoshopDataService.getFile(vm.currentId).then(function () {
@@ -141,7 +136,8 @@
         'PhotoshopDataService',
         'photoshopFile',
         'photoshopSettings',
-        'currentlySelected'];
+        'currentlySelected'
+    ];
     angular.module('photoshop').controller('PhotoshopController', PhotoshopController)
 
 })();
@@ -664,12 +660,74 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
 
 })();
 /**
+ * Created by Rob on 2/14/2015.
+ */
+
+(function () {
+    'use strict';
+
+    angular.module('photoshop')
+        .directive('draggable',
+        ['currentlySelected',
+            'timerTick',
+            function (currentlySelected,
+                      timerTick) {
+                return {
+                    restrict: 'A',
+                    bindToController: true,
+                    controller: 'DraggableController as draggableCtrl',
+                    link: function (scope, element, attrs) {
+                        console.log('succ', element);
+
+                        var el = element[0];
+
+                        var func = function () {
+                            console.log('mouse move')
+                        };
+
+                        element.bind("mousedown", function () {
+                            console.log('down')
+
+                            el.addEventListener(
+                                'mousemove',
+                                func,
+                                false
+                            );
+
+
+                        });
+                        element.bind("mouseup", function () {
+                            console.log('up')
+                            el.removeEventListener('mousemove', func);
+                        });
+
+                    }
+                };
+            }]
+    )
+        .controller("DraggableController", [
+            'currentlySelected',
+            'LayersAccessService',
+            'photoshopFile',
+            function (currentlySelected,
+                      LayersAccessService,
+                      photoshopFile) {
+
+                var vm = this;
+            }]);
+
+})();
+/**
  * Created by Rob on 1/26/2015.
  */
 
-angular.module('reusable').service('timerTick', ['$interval', function ($interval) {
+angular.module('reusable').factory('timerTick', ['$interval', function ($interval) {
 
     var ticker = 100;
+
+    //$scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
+    //    console.log(1225, newVal);
+    //});
 
     var getTicker = function(){
         return ticker;
@@ -686,7 +744,7 @@ angular.module('reusable').service('timerTick', ['$interval', function ($interva
     };
 
     var start = function () {
-        $interval(callAtInterval, 1000);
+        $interval(callAtInterval, 50);
     };
 
     return {

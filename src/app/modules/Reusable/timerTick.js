@@ -2,9 +2,13 @@
  * Created by Rob on 1/26/2015.
  */
 
-angular.module('reusable').service('timerTick', ['$interval', function ($interval) {
+angular.module('reusable').factory('timerTick', ['$interval', function ($interval) {
 
     var ticker = 100;
+
+    //$scope.$watch('timerTick.ticker()', function (newVal, oldVal) {
+    //    console.log(1225, newVal);
+    //});
 
     var getTicker = function(){
         return ticker;
@@ -21,7 +25,7 @@ angular.module('reusable').service('timerTick', ['$interval', function ($interva
     };
 
     var start = function () {
-        $interval(callAtInterval, 1000);
+        $interval(callAtInterval, 50);
     };
 
     return {
