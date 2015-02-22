@@ -663,6 +663,9 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
  * Created by Rob on 2/14/2015.
  */
 
+//http://stackoverflow.com/questions/14589516/basic-draggable-with-angularjs
+//http://jsfiddle.net/QZ6kN/3/
+
 (function () {
     'use strict';
 
@@ -676,29 +679,15 @@ angular.module('photoshop').factory('photoshopFile', ["$rootScope", function ($r
                     restrict: 'A',
                     bindToController: true,
                     controller: 'DraggableController as draggableCtrl',
-                    link: function (scope, element, attrs) {
-                        console.log('succ', element);
+                    link: function preLink(scope, element, attrs) {
 
-                        var el = element[0];
-
-                        var func = function () {
-                            console.log('mouse move')
-                        };
+                        element.draggable();
 
                         element.bind("mousedown", function () {
                             console.log('down')
-
-                            el.addEventListener(
-                                'mousemove',
-                                func,
-                                false
-                            );
-
-
                         });
                         element.bind("mouseup", function () {
                             console.log('up')
-                            el.removeEventListener('mousemove', func);
                         });
 
                     }

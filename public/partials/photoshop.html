@@ -1,4 +1,6 @@
-<pho-tab class="photoshop-tools" tab-title="Tools">
+<pho-tab draggable
+         class="photoshop-tools"
+         tab-title="Tools">
     <select-one class="pho-tools" data="photoshopCtrl.tools"
                 answer-object-to-bind-to="currentlySelected"
                 key-of-answer-object-to-bind-to="tool"
@@ -11,7 +13,9 @@
 <button ng-click="photoshopCtrl.updateFileTemp()">updateFile</button>
 
 
-<pho-tab class="properties-tab" tab-title="Properties">
+<pho-tab draggable
+         class="properties-tab"
+         tab-title="Properties">
 
     <properties print-object="currentlySelected.layer"></properties>
 
@@ -24,7 +28,10 @@
     <photo-canvas></photo-canvas>
 </pho-tab>
 
-<pho-tab class="layers-tab" tab-title="Layers">
+<pho-tab
+        draggable
+        class="layers-tab"
+        tab-title="Layers">
 
     <select-one data="photoshopFile.content.layers"
                 answer-object-to-bind-to="currentlySelected"

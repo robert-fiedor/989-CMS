@@ -32,15 +32,17 @@ module.exports = function (grunt) {
             basic_and_extras: {
                 files: {
                     'public/js/app.js': ['src/app.js','src/app/**/!(*.spec).js'],
-                    'public/js/lib.js': [
-                        'src/libs/angular/angular.js',
-                        'src/libs/angular-mocks/angular-mocks.js',
-                        'src/libs/bower-angular-resource-master/angular-resource.js',
-                        'src/libs/angular-route/angular-route.js',
-                        'src/libs/angular-ui-router.js',
-                        'src/libs/ui-bootstrap-tpls-0.12.0.js',
-                        'src/libs/lodash.js'
-                    ]
+                    //'public/js/lib.js': [
+                    //    'src/libs/jquery-1.11.2.js',
+                    //    'src/libs/jquery-ui.js',
+                    //    'src/libs/angular/angular.js',
+                    //    'src/libs/angular-mocks/angular-mocks.js',
+                    //    'src/libs/bower-angular-resource-master/angular-resource.js',
+                    //    'src/libs/angular-route/angular-route.js',
+                    //    'src/libs/angular-ui-router.js',
+                    //    'src/libs/ui-bootstrap-tpls-0.12.0.js',
+                    //    'src/libs/lodash.js'
+                    //]
                 }
             }
         },
@@ -51,7 +53,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: {
-                    'public/js/lib-min.js': ['public/js/lib.js'],
+                    //'public/js/lib-min.js': ['public/js/lib.js'],
                     'public/js/app-min.js': ['public/js/app.js']
                 }
             }
@@ -97,7 +99,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['simplemocha', 'concat', 'less', 'uglify','watch', ]);
+    //grunt.registerTask('default', ['simplemocha', 'concat', 'less', 'uglify','watch', ]);
+    grunt.registerTask('default', ['concat', 'less','watch' ]);
 
 
 };
