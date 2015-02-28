@@ -12,7 +12,7 @@
                 restrict: 'E',
                 replace: false,
                 bindToController: true,
-                template: '<div class="photo-canvas">' +
+                template: '<div class="photo-canvas" ng-click="photoCanvasCtrl.canvasClicked($event)">' +
 
                 '<div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">' +
                 '<layer model="layer"></layer>' +
@@ -37,11 +37,15 @@
                       photoshopFile) {
 
                 var vm = this;
+                console.log('here 1')
 
                 vm.photoshopFile = photoshopFile;
 
 
                 vm.canvasClicked = function ($event) {
+
+                    console.log(123999);
+
 
                     if (currentlySelected.tool.createsLayer) {
                         LayersAccessService.addLayer();
