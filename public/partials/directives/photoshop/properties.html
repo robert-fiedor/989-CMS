@@ -1,0 +1,6 @@
+<div class="photo-canvas"
+     ng-click="photoCanvasCtrl.canvasClicked($event)">
+    <div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">
+        <layer model="layer"></layer>
+    </div>
+</div>
