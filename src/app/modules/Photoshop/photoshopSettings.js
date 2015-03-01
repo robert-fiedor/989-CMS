@@ -32,6 +32,14 @@
 
             tools: [
                 {
+                    name: 'Pencil',
+                    icon: ''
+                },
+                {
+                    name: 'Paint',
+                    icon: ''
+                },
+                {
                     name: 'Move',
                     icon: ''
                 },

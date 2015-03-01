@@ -349,14 +349,7 @@
             controllerAs: "phoTabCtrl",
             transclude: true,
             bindToController: true,
-            template: '<div class="pho-tab-inner">' +
-                        '<div class="pho-tab-header">' +
-                            '<h10 class="pho-tab-title" ng-bind="phoTabCtrl.tabTitle">' +
-                            '</h10>' +
-                            '<input type="text" ng-model="phoTabCtrl.inputTitle" value="phoTabCtrl.inputTitle"/>'+
-                        '</div>' +
-                        '<div ng-transclude></div>' +
-                       '</div>',
+            templateUrl:'/partials/directives/photoshop/tab.html',
             controller: function ($scope) {
                 var vm = this;
                 vm.lala2 = 'phoTabCtrl hello ,live value';
@@ -401,6 +394,14 @@
             },
 
             tools: [
+                {
+                    name: 'Brush',
+                    icon: ''
+                },
+                {
+                    name: 'Paint',
+                    icon: ''
+                },
                 {
                     name: 'Move',
                     icon: ''
