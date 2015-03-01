@@ -18,7 +18,7 @@ module.exports = function (config) {
             "src/libs/angular-ui-router.js",
             "src/libs/angular-route/angular-route.js",
             "src/libs/angular-mocks/angular-mocks.js",
-            "src/libs/jquery.js",
+            "src/libs/jquery-1.11.2.js",
             "src/libs/jasmine-jquery.js",
 
             "src/app.js",

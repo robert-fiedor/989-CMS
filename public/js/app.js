@@ -148,7 +148,7 @@
                 replace: false,
                 bindToController: true,
                 //template: 'layer!',
-                templateUrl:'/partials/directives/photoshop/layers.html',
+                templateUrl:'/partials/directives/photoshop/layer.html',
                 controller: 'LayerController as layerCtrl',
                 link: function (scope) {
 
@@ -192,13 +192,7 @@
                 restrict: 'E',
                 replace: false,
                 bindToController: true,
-                template: '<div class="photo-canvas" ng-click="photoCanvasCtrl.canvasClicked($event)">' +
-
-                '<div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">' +
-                '<layer model="layer"></layer>' +
-                '</div>' +
-
-                '</div>',
+                templateUrl:'/partials/directives/photoshop/photoCanvas.html',
                 controller: 'PhotoCanvasController as photoCanvasCtrl',
                 link: function (scope) {
                     scope.$watch('currentlySelected.tool', function (newVal, oldVal) {
@@ -254,12 +248,7 @@
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template:
-                '<div ' +
-                'ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">' +
-                '<p ng-bind="propertiesCtrl.printObject.renderable_keys[key]"></p>: '+
-                    '<input type="text" ng-model="propertiesCtrl.printObject[key]" value="propertiesCtrl.printObject[key]"/>'+
-                '</div>',
+            templateUrl:'/partials/directives/photoshop/properties.html',
             controller: function ($scope) {
                 var vm = this;
             }
@@ -316,13 +305,9 @@
                 triggerOnChange: '&'
             },
             transclude:true,
-            controllerAs: 'ctrl',
+            controllerAs: 'selectOneCtrl',
             bindToController: true,
-            template:
-            '<label ng-repeat="item in ctrl.data" ng-class="{&apos;photoshop-active&apos; : ctrl.isActive($index,item) }">' +
-            '<input type="radio" name="{{::ctrl.uniqueRadioButtonName}}" ng-model="ctrl.answerObjectToBindTo[ctrl.keyOfAnswerObjectToBindTo]" ng-value="ctrl.indexOrObject($index,item)" ng-change="ctrl.triggerOnChange()"></input>' +
-            '<div class="transcluded" ng-transclude></div>' +
-            '</label>',
+            templateUrl:'/partials/directives/photoshop/selectOne.html',
 
             link: function (scope, element, attrs, ngModelController) { },
             controller: function ($scope) {
@@ -330,11 +315,11 @@
                 vm.indexOrObject = function (index, item) {
                     var result = vm.valueIsIndex === 'true' ? index : item;
                     return result;
-                }
+                };
 
                 vm.isActive = function (index, item) {
                     return vm.answerObjectToBindTo[vm.keyOfAnswerObjectToBindTo] === vm.indexOrObject(index, item);
-                }
+                };
 
             }
         }

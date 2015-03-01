@@ -16,7 +16,7 @@
                 replace: false,
                 bindToController: true,
                 //template: 'layer!',
-                templateUrl:'/partials/directives/photoshop/layers.html',
+                templateUrl:'/partials/directives/photoshop/layer.html',
                 controller: 'LayerController as layerCtrl',
                 link: function (scope) {
 

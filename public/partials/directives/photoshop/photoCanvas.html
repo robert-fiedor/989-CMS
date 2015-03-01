@@ -1,4 +1,6 @@
-<div class="layer-canvas-text"
-     ng-style="{'left':layerCtrl.chh(), 'top':'{{layerCtrl.model.layerY}}'+'px'}">
-    {{layerCtrl.model.layerX}}
+<div class="photo-canvas"
+     ng-click="photoCanvasCtrl.canvasClicked($event)">
+    <div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">
+        <layer model="layer"></layer>
+    </div>
 </div>

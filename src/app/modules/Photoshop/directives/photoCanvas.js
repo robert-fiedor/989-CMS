@@ -12,13 +12,7 @@
                 restrict: 'E',
                 replace: false,
                 bindToController: true,
-                template: '<div class="photo-canvas" ng-click="photoCanvasCtrl.canvasClicked($event)">' +
-
-                '<div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">' +
-                '<layer model="layer"></layer>' +
-                '</div>' +
-
-                '</div>',
+                templateUrl:'/partials/directives/photoshop/photoCanvas.html',
                 controller: 'PhotoCanvasController as photoCanvasCtrl',
                 link: function (scope) {
                     scope.$watch('currentlySelected.tool', function (newVal, oldVal) {

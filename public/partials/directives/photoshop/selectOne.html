@@ -1,4 +1,10 @@
-<div class="layer-canvas-text"
-     ng-style="{'left':layerCtrl.chh(), 'top':'{{layerCtrl.model.layerY}}'+'px'}">
-    {{layerCtrl.model.layerX}}
-</div>
+<label ng-repeat="item in selectOneCtrl.data"
+       ng-class="{'photoshop-active' : selectOneCtrl.isActive($index,item)}">
+    <input type="radio"
+           name="{{::selectOneCtrl.uniqueRadioButtonName}}"
+           ng-model="selectOneCtrl.answerObjectToBindTo[selectOneCtrl.keyOfAnswerObjectToBindTo]"
+           ng-value="selectOneCtrl.indexOrObject($index,item)"
+           ng-change="selectOneCtrl.triggerOnChange()"/>
+
+    <div class="transcluded" ng-transclude></div>
+</label>

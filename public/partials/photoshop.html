@@ -1,5 +1,7 @@
-<pho-tab class="photoshop-tools" tab-title="Tools">
-    <select-one class="pho-tools" data="photoshopCtrl.tools"
+<pho-tab class="photoshop-tools"
+         tab-title="Tools">
+    <select-one class="pho-tools"
+                data="photoshopCtrl.tools"
                 answer-object-to-bind-to="currentlySelected"
                 key-of-answer-object-to-bind-to="tool"
                 unique-radio-button-name="tools"
@@ -11,16 +13,16 @@
 <button ng-click="photoshopCtrl.updateFileTemp()">updateFile</button>
 
 
-<pho-tab class="properties-tab" tab-title="Properties">
+<pho-tab class="properties-tab"
+         tab-title="Properties">
 
-    <properties print-object="currentlySelected.layer" ></properties>
+    <properties print-object="currentlySelected.layer"></properties>
 
 </pho-tab>
 
 
-
-
-<pho-tab class="canvas-tab" input-title="photoshopFile.content.name">
+<pho-tab class="canvas-tab"
+         input-title="photoshopFile.content.name">
     <photo-canvas></photo-canvas>
 </pho-tab>
 
@@ -31,15 +33,14 @@
                 key-of-answer-object-to-bind-to="layer"
                 unique-radio-button-name="layers"
                 value-is-index="false">
+
         <input type="text"
                ng-model="$parent.item.layerName"
                value="$parent.item.layerName"/>
 
-        <!--{{$parent.item.layerName}}-->
     </select-one>
 
     <button ng-click="photoshopCtrl.deleteLayer()">delete</button>
-
 
 </pho-tab>
 

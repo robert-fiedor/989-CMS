@@ -1,6 +1,6 @@
-<div class="photo-canvas"
-     ng-click="photoCanvasCtrl.canvasClicked($event)">
-    <div ng-repeat="layer in photoCanvasCtrl.photoshopFile.content.layers">
-        <layer model="layer"></layer>
-    </div>
+<div ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">
+    <p ng-bind="propertiesCtrl.printObject.renderable_keys[key]"></p>:
+    <input type="text"
+           ng-model="propertiesCtrl.printObject[key]"
+           value="propertiesCtrl.printObject[key]"/>
 </div>

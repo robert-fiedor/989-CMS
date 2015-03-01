@@ -14,12 +14,7 @@
             replace: false,
             controllerAs: "propertiesCtrl",
             bindToController: true,
-            template:
-                '<div ' +
-                'ng-repeat="(key,val) in propertiesCtrl.printObject | filterProperties">' +
-                '<p ng-bind="propertiesCtrl.printObject.renderable_keys[key]"></p>: '+
-                    '<input type="text" ng-model="propertiesCtrl.printObject[key]" value="propertiesCtrl.printObject[key]"/>'+
-                '</div>',
+            templateUrl:'/partials/directives/photoshop/properties.html',
             controller: function ($scope) {
                 var vm = this;
             }

@@ -97,7 +97,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['simplemocha', 'concat', 'less', 'uglify','watch', ]);
+    grunt.registerTask('default', ['concat', 'less', 'uglify','watch', ]);
 
 
 };
